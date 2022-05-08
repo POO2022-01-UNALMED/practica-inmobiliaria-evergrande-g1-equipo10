@@ -21,7 +21,7 @@ public class Cliente{
     }
 
     public Cita pedirCita(int ano, int mes, int dia, String hora){
-       // crear una cita con el constructor cuando lo hagan
+       return new Cita(ano, mes, dia, hora);
     }
 
     public void cancelarCita(Cita cita){
