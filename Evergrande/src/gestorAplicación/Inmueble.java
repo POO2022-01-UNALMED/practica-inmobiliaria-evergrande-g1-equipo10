@@ -1,4 +1,4 @@
-package gestorAplicación;
+package gestorAplicaciï¿½n;
 public class Inmueble {
 	private static int totalInmuebles;
 	private int idInmueble;
@@ -12,6 +12,8 @@ public class Inmueble {
 	private boolean vendido;
 	private TipoContrato tipoContrato;
 	
+	public Inmueble(){}
+
 	public Inmueble(double precio, String direccion, double area)
 	{
 		this.precio = precio;
