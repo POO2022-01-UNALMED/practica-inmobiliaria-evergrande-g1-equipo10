@@ -1,4 +1,3 @@
-package gestorAplicación;
 
 public class Agente {
 	private int cedula;
@@ -7,6 +6,15 @@ public class Agente {
 	private String placaVehiculo;
 	private String telefonoFijo;
 	private String telefonoCelular;
+	
+	public Agente(int cedula, String nombreCompleto, Vehiculo vehiculo, String placaVehiculo, String telefonoFijo, String telefonoCelular) {
+		this.cedula = cedula;
+		this.nombreCompleto = nombreCompleto;
+		this.vehiculo = vehiculo;
+		this.placaVehiculo = placaVehiculo;
+		this.telefonoFijo = telefonoFijo;
+		this.telefonoCelular = telefonoCelular;
+	}
 	
 	public int getCedula() {
 		return cedula;
