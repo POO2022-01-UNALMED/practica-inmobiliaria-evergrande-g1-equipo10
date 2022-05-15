@@ -1,4 +1,4 @@
-import gestorAplicaci.Inmueble;
+package gestorAplicacion.herencia;
 
 public class ApartaEstudio extends Inmueble{
     private String nombreUnidad;

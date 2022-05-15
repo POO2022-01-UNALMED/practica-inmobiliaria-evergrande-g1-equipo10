@@ -1,4 +1,7 @@
+package gestorAplicacion.otros;
+
 import java.util.ArrayList;
+import gestorAplicacion.herencia.Inmueble;
 
 public class Cliente{
     private int cedula;

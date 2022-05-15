@@ -1,3 +1,4 @@
+package gestorAplicacion.otros;
 
 public class Agente {
 	private int cedula;

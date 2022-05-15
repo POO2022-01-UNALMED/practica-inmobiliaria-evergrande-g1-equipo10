@@ -1,4 +1,4 @@
-package gestorAplicación;
+package gestorAplicacion.otros;
 
 public class Cita {
 	private static int idCitas = 0;

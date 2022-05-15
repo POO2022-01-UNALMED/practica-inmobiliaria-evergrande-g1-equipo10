@@ -1,4 +1,4 @@
-package gestorAplicación;
+package gestorAplicacion.otros;
 
 public enum TipoContrato {
 	VENTA, ARRIENDO

@@ -1,14 +1,15 @@
+package gestorAplicacion.herencia;
 
 public class Bodega extends Inmueble{
 	private int capacidad;
 	private int oficina;
-	private int baño;
+	private int bano;  // baÃ±o
 	
-	public Bodega(double precio, String direccion, double area, int capacidad, int oficina, int baño) {
+	public Bodega(double precio, String direccion, double area, int capacidad, int oficina, int bano) {
 		super(precio, direccion, area);
 		this.capacidad = capacidad;
 		this.oficina = oficina;
-		this.baño = baño;
+		this.bano = bano;
 	}
 	
 	public int getCapacidad() {
@@ -27,11 +28,11 @@ public class Bodega extends Inmueble{
 		this.oficina = oficina;
 	}
 	
-	public int getBaño() {
-		return baño;
+	public int getbano() {
+		return bano;
 	}
 	
-	public void setBaño(int baño) {
-		this.baño = baño;
+	public void setbano(int bano) {
+		this.bano = bano;
 	}
 }

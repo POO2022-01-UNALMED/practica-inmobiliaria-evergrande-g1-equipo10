@@ -1,4 +1,7 @@
-package gestorAplicaci�n;
+package gestorAplicacion.herencia;
+
+import gestorAplicacion.otros.TipoContrato;
+
 public class Inmueble {
 	private static int totalInmuebles;
 	private int idInmueble;
@@ -93,6 +96,14 @@ public class Inmueble {
 	
 	public void setVendido(boolean isVendido) {
 		this.vendido = isVendido;
+	}
+
+	public TipoContrato getTipoContrato() {
+		return tipoContrato;
+	}
+
+	public void setTipoContrato(TipoContrato tipoContrato) {
+		this.tipoContrato = tipoContrato;
 	}
 	
 }
