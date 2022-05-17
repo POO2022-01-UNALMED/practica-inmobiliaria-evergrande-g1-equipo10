@@ -1,5 +1,7 @@
 package gestorAplicacion.otros;
 
+import java.util.ArrayList;
+
 public class Cita {
 	private static int idCitas = 0;
 	private int idCita;
@@ -7,6 +9,7 @@ public class Cita {
 	private int mes;
 	private int ano;
 	private String hora;
+	public static ArrayList<Cita> citas = new ArrayList<Cita>();
 	
 	public Cita(int ano, int mes, int dia, String hora) {
 		this.ano = ano;
@@ -15,6 +18,11 @@ public class Cita {
 		this.hora = hora;
 		this.idCita = Cita.idCitas;
 		Cita.idCitas++;
+		Cita.citas.add(this);
+	}
+	
+	public static void cancelar(Cita cita) {
+		Cita.citas.remove(cita);
 	}
 	
 	public int getIdCita() {

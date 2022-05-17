@@ -38,7 +38,7 @@ public class Cliente implements Serializable{
     }
 
     public void cancelarCita(Cita cita){
-        // borrar la cita usando el metodo que creen
+        Cita.cancelar(cita);
     }
 
     public void iniciarContrato(Inmueble inmueble){
