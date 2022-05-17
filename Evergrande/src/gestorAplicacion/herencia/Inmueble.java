@@ -1,9 +1,14 @@
 package gestorAplicacion.herencia;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 import gestorAplicacion.otros.TipoContrato;
 
-public class Inmueble {
+public class Inmueble implements Serializable{
 	private static int totalInmuebles;
+	private static ArrayList<Inmueble> inmuebles = new ArrayList<Inmueble>();
+
 	private int idInmueble;
 	private double precio;
 	private String direccion;
@@ -25,6 +30,14 @@ public class Inmueble {
 		Inmueble.totalInmuebles++;
 		this.idInmueble = Inmueble.totalInmuebles;
  	}
+
+	public static ArrayList<Inmueble> getInmuebles() {
+		return inmuebles;
+	}
+
+	public static void setInmuebles(ArrayList<Inmueble> inmuebles) {
+		Inmueble.inmuebles = inmuebles;
+	}
 	
 	public int getIdInmueble() {
 		return this.idInmueble;

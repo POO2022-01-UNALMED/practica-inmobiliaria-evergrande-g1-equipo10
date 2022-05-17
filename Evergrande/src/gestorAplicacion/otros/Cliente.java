@@ -1,15 +1,25 @@
 package gestorAplicacion.otros;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import gestorAplicacion.herencia.Inmueble;
 
-public class Cliente{
+public class Cliente implements Serializable{
     private int cedula;
     private String nombreCompleto;
     private int telefonofijo;
     private int telefonocelular;
     private ArrayList<Inmueble> InmueblesComp = new ArrayList<Inmueble>();
     private ArrayList<Inmueble> InmueblesArri = new ArrayList<Inmueble>();
+
+    public Cliente(){}
+
+    public Cliente(int cedula, String nombreCompleto, int telefonofijo, int telefonocelular){
+        this.cedula = cedula;
+        this.nombreCompleto = nombreCompleto;
+        this.telefonofijo = telefonofijo;
+        this.telefonocelular = telefonocelular;
+    }
 
     public void comprarInmueble(Inmueble inmueble){
         this.InmueblesComp.add(inmueble);   
