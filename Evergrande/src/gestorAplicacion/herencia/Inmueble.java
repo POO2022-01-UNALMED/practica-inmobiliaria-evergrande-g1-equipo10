@@ -22,14 +22,19 @@ public class Inmueble implements Serializable{
 	
 	public Inmueble(){}
 
-	public Inmueble(double precio, String direccion, double area)
-	{
+	public Inmueble(double precio, String direccion, double area, TipoContrato tipoContrato){
 		this.precio = precio;
 		this.direccion = direccion;
 		this.area = area;
+		this.tipoContrato = tipoContrato;
+
 		Inmueble.totalInmuebles++;
 		this.idInmueble = Inmueble.totalInmuebles;
  	}
+
+	public Inmueble(double precio, String direccion, double area){
+		this(precio, direccion, area, TipoContrato.VENTA);
+	}
 	
 	public static void agregarInmueble(Inmueble inmueble) {
 		Inmueble.inmuebles.add(inmueble);

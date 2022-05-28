@@ -1,6 +1,7 @@
 package baseDatos;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,15 +16,24 @@ import gestorAplicacion.otros.*;
 public class Serializador {
 
     public static void main(String[] args) { // registros iniciales
-        // Clientes
-        List<Cliente> clientes = new ArrayList<Cliente>();
-        clientes.add(new Cliente(123456, "Sancho Panza", 654321, 30026456));
-        serializar(clientes, "Cliente");
-
         // Inmueble
         List<Inmueble> inmuebles = new ArrayList<Inmueble>();
-        inmuebles.add(new Inmueble(200000, "kra 45 # 32b", 160));
+        inmuebles.add(new Inmueble(200000, "kra 45 # 32b", 160, TipoContrato.VENTA));
+        inmuebles.add(new Inmueble(200000, "kra 45 # 32b", 160, TipoContrato.VENTA));
+        inmuebles.add(new Inmueble(200000, "kra 45 # 32b", 160, TipoContrato.ARRIENDO));
+        inmuebles.add(new Inmueble(200000, "kra 45 # 32b", 160, TipoContrato.ARRIENDO));
         serializar(inmuebles, "Inmueble");
+
+        // Clientes
+        Cliente cliente = new Cliente(123456, "Sancho Panza", 654321, 30026456);
+        for (Inmueble inmueble : inmuebles) {
+            if (inmueble.getTipoContrato() == TipoContrato.VENTA){
+                cliente.comprarInmueble(inmueble);
+            }else{
+                cliente.iniciarContrato(inmueble);
+            }
+        }
+        serializar(new ArrayList<Cliente>(){{add(cliente);}}, "Cliente");
     }
 
     public static <E> void serializar(List<E> objetos, String nomClase){

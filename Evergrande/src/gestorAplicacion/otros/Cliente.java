@@ -4,33 +4,40 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import gestorAplicacion.herencia.Inmueble;
 
-public class Cliente implements Serializable{
-    private int cedula;
-    private String nombreCompleto;
-    private int telefonofijo;
-    private int telefonocelular;
+public class Cliente extends Persona implements Serializable{
     private ArrayList<Inmueble> InmueblesComp = new ArrayList<Inmueble>();
     private ArrayList<Inmueble> InmueblesArri = new ArrayList<Inmueble>();
 
-    public Cliente(){}
+    public Cliente(){
+        super();
+    }
 
     public Cliente(int cedula, String nombreCompleto, int telefonofijo, int telefonocelular){
-        this.cedula = cedula;
-        this.nombreCompleto = nombreCompleto;
-        this.telefonofijo = telefonofijo;
-        this.telefonocelular = telefonocelular;
+        super(cedula, nombreCompleto, telefonofijo, telefonocelular);
+    }
+
+    public Cliente(int cedula, String nombreCompleto, int telefonofijo, int telefonocelular, ArrayList<Inmueble> InmueblesComp, ArrayList<Inmueble> InmueblesArri){
+        this(cedula, nombreCompleto, telefonofijo, telefonocelular);
+
+        this.InmueblesComp = InmueblesComp;
+        this.InmueblesArri = InmueblesArri;
     }
 
     public void comprarInmueble(Inmueble inmueble){
         this.InmueblesComp.add(inmueble);   
     }
 
-    public ArrayList<Inmueble> listarInmuebles(String tipo){
-        if (tipo.equalsIgnoreCase("comprados")) {
-            return this.InmueblesComp;
-        } else {
-            return this.InmueblesArri;
+    public ArrayList<Inmueble> listarInmuebles(){
+        ArrayList<Inmueble> r = new ArrayList<Inmueble>();
+
+        for (Inmueble inmueble : this.InmueblesArri) {
+            r.add(inmueble);
         }
+        for (Inmueble inmueble : this.InmueblesComp) {
+            r.add(inmueble);
+        }
+
+        return r;
     }
 
     public Cita pedirCita(int ano, int mes, int dia, String hora){
@@ -52,33 +59,4 @@ public class Cliente implements Serializable{
     public Pago realizarPago(double valor, int ano, int mes, Inmueble inmueble){
         return new Pago(valor, ano, mes, inmueble, this);
     }
-
-    // setteres y getters
-
-    public int getCedula() {
-        return cedula;
-    }
-    public void setCedula(int cedula) {
-        this.cedula = cedula;
-    }
-    public String getNombreCompleto() {
-        return nombreCompleto;
-    }
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
-    }
-    public int getTelefonofijo() {
-        return telefonofijo;
-    }
-    public void setTelefonofijo(int telefonofijo) {
-        this.telefonofijo = telefonofijo;
-    }
-    public int getTelefonocelular() {
-        return telefonocelular;
-    }
-    public void setTelefonocelular(int telefonocelular) {
-        this.telefonocelular = telefonocelular;
-    }    
-
-    
 }
