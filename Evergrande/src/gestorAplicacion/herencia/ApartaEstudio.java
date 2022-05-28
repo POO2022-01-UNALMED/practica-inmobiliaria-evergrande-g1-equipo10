@@ -1,5 +1,7 @@
 package gestorAplicacion.herencia;
 
+import gestorAplicacion.otros.TipoContrato;
+
 public class ApartaEstudio extends Inmueble{
     private String nombreUnidad;
     private int torre;
@@ -11,6 +13,16 @@ public class ApartaEstudio extends Inmueble{
 
     public ApartaEstudio(double precio, String direccion, double area, String nombreUnidad, int torre, int numeroApto, int numHabitaciones, int numBanos){
         super(precio, direccion, area);
+
+        this.nombreUnidad = nombreUnidad;
+        this.torre = torre;
+        this.numeroApto = numeroApto;
+        this.numHabitaciones = numHabitaciones;
+        this.numBanos = numBanos;
+    }
+
+    public ApartaEstudio(double precio, String direccion, double area, TipoContrato tipoContrato, String nombreUnidad, int torre, int numeroApto, int numHabitaciones, int numBanos){
+        super(precio, direccion, area, tipoContrato);
 
         this.nombreUnidad = nombreUnidad;
         this.torre = torre;

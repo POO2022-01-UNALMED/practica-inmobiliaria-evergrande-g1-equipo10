@@ -19,9 +19,9 @@ public class Serializador {
         // Inmueble
         List<Inmueble> inmuebles = new ArrayList<Inmueble>();
         inmuebles.add(new Inmueble(200000, "kra 45 # 32b", 160, TipoContrato.VENTA));
-        inmuebles.add(new Inmueble(200000, "kra 45 # 32b", 160, TipoContrato.VENTA));
-        inmuebles.add(new Inmueble(200000, "kra 45 # 32b", 160, TipoContrato.ARRIENDO));
-        inmuebles.add(new Inmueble(200000, "kra 45 # 32b", 160, TipoContrato.ARRIENDO));
+        inmuebles.add(new ApartaEstudio(200000, "kra 45 # 32b", 160, TipoContrato.VENTA, "unidad", 1, 1, 2, 1));
+        inmuebles.add(new Bodega(200000, "kra 45 # 32b", 160, TipoContrato.ARRIENDO, 15, 1, 1));
+        inmuebles.add(new Casa(200000, "kra 45 # 32b", 160, TipoContrato.ARRIENDO, 3, 2, 1, 0));
         serializar(inmuebles, "Inmueble");
 
         // Clientes

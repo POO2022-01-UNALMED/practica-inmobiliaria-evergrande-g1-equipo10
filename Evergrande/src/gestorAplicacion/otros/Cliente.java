@@ -30,10 +30,10 @@ public class Cliente extends Persona implements Serializable{
     public ArrayList<Inmueble> listarInmuebles(){
         ArrayList<Inmueble> r = new ArrayList<Inmueble>();
 
-        for (Inmueble inmueble : this.InmueblesArri) {
+        for (Inmueble inmueble : this.InmueblesComp) {
             r.add(inmueble);
         }
-        for (Inmueble inmueble : this.InmueblesComp) {
+        for (Inmueble inmueble : this.InmueblesArri) {
             r.add(inmueble);
         }
 
