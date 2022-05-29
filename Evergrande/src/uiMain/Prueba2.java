@@ -42,9 +42,17 @@ public class Prueba2 {
             switch (opt1) {
             	case 1: //ver inmuebles disponibles, lista todos los inmuebles con sus caracteristicas
             		for (Inmueble inmueble: Inmueble.getInmuebles()) {
-            			System.out.print(inmueble + "\n");
+            			boolean disponible = true;
+            			if(cliente.listarInmuebles().contains(inmueble.getIdInmueble())) {
+            				disponible = false;
+            			}
+            			if(disponible == true) {
+            				System.out.print(inmueble);
+            			}
             		}
+            		break;
             	
+            		
                 case 2: //comprar inmueble
                 	System.out.print("Ingrese el id del inmueble que desea comprar: ");
                 	int idInmueble = sc.nextInt();
@@ -53,7 +61,7 @@ public class Prueba2 {
                     for (Inmueble inmueblefiltrar : Inmueble.getInmuebles()) {
                         if (inmueblefiltrar.getIdInmueble() == idInmueble) {
                             if(inmueblefiltrar.getTipoContrato() == TipoContrato.ARRIENDO){
-                                System.out.println("El inmueble no está a la venta, solo disponible para arriendo");
+                                System.out.println("El inmueble no esta a la venta, solo disponible para arriendo");
                                 break;
                                 }
                             }
@@ -62,7 +70,7 @@ public class Prueba2 {
                     //verifica si el inmueble ya está en posesión del cliente
                     for (Inmueble inmueble: Inmueble.buscarInmueble(cliente.listarInmuebles())) {
                     	if(inmueble.getIdInmueble() == idInmueble) {
-                    		System.out.println("El inmueble ya lo tiene en posesión suya");
+                    		System.out.println("El inmueble ya esta en posesion suya");
                             break;
                     	}
                     }
@@ -70,6 +78,52 @@ public class Prueba2 {
                     cliente.comprarInmueble(idInmueble);
                     System.out.println("Felicidades ha comprado el inmueble con id " + idInmueble);
                     break;
+                    
+                    
+                case 3: //Iniciar contrato
+                	System.out.print("Ingrese el id del inmueble que desea arrendar: ");
+                	int id = sc.nextInt();
+                	
+                	//verifica si el inmueble es de tipo arriendo
+                    for (Inmueble inmueblefiltrar : Inmueble.getInmuebles()) {
+                        if (inmueblefiltrar.getIdInmueble() == id) {
+                            if(inmueblefiltrar.getTipoContrato() == TipoContrato.VENTA){
+                                System.out.println("El inmueble no esta disponible para ser arrendado, solo venta");
+                                break;
+                                }
+                            }
+                        }
+                    
+                    //verifica si el inmueble ya está en posesión del cliente
+                    for (Inmueble inmueble: Inmueble.buscarInmueble(cliente.listarInmuebles())) {
+                    	if(inmueble.getIdInmueble() == id) {
+                    		System.out.println("El inmueble ya esta en posesion suya");
+                            break;
+                    	}
+                    }
+                    
+                    cliente.iniciarContrato(id);;
+                    System.out.println("Felicidades ha iniciado un contrato de arrendamiento del inmueble con id " + id);
+                    break;
+                
+                    
+                case 4: //Muestra el informe de las unidades 
+                	System.out.println("Unidades de las cuales se puede presentar informe: ");
+                	
+                	for (UnidadResidencial unidad: UnidadResidencial.getUnidades()) {
+                		System.out.println("Nombre: "  + unidad.getNombre() + " con id " + unidad.getIdUnidadResidencial());
+                	}
+                	
+                	System.out.println("Ingrese el id de la unidad de la cual desea tener el informe: ");
+                	int idUnidad = sc.nextInt();
+                	
+                	for(UnidadResidencial unidad: UnidadResidencial.getUnidades()) {
+                		if(unidad.getIdUnidadResidencial() == idUnidad) {
+                			System.out.println(unidad.presentarInforme());
+                			break;
+                		}
+                	}
+                	break;
                     
             }
         } while (opt1 != 5);
