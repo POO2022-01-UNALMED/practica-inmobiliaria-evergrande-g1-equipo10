@@ -4,17 +4,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Agente extends Persona implements Serializable{
-
+	private static final long serialVersionUID = 1L;
 	private static ArrayList<Agente> agentes = new ArrayList<Agente>();
-
+	
+	private ArrayList<Integer> idInmuebles = new ArrayList<Integer>();
 	private Vehiculo vehiculo;
 	private String placaVehiculo;
 	
-	public Agente(int cedula, String nombreCompleto, Vehiculo vehiculo, String placaVehiculo, int telefonoFijo, int telefonoCelular) {
+	public Agente(int cedula, String nombreCompleto, Vehiculo vehiculo, String placaVehiculo, int telefonoFijo, int telefonoCelular, ArrayList<Integer> idInmuebles) {
 		super(cedula, nombreCompleto, telefonoFijo, telefonoCelular);
 
 		this.vehiculo = vehiculo;
 		this.placaVehiculo = placaVehiculo;
+		this.idInmuebles = idInmuebles;
 
 		Agente.agentes.add(this);
 	}
@@ -82,4 +84,12 @@ public class Agente extends Persona implements Serializable{
 	public void setTelefonoCelular(int telefonoCelular) {
 		this.telefonoCelular = telefonoCelular;
 	}
+	
+    public ArrayList<Integer> getIdInmuebles() {
+        return this.idInmuebles;
+    }
+
+    public void setIdInmuebles(ArrayList<Integer> idInmuebles) {
+        this.idInmuebles = idInmuebles;
+    }
 }

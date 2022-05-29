@@ -33,17 +33,21 @@ public class ApartaEstudio extends Inmueble{
     }
     
     public String toString() {
-    	return  " idInmueble =" + this.getIdInmueble() + "\n" +
-                " Precio =" + this.getPrecio() + "\n" +
-                " Direccion =" + this.getDireccion() + "\n" +
-                " Área ='" + this.getArea() + "\n" +
-                " Número de pisos ='" + this.getNumPisos() + "\n" +
-                " Tipo de contrato ='" + this.getTipoContrato() + "\n"+
-                " Nombre de la unidad = " + this.getNombreUnidad() + "\n"+
-                " Torre = " + this.getTorre() + "\n"+
-                " Número del apartaestudio = " + this.getNumeroApto() + "\n"+
-                " Número de Habitaciones = " + this.getNumHabitaciones()  + "\n"+
-                " Número de baños ="+ this.getNumBanos()
+    	return  " idInmueble: " + this.getIdInmueble() + "\n" +
+                " Precio: " + this.getPrecio() + "\n" +
+                " Direccion: " + this.getDireccion() + "\n" +
+                " Área: " + this.getArea() + "\n" +
+                " Número de pisos: " + this.getNumPisos() + "\n" +
+                " Tipo de contrato: " + this.getTipoContrato() + "\n"+
+                " Número de pisos: " + this.getNumPisos() + "\n" +
+                " ¿Tiene parqueadero de carros? " + this.getParqueaderoCarros() + "\n" +
+                " ¿Tiene parqueadero de motos? " + this.getParqueaderoMotos() + "\n" +
+                " ¿Está amueblado? " + this.getAmueblado() + "\n" +
+                " Nombre de la unidad: " + this.getNombreUnidad() + "\n"+
+                " Torre: " + this.getTorre() + "\n"+
+                " Número del apartaestudio: " + this.getNumeroApto() + "\n"+
+                " Número de Habitaciones: " + this.getNumHabitaciones()  + "\n"+
+                " Número de baños: "+ this.getNumBanos()
                 ;
     }
     

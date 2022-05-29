@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Pago implements Serializable{
+	private static final long serialVersionUID = 1L;
     private int idPago;
     private double valor;
     private int ano;

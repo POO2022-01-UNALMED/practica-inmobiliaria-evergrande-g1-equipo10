@@ -35,6 +35,7 @@ public class Inmueble implements Serializable{
 
 		Inmueble.totalInmuebles++;
 		this.idInmueble = Inmueble.totalInmuebles;
+		agregarInmueble(this);
  	}
 
 	public Inmueble(double precio, String direccion, double area){
@@ -43,10 +44,6 @@ public class Inmueble implements Serializable{
 	
 	public static void agregarInmueble(Inmueble inmueble) {
 		Inmueble.inmuebles.add(inmueble);
-	}
-	
-	public static void quitarInmueble(Inmueble inmueble) {
-		Inmueble.inmuebles.remove(inmueble);
 	}
 
 	public static ArrayList<Inmueble> getInmuebles() {
