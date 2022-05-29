@@ -9,14 +9,19 @@ public class Cita {
 	private int mes;
 	private int ano;
 	private String hora;
+	private int idAgente;
+	private int idInmueble;
+
 	public static ArrayList<Cita> citas = new ArrayList<Cita>();
 	
-	public Cita(int ano, int mes, int dia, String hora) {
+	public Cita(int ano, int mes, int dia, String hora, int idAgente, int idInmueble) {
 		this.ano = ano;
 		this.mes = mes;
 		this.dia = dia;
 		this.hora = hora;
 		this.idCita = Cita.idCitas;
+		this.idAgente = idAgente;
+		this.idInmueble = idInmueble;
 		Cita.idCitas++;
 		Cita.citas.add(this);
 	}
@@ -63,6 +68,22 @@ public class Cita {
 	
 	public void setHora(String hora) {
 		this.hora = hora;
+	}
+
+	public int getIdAgente() {
+		return idAgente;
+	}
+
+	public void setIdAgente(int idAgente) {
+		this.idAgente = idAgente;
+	}
+
+	public int getIdInmueble() {
+		return idInmueble;
+	}
+
+	public void setIdInmueble(int idInmueble) {
+		this.idInmueble = idInmueble;
 	}
 }
 

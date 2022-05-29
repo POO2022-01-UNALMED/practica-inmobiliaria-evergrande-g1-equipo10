@@ -2,14 +2,13 @@ package gestorAplicacion.otros;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import gestorAplicacion.herencia.Inmueble;
 
 public class Pago implements Serializable{
     private int idPago;
     private double valor;
     private int ano;
     private int mes;
-    private Inmueble inmueble;
+    private int idInmueble;
 
     private static ArrayList<Pago> pagos = new ArrayList<Pago>();
 
@@ -18,11 +17,11 @@ public class Pago implements Serializable{
         pagos.add(this);
     }
 
-    public Pago(double valor, int ano, int mes, Inmueble inmueble){
+    public Pago(double valor, int ano, int mes, int idInmueble){
         this.valor = valor;
         this.ano = ano;
         this.mes = mes;
-        this.inmueble = inmueble;
+        this.idInmueble = idInmueble;
 
         this.idPago = generateId();
         pagos.add(this);
@@ -37,12 +36,12 @@ public class Pago implements Serializable{
         return pagos;
     }
 
-    // metodo para filtrar los pagos por inmueble
-    public static ArrayList<Pago> verPagos(Inmueble inmueble){
+    // metodo para filtrar los pagos por idInmueble
+    public static ArrayList<Pago> verPagos(int idInmueble){
         ArrayList<Pago> pagosFiltro = new ArrayList<Pago>();
 
         for (Pago pago : pagos) {
-            if (pago.inmueble.getIdInmueble() == inmueble.getIdInmueble()) {
+            if (pago.idInmueble == idInmueble) {
                 pagosFiltro.add(pago);
             }
         }
@@ -78,10 +77,10 @@ public class Pago implements Serializable{
         this.ano = ano;
         this.mes = mes;
     }
-    public Inmueble getInmueble() {
-        return inmueble;
+    public int getidInmueble() {
+        return idInmueble;
     }
-    public void setInmueble(Inmueble inmueble) {
-        this.inmueble = inmueble;
+    public void setidInmueble(int idInmueble) {
+        this.idInmueble = idInmueble;
     }
 }

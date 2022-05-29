@@ -52,9 +52,43 @@ public class Inmueble implements Serializable{
 		Inmueble.inmuebles = inmuebles;
 		Inmueble.totalInmuebles = inmuebles.size();
 	}
+
+	// metodo para buscar inmuebles por id
+	public static Inmueble buscarInmueble(int id){
+		Inmueble r = null;
+		for (Inmueble inmueble : inmuebles) {
+			if(inmueble.getIdInmueble() == id){
+				r = inmueble;
+			}
+		}
+
+		return r;
+	}
+	
+	// metodo para buscar inmuebles por id (devuelve todos los ids que coincidan)
+	public static ArrayList<Inmueble> buscarInmueble(ArrayList<Integer> ids){
+		ArrayList<Inmueble> r = new ArrayList<Inmueble>();
+
+		for (int id : ids) {
+			for (Inmueble inmueble : Inmueble.inmuebles) {
+				
+				if(inmueble.getIdInmueble() == id){
+					r.add(inmueble);
+					break;
+				}
+
+			}
+		}
+
+		return r;
+	}
 	
 	public int getIdInmueble() {
 		return this.idInmueble;
+	}
+
+	public void setIdInmueble(int idInmueble) {
+		this.idInmueble = idInmueble;
 	}
 	
 	public double getPrecio() {
@@ -87,10 +121,6 @@ public class Inmueble implements Serializable{
 	
 	public boolean getVendido() {
 		return this.vendido;
-	}
-	
-	public void setIdInmueble(int idInmueble) {
-		this.idInmueble = idInmueble;
 	}
 	
 	public void setPrecio(double precio) {

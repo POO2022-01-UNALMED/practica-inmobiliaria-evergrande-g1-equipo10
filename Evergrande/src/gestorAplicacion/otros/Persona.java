@@ -2,8 +2,6 @@ package gestorAplicacion.otros;
 
 import java.util.ArrayList;
 
-import gestorAplicacion.herencia.Inmueble;
-
 public abstract class Persona {
     protected int cedula;
     protected String nombreCompleto;
@@ -25,7 +23,7 @@ public abstract class Persona {
     }
 
 
-    public abstract ArrayList<Inmueble> listarInmuebles();
+    public abstract ArrayList<Integer> listarInmuebles();
 
 
     public int getCedula() {
