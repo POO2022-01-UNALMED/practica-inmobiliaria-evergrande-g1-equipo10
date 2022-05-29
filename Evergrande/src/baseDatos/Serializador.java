@@ -24,6 +24,8 @@ public class Serializador {
         inmuebles.add(new Casa(200000, "kra 45 # 32b", 160, TipoContrato.ARRIENDO, 3, 2, 1, 0));
         // Inmuebles que NO son del cliente
         inmuebles.add(new Casa(40000, "kra 45 # 32b", 160, TipoContrato.VENTA, 3, 2, 1, 0));
+        inmuebles.add(new ApartaEstudio(80000, "calle 2a # 3b", 50, TipoContrato.VENTA, "unidad 2", 1, 2, 3, 2));
+        inmuebles.add(new Bodega(600, "kra 84 # 5 56", 20, TipoContrato.ARRIENDO, 15, 1, 0));
         serializar(inmuebles, "Inmueble");
 
         // pagos
@@ -35,6 +37,30 @@ public class Serializador {
         // Clientes
         Cliente cliente = new Cliente(123456, "Sancho Panza", 654321, 30026456, new ArrayList<Integer>(){{add(1);add(2);add(3);add(4);}});
         serializar(new ArrayList<Cliente>(){{add(cliente);}}, "Cliente");
+        
+        
+        //Agentes
+        List<Agente> agentes = new ArrayList<Agente>();
+        agentes.add(new Agente(123,"Andrés Orrego", Vehiculo.CARRO, "ABC 555", 777598, 001650236, new ArrayList<Integer>(){/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+		{add(5);add(6);}}));
+        
+        agentes.add(new Agente(889,"Carla Cordoba", Vehiculo.MOTO, "WHJ 56B", 520469, 132954720, new ArrayList<Integer>(){/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+		{add(7);}}));
+        serializar(agentes,"Agente");
+        
+        //Unidades
+        List<UnidadResidencial> unidades = new ArrayList<UnidadResidencial>();
+        unidades.add(new UnidadCerrada(007, "Parques del rocio", "San Germán", 6));
+        unidades.add(new EdificioDeApartamentos(860, "Cielo azúl", "Laureles", 16));
+        serializar(unidades, "UnidadResidencial");
     }
 
     public static <E> void serializar(List<E> objetos, String nomClase){
