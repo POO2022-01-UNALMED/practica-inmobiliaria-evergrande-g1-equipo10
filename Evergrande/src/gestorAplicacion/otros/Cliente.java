@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import gestorAplicacion.herencia.Inmueble;
 
 public class Cliente extends Persona implements Serializable{
-    private ArrayList<Inmueble> InmueblesComp = new ArrayList<Inmueble>();
-    private ArrayList<Inmueble> InmueblesArri = new ArrayList<Inmueble>();
+    private ArrayList<Inmueble> Inmuebles= new ArrayList<Inmueble>();
 
     public Cliente(){
         super();
@@ -16,28 +15,20 @@ public class Cliente extends Persona implements Serializable{
         super(cedula, nombreCompleto, telefonofijo, telefonocelular);
     }
 
-    public Cliente(int cedula, String nombreCompleto, int telefonofijo, int telefonocelular, ArrayList<Inmueble> InmueblesComp, ArrayList<Inmueble> InmueblesArri){
+    public Cliente(int cedula, String nombreCompleto, int telefonofijo, int telefonocelular, ArrayList<Inmueble> Inmuebles){
         this(cedula, nombreCompleto, telefonofijo, telefonocelular);
 
-        this.InmueblesComp = InmueblesComp;
-        this.InmueblesArri = InmueblesArri;
+        this.Inmuebles = Inmuebles;
     }
 
     public void comprarInmueble(Inmueble inmueble){
-        this.InmueblesComp.add(inmueble);   
+        if(inmueble.getTipoContrato() == TipoContrato.VENTA){
+            this.Inmuebles.add(inmueble);   
+        }
     }
 
     public ArrayList<Inmueble> listarInmuebles(){
-        ArrayList<Inmueble> r = new ArrayList<Inmueble>();
-
-        for (Inmueble inmueble : this.InmueblesComp) {
-            r.add(inmueble);
-        }
-        for (Inmueble inmueble : this.InmueblesArri) {
-            r.add(inmueble);
-        }
-
-        return r;
+        return this.Inmuebles;
     }
 
     public Cita pedirCita(int ano, int mes, int dia, String hora){
@@ -49,14 +40,20 @@ public class Cliente extends Persona implements Serializable{
     }
 
     public void iniciarContrato(Inmueble inmueble){
-        this.InmueblesArri.add(inmueble);
+        if(inmueble.getTipoContrato() == TipoContrato.ARRIENDO){
+            this.Inmuebles.add(inmueble);
+        }
     }
 
     public boolean finalizarContrato(Inmueble inmueble){
-        return this.InmueblesArri.remove(inmueble);
+        if(inmueble.getTipoContrato() == TipoContrato.ARRIENDO){
+            return this.Inmuebles.remove(inmueble);
+        }else{
+            return false;
+        }
     }
 
     public Pago realizarPago(double valor, int ano, int mes, Inmueble inmueble){
-        return new Pago(valor, ano, mes, inmueble, this);
+        return new Pago(valor, ano, mes, inmueble);
     }
 }

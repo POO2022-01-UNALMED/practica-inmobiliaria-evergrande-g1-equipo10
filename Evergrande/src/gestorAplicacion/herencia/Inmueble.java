@@ -50,6 +50,7 @@ public class Inmueble implements Serializable{
 
 	public static void setInmuebles(ArrayList<Inmueble> inmuebles) {
 		Inmueble.inmuebles = inmuebles;
+		Inmueble.totalInmuebles = inmuebles.size();
 	}
 	
 	public int getIdInmueble() {

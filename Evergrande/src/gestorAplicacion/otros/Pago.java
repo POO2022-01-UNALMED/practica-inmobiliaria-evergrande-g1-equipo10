@@ -1,15 +1,15 @@
 package gestorAplicacion.otros;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import gestorAplicacion.herencia.Inmueble;
 
-public class Pago{
+public class Pago implements Serializable{
     private int idPago;
     private double valor;
     private int ano;
     private int mes;
     private Inmueble inmueble;
-    private Cliente cliente;
 
     private static ArrayList<Pago> pagos = new ArrayList<Pago>();
 
@@ -18,12 +18,11 @@ public class Pago{
         pagos.add(this);
     }
 
-    public Pago(double valor, int ano, int mes, Inmueble inmueble, Cliente cliente){
+    public Pago(double valor, int ano, int mes, Inmueble inmueble){
         this.valor = valor;
         this.ano = ano;
         this.mes = mes;
         this.inmueble = inmueble;
-        this.cliente = cliente;
 
         this.idPago = generateId();
         pagos.add(this);
@@ -38,12 +37,12 @@ public class Pago{
         return pagos;
     }
 
-    // metodo para filtrar los pagos por cliente
-    public static ArrayList<Pago> verPagos(Cliente cliente){
+    // metodo para filtrar los pagos por inmueble
+    public static ArrayList<Pago> verPagos(Inmueble inmueble){
         ArrayList<Pago> pagosFiltro = new ArrayList<Pago>();
 
         for (Pago pago : pagos) {
-            if (pago.cliente.equals(cliente)) {
+            if (pago.inmueble.getIdInmueble() == inmueble.getIdInmueble()) {
                 pagosFiltro.add(pago);
             }
         }
@@ -51,17 +50,8 @@ public class Pago{
         return pagosFiltro;
     }
 
-    // metodo para filtrar los pagos por inmueble
-    public static ArrayList<Pago> verPagos(Inmueble inmueble){
-        ArrayList<Pago> pagosFiltro = new ArrayList<Pago>();
-
-        for (Pago pago : pagos) {
-            if (pago.inmueble.equals(inmueble)) {
-                pagosFiltro.add(pago);
-            }
-        }
-
-        return pagosFiltro;
+    public static void setPagos(ArrayList<Pago> pagos){
+        Pago.pagos = pagos;
     }
 
     //  setters y getters
@@ -93,11 +83,5 @@ public class Pago{
     }
     public void setInmueble(Inmueble inmueble) {
         this.inmueble = inmueble;
-    }
-    public Cliente getCliente() {
-        return cliente;
-    }
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 }

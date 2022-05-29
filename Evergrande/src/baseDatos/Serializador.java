@@ -16,23 +16,22 @@ import gestorAplicacion.otros.*;
 public class Serializador {
 
     public static void main(String[] args) { // registros iniciales
-        // Inmueble
+        // Inmuebles del cliente (hay que crear otros que compre el cliente)
         List<Inmueble> inmuebles = new ArrayList<Inmueble>();
         inmuebles.add(new Inmueble(200000, "kra 45 # 32b", 160, TipoContrato.VENTA));
         inmuebles.add(new ApartaEstudio(200000, "kra 45 # 32b", 160, TipoContrato.VENTA, "unidad", 1, 1, 2, 1));
-        inmuebles.add(new Bodega(200000, "kra 45 # 32b", 160, TipoContrato.ARRIENDO, 15, 1, 1));
+        inmuebles.add(new Bodega(600, "kra 45 # 32b", 160, TipoContrato.ARRIENDO, 15, 1, 1));
         inmuebles.add(new Casa(200000, "kra 45 # 32b", 160, TipoContrato.ARRIENDO, 3, 2, 1, 0));
         serializar(inmuebles, "Inmueble");
 
+        // pagos
+        List<Pago> pagos = new ArrayList<Pago>();
+        pagos.add(new Pago(200000, 2020, 5, inmuebles.get(0))); // pago inmueble 1
+        pagos.add(new Pago(600, 2022, 3, inmuebles.get(2))); // pago inmueble 3
+        serializar(pagos, "Pago");
+
         // Clientes
-        Cliente cliente = new Cliente(123456, "Sancho Panza", 654321, 30026456);
-        for (Inmueble inmueble : inmuebles) {
-            if (inmueble.getTipoContrato() == TipoContrato.VENTA){
-                cliente.comprarInmueble(inmueble);
-            }else{
-                cliente.iniciarContrato(inmueble);
-            }
-        }
+        Cliente cliente = new Cliente(123456, "Sancho Panza", 654321, 30026456, (ArrayList<Inmueble>) inmuebles);
         serializar(new ArrayList<Cliente>(){{add(cliente);}}, "Cliente");
     }
 
