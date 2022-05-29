@@ -1,6 +1,5 @@
 package uiMain;
-/*
- * Prueba de la parte del menú correspondiente a Explorar Inmuebles
+/* Prueba de la parte del menú correspondiente a Explorar Inmuebles
  * */
 
 import java.util.Scanner;
@@ -47,7 +46,6 @@ public class Prueba2 {
             		}
             	
                 case 2: //comprar inmueble
-                	boolean puedeComprar = true;
                 	System.out.print("Ingrese el id del inmueble que desea comprar: ");
                 	int idInmueble = sc.nextInt();
                 	
@@ -61,10 +59,10 @@ public class Prueba2 {
                             }
                         }
                     
-                    //verifica si el inmueble ya está en poseción del cliente
+                    //verifica si el inmueble ya está en posesión del cliente
                     for (Inmueble inmueble: Inmueble.buscarInmueble(cliente.listarInmuebles())) {
                     	if(inmueble.getIdInmueble() == idInmueble) {
-                    		System.out.println("El inmueble ya lo tiene en poseción suya");
+                    		System.out.println("El inmueble ya lo tiene en posesión suya");
                             break;
                     	}
                     }
