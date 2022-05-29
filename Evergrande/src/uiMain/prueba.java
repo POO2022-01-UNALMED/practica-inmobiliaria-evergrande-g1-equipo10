@@ -44,21 +44,21 @@ public class prueba {
                     for (Inmueble inmueble : Inmueble.buscarInmueble(cliente.listarInmuebles())) {
                         switch (opt2) {
                             case 1:
-                                System.out.println(inmueble.getIdInmueble());
+                                System.out.println(inmueble);
                                 break;
                             case 2:
                                 if (inmueble instanceof ApartaEstudio) {
-                                    System.out.println(inmueble.getIdInmueble());
+                                    System.out.println(inmueble);
                                 }
                                 break;
                             case 3:
                                 if (inmueble instanceof Bodega) {
-                                    System.out.println(inmueble.getIdInmueble());
+                                    System.out.println(inmueble);
                                 }
                                 break;
                             case 4:
                                 if (inmueble instanceof Casa) {
-                                    System.out.println(inmueble.getIdInmueble());
+                                    System.out.println(inmueble);
                                 }
                                 break;
                             default:
@@ -104,7 +104,7 @@ public class prueba {
                 case 3: // ver mis pagos
 
                     for (Pago pago : Pago.verPagos()) {
-                        System.out.println(pago.getIdPago());
+                        System.out.println(pago);
                     }
 
                     break;
