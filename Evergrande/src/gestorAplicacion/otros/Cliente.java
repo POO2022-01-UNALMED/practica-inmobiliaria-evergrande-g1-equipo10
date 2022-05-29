@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import gestorAplicacion.herencia.Inmueble;
 
 public class Cliente extends Persona implements Serializable{
+	private static final long serialVersionUID = 1L;
     private ArrayList<Inmueble> Inmuebles= new ArrayList<Inmueble>();
 
     public Cliente(){
@@ -23,7 +24,8 @@ public class Cliente extends Persona implements Serializable{
 
     public void comprarInmueble(Inmueble inmueble){
         if(inmueble.getTipoContrato() == TipoContrato.VENTA){
-            this.Inmuebles.add(inmueble);   
+            this.Inmuebles.add(inmueble);
+            Inmueble.quitarInmueble(inmueble);
         }
     }
 
