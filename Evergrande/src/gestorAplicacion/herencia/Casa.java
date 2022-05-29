@@ -30,11 +30,11 @@ public class Casa extends Inmueble {
     	return  " idInmueble =" + this.getIdInmueble() + "\n" +
                 " Precio =" + this.getPrecio() + "\n" +
                 " Direccion =" + this.getDireccion() + "\n" +
-                " Area ='" + this.getArea() + "\n" +
-                " Numero de pisos ='" + this.getNumPisos() + "\n" +
+                " Área ='" + this.getArea() + "\n" +
+                " Número de pisos ='" + this.getNumPisos() + "\n" +
                 " Tipo de contrato ='" + this.getTipoContrato() + "\n"+
-                " Numero de Habitaciones = " + this.getNumHabitaciones()  + "\n"+
-                " Numero de baños ="+ this.getNumBanos() + "\n"+
+                " Número de Habitaciones = " + this.getNumHabitaciones()  + "\n"+
+                " Número de baños ="+ this.getNumBanos() + "\n"+
                 " Patio = " + this.getPatio() + "\n"+
                 " Balcon = " + this.getBalcon()
                 ;
