@@ -21,6 +21,9 @@ public class Prueba2 {
 
         // deserializar inmuebles
         Inmueble.setInmuebles(Deserializador.<Inmueble>deserializar("Inmueble"));
+        
+        //deserializar unidades 
+        UnidadResidencial.setUnidades(Deserializador.<UnidadResidencial>deserializar("Unida"));
 
         short opt1 = 0;
         do {

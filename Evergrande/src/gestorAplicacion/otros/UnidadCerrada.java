@@ -1,6 +1,8 @@
 package gestorAplicacion.otros;
+import java.io.Serializable;
 
-public class UnidadCerrada extends UnidadResidencial {
+public class UnidadCerrada extends UnidadResidencial{
+	private static final long serialVersionUID = 1L;
 	private int numero_torres;
 	
 	public UnidadCerrada(int idUnidadResidencial, String nombre, String barrio, int numero_torres) {

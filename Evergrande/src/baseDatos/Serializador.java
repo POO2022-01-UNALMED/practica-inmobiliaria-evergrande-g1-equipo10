@@ -38,22 +38,11 @@ public class Serializador {
         Cliente cliente = new Cliente(123456, "Sancho Panza", 654321, 30026456, new ArrayList<Integer>(){{add(1);add(2);add(3);add(4);}});
         serializar(new ArrayList<Cliente>(){{add(cliente);}}, "Cliente");
         
-        
+
         //Agentes
         List<Agente> agentes = new ArrayList<Agente>();
-        agentes.add(new Agente(123,"Andrés Orrego", Vehiculo.CARRO, "ABC 555", 777598, 001650236, new ArrayList<Integer>(){/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-		{add(5);add(6);}}));
-        
-        agentes.add(new Agente(889,"Carla Cordoba", Vehiculo.MOTO, "WHJ 56B", 520469, 132954720, new ArrayList<Integer>(){/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-		{add(7);}}));
+        agentes.add(new Agente(123,"Andrés Orrego", Vehiculo.CARRO, "ABC 555", 777598, 001650236, new ArrayList<Integer>(){{add(5);add(6);}}));
+        agentes.add(new Agente(889,"Carla Cordoba", Vehiculo.MOTO, "WHJ 56B", 520469, 132954720, new ArrayList<Integer>(){{add(7);}}));
         serializar(agentes,"Agente");
         
         //Unidades

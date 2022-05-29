@@ -1,6 +1,8 @@
 package gestorAplicacion.otros;
+import java.io.Serializable;
 
 public class EdificioDeApartamentos extends UnidadResidencial{
+	private static final long serialVersionUID = 1L;
 	private int numero_pisos;
 	
 	public EdificioDeApartamentos(int idUnidadResidencial, String nombre, String barrio, int numero_pisos) {

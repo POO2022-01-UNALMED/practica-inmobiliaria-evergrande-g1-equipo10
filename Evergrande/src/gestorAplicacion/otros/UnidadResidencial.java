@@ -1,9 +1,14 @@
 package gestorAplicacion.otros;
 
-public abstract class UnidadResidencial implements Ciudad{
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public abstract class UnidadResidencial implements Ciudad, Serializable{
+	private static final long serialVersionUID = 1L;
 	private int idUnidadResidencial;
 	private String nombre;
 	private String barrio;
+	private static ArrayList<UnidadResidencial> unidades = new ArrayList<UnidadResidencial>();
 	
     public UnidadResidencial(int idUnidadResidencial, String nombre, String barrio) {
         this.idUnidadResidencial = idUnidadResidencial;
@@ -33,6 +38,14 @@ public abstract class UnidadResidencial implements Ciudad{
 
     public void setBarrio(String barrio) {
         this.barrio = barrio;
+    }
+    
+    public static ArrayList<UnidadResidencial> getUnidades() {
+        return UnidadResidencial.unidades;
+    }
+
+    public static void setUnidades(ArrayList<UnidadResidencial> unidades) {
+        UnidadResidencial.unidades = unidades;
     }
 
 }
