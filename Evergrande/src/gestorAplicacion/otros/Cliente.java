@@ -7,7 +7,6 @@ import gestorAplicacion.herencia.Inmueble;
 public class Cliente extends Persona implements Serializable{
     private ArrayList<Integer> inmuebles = new ArrayList<Integer>();
 	private static final long serialVersionUID = 1L;
-    private ArrayList<Inmueble> Inmuebles= new ArrayList<Inmueble>();
 
     public Cliente(){
         super();
