@@ -41,7 +41,7 @@ public class prueba {
 
                     System.out.print("Seleccione su opcion: ");
                     opt2 = sc.nextShort();
-                    for (Inmueble inmueble : cliente.listarInmuebles()) {
+                    for (Inmueble inmueble : Inmueble.buscarInmueble(cliente.listarInmuebles())) {
                         switch (opt2) {
                             case 1:
                                 System.out.println(inmueble.getIdInmueble());
@@ -72,14 +72,11 @@ public class prueba {
 
                     System.out.print("Ingrese el id del inmueble: ");
                     int idInmueble = sc.nextInt();
-                    Inmueble inmueble = null;
-                    for (Inmueble inmueblefiltrar : cliente.listarInmuebles()) {
+                    for (Inmueble inmueblefiltrar : Inmueble.buscarInmueble(cliente.listarInmuebles())) {
                         if (inmueblefiltrar.getIdInmueble() == idInmueble) {
-                            inmueble = inmueblefiltrar;
-
                             // verificar si el inmueble es de venta y ya tiene un pago
                             if(inmueblefiltrar.getTipoContrato() == TipoContrato.VENTA){
-                                if (Pago.verPagos(inmueblefiltrar).size() != 0) {
+                                if (Pago.verPagos(idInmueble).size() != 0) {
                                     puedePagarse = false;
                                     System.out.println("El inmueble ya fue pagado, ¡no puede volver a ser pagado!");
                                 }
@@ -88,7 +85,7 @@ public class prueba {
                         }
                     }
 
-                    if (puedePagarse) {  
+                    if (puedePagarse) {
                         System.out.print("Ingrese el valor del pago: ");
                         double valor = sc.nextDouble();
 
@@ -98,7 +95,7 @@ public class prueba {
                         System.out.print("Ingrese el mes del pago: ");
                         int mes = sc.nextInt();
 
-                        cliente.realizarPago(valor, ano, mes, inmueble);
+                        cliente.realizarPago(valor, ano, mes, idInmueble);
 
                         System.out.println("Pago realizado con exito !!");
                     }
@@ -117,11 +114,11 @@ public class prueba {
                     System.out.print("Ingrese el id del inmueble: ");
                     int idInmueble2 = sc.nextInt();
 
-                    for (Inmueble inmuebleFiltar : Inmueble.getInmuebles()) {
+                    for (Inmueble inmuebleFiltar : Inmueble.buscarInmueble(cliente.listarInmuebles())) {
                         if (inmuebleFiltar.getIdInmueble() == idInmueble2) {
                             if (inmuebleFiltar.getTipoContrato() == TipoContrato.ARRIENDO) {
                                 
-                                cliente.finalizarContrato(inmuebleFiltar);
+                                cliente.finalizarContrato(idInmueble2);
                                 System.out.println("Contrato finalizado exitosamente !");
 
                             }else{

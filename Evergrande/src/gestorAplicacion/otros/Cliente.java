@@ -48,7 +48,12 @@ public class Cliente extends Persona implements Serializable{
 
     public void finalizarContrato(int idInmueble){
         if(Inmueble.buscarInmueble(idInmueble).getTipoContrato() == TipoContrato.ARRIENDO){
-             this.inmuebles.remove(idInmueble);
+            for (int i = 0; i < this.inmuebles.size(); i++) {
+                if (this.inmuebles.get(i) == idInmueble) {
+                    this.inmuebles.remove(i);
+                    break;
+                }
+            }
         }
     }
 

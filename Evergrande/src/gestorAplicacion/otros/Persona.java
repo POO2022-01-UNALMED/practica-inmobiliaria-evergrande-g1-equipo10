@@ -5,21 +5,21 @@ import java.util.ArrayList;
 public abstract class Persona {
     protected int cedula;
     protected String nombreCompleto;
-    protected int telefonofijo;
-    protected int telefonocelular;
+    protected int telefonoFijo;
+    protected int telefonoCelular;
 
     public Persona(){
         this.cedula = 1;
         this.nombreCompleto = "Pepito perez";
-        this.telefonofijo = 1;
-        this.telefonocelular = 1;
+        this.telefonoFijo = 1;
+        this.telefonoCelular = 1;
     }
 
-    public Persona(int cedula, String nombreCompleto, int telefonofijo, int telefonocelular){
+    public Persona(int cedula, String nombreCompleto, int telefonoFijo, int telefonoCelular){
         this.cedula = cedula;
         this.nombreCompleto = nombreCompleto;
-        this.telefonofijo = telefonofijo;
-        this.telefonocelular = telefonocelular;
+        this.telefonoFijo = telefonoFijo;
+        this.telefonoCelular = telefonoCelular;
     }
 
 
@@ -38,16 +38,16 @@ public abstract class Persona {
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
     }
-    public int getTelefonofijo() {
-        return telefonofijo;
+    public int gettelefonoFijo() {
+        return telefonoFijo;
     }
-    public void setTelefonofijo(int telefonofijo) {
-        this.telefonofijo = telefonofijo;
+    public void settelefonoFijo(int telefonoFijo) {
+        this.telefonoFijo = telefonoFijo;
     }
-    public int getTelefonocelular() {
-        return telefonocelular;
+    public int gettelefonoCelular() {
+        return telefonoCelular;
     }
-    public void setTelefonocelular(int telefonocelular) {
-        this.telefonocelular = telefonocelular;
+    public void settelefonoCelular(int telefonoCelular) {
+        this.telefonoCelular = telefonoCelular;
     }
 }

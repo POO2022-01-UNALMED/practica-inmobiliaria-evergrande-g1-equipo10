@@ -1,21 +1,39 @@
 package gestorAplicacion.otros;
 
-public class Agente {
-	private int cedula;
-	private String nombreCompleto;
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Agente extends Persona implements Serializable{
+
+	private static ArrayList<Agente> agentes = new ArrayList<Agente>();
+
 	private Vehiculo vehiculo;
 	private String placaVehiculo;
-	private String telefonoFijo;
-	private String telefonoCelular;
 	
-	public Agente(int cedula, String nombreCompleto, Vehiculo vehiculo, String placaVehiculo, String telefonoFijo, String telefonoCelular) {
-		this.cedula = cedula;
-		this.nombreCompleto = nombreCompleto;
+	public Agente(int cedula, String nombreCompleto, Vehiculo vehiculo, String placaVehiculo, int telefonoFijo, int telefonoCelular) {
+		super(cedula, nombreCompleto, telefonoFijo, telefonoCelular);
+
 		this.vehiculo = vehiculo;
 		this.placaVehiculo = placaVehiculo;
-		this.telefonoFijo = telefonoFijo;
-		this.telefonoCelular = telefonoCelular;
+
+		Agente.agentes.add(this);
 	}
+
+	public Agente buscarAgente(int cedula){
+		Agente r = null;
+		for (Agente agente : agentes) {
+			if(agente.getCedula() == cedula){
+				r = agente;
+			}
+		}
+
+		return r;
+	}
+
+	public ArrayList<Integer> listarInmuebles() {
+		return null;
+	}
+
 	
 	public int getCedula() {
 		return cedula;
@@ -49,19 +67,19 @@ public class Agente {
 		this.placaVehiculo = placa;
 	}
 	
-	public String getTelefonoFijo() {
+	public int getTelefonoFijo() {
 		return telefonoFijo;
 	}
 	
-	public void setTelefonoFijo(String telefonoFijo) {
+	public void setTelefonoFijo(int telefonoFijo) {
 		this.telefonoFijo = telefonoFijo;
 	}
 	
-	public String getTelefonoCelular() {
+	public int getTelefonoCelular() {
 		return telefonoCelular;
 	}
 	
-	public void setTelefonoCelular(String telefonoCelular) {
+	public void setTelefonoCelular(int telefonoCelular) {
 		this.telefonoCelular = telefonoCelular;
 	}
 }
