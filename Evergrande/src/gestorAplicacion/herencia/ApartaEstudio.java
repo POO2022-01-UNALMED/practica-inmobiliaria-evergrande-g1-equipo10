@@ -3,6 +3,7 @@ package gestorAplicacion.herencia;
 import gestorAplicacion.otros.TipoContrato;
 
 public class ApartaEstudio extends Inmueble{
+	private static final long serialVersionUID = 1L;
     private String nombreUnidad;
     private int torre;
     private int numeroApto;
@@ -30,7 +31,22 @@ public class ApartaEstudio extends Inmueble{
         this.numHabitaciones = numHabitaciones;
         this.numBanos = numBanos;
     }
-
+    
+    public String toString() {
+    	return  " idInmueble =" + this.getIdInmueble() + "\n" +
+                " Precio =" + this.getPrecio() + "\n" +
+                " Direccion =" + this.getDireccion() + "\n" +
+                " Área ='" + this.getArea() + "\n" +
+                " Número de pisos ='" + this.getNumPisos() + "\n" +
+                " Tipo de contrato ='" + this.getTipoContrato() + "\n"+
+                " Nombre de la unidad = " + this.getNombreUnidad() + "\n"+
+                " Torre = " + this.getTorre() + "\n"+
+                " Número del apartaestudio = " + this.getNumeroApto() + "\n"+
+                " Número de Habitaciones = " + this.getNumHabitaciones()  + "\n"+
+                " Número de baños ="+ this.getNumBanos()
+                ;
+    }
+    
     public String getNombreUnidad() {
         return nombreUnidad;
     }

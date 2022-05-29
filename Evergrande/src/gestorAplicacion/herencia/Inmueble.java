@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import gestorAplicacion.otros.TipoContrato;
 
 public class Inmueble implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private static int totalInmuebles;
 	private static ArrayList<Inmueble> inmuebles = new ArrayList<Inmueble>();
 
@@ -23,6 +24,10 @@ public class Inmueble implements Serializable{
 	public Inmueble(){}
 
 	public Inmueble(double precio, String direccion, double area, TipoContrato tipoContrato){
+		this.numPisos = 1;
+		this.parqueaderoCarros = true;
+		this.parqueaderoMotos = false;
+		this.amueblado = false;
 		this.precio = precio;
 		this.direccion = direccion;
 		this.area = area;

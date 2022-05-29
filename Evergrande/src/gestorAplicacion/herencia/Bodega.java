@@ -3,6 +3,7 @@ package gestorAplicacion.herencia;
 import gestorAplicacion.otros.TipoContrato;
 
 public class Bodega extends Inmueble{
+	private static final long serialVersionUID = 1L;
 	private int capacidad;
 	private int oficina;
 	private int bano;  // baÃ±o
@@ -20,6 +21,19 @@ public class Bodega extends Inmueble{
 		this.oficina = oficina;
 		this.bano = bano;
 	}
+	
+    public String toString() {
+    	return  " idInmueble =" + this.getIdInmueble() + "\n" +
+                " Precio =" + this.getPrecio() + "\n" +
+                " Direccion =" + this.getDireccion() + "\n" +
+                " Área ='" + this.getArea() + "\n" +
+                " Número de pisos ='" + this.getNumPisos() + "\n" +
+                " Tipo de contrato ='" + this.getTipoContrato() + "\n"+
+                " Capacidad = " + this.getCapacidad() + "\n"+
+                " Oficina = " + this.getOficina() + "\n"+
+                " Número de baños = " + this.getbano()
+                ;
+    }
 	
 	public int getCapacidad() {
 		return capacidad;
