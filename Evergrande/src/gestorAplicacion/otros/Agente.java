@@ -92,4 +92,12 @@ public class Agente extends Persona implements Serializable{
     public void setIdInmuebles(ArrayList<Integer> idInmuebles) {
         this.idInmuebles = idInmuebles;
     }
+    
+    public static ArrayList<Agente> getAgentes() {
+        return Agente.agentes;
+    }
+
+    public static void setAgentes(ArrayList<Agente> agentes) {
+        Agente.agentes = agentes;
+    }
 }
