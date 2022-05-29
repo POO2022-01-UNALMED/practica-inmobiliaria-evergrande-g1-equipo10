@@ -24,6 +24,10 @@ public class Inmueble implements Serializable{
 	public Inmueble(){}
 
 	public Inmueble(double precio, String direccion, double area, TipoContrato tipoContrato){
+		this.numPisos = 1;
+		this.parqueaderoCarros = true;
+		this.parqueaderoMotos = false;
+		this.amueblado = false;
 		this.precio = precio;
 		this.direccion = direccion;
 		this.area = area;
@@ -31,7 +35,6 @@ public class Inmueble implements Serializable{
 
 		Inmueble.totalInmuebles++;
 		this.idInmueble = Inmueble.totalInmuebles;
-		agregarInmueble(this);
  	}
 
 	public Inmueble(double precio, String direccion, double area){
