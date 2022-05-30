@@ -23,15 +23,15 @@ public class Bodega extends Inmueble{
 	}
 	
     public String toString() {
-    	return  " idInmueble: " + this.getIdInmueble() + "\n" +
+    	return  " BODEGA\n" + " idInmueble: " + this.getIdInmueble() + "\n" +
                 " Precio: " + this.getPrecio() + "\n" +
                 " Direccion: " + this.getDireccion() + "\n" +
                 " Área: " + this.getArea() + "\n" +
                 " Tipo de contrato: " + this.getTipoContrato() + "\n" +
                 " Número de pisos: " + this.getNumPisos() + "\n" +
-                " ¿Tiene parqueadero de carros? " + this.getParqueaderoCarros() + "\n" +
-                " ¿Tiene parqueadero de motos? " + this.getParqueaderoMotos() + "\n" +
-                " ¿Está amueblado? " + this.getAmueblado() + "\n" +
+                " ¿Tiene parqueadero de carros?: " + this.getParqueaderoCarros() + "\n" +
+                " ¿Tiene parqueadero de motos?: " + this.getParqueaderoMotos() + "\n" +
+                " ¿Está amueblado?: " + this.getAmueblado() + "\n" +
                 " Capacidad: " + this.getCapacidad() + "\n"+
                 " Oficina: " + this.getOficina() + "\n"+
                 " Número de baños: " + this.getbano()

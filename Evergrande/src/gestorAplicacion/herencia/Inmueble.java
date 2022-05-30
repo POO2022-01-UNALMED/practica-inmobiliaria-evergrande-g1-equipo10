@@ -61,6 +61,7 @@ public class Inmueble implements Serializable{
 		for (Inmueble inmueble : inmuebles) {
 			if(inmueble.getIdInmueble() == id){
 				r = inmueble;
+				break;
 			}
 		}
 
@@ -164,5 +165,18 @@ public class Inmueble implements Serializable{
 	public void setTipoContrato(TipoContrato tipoContrato) {
 		this.tipoContrato = tipoContrato;
 	}
+	
+	public String toString() {
+		return  "INMUEBLE\n" + " idInmueble: " + this.getIdInmueble() + "\n" +
+                " Precio: " + this.getPrecio() + "\n" +
+                " Direccion: " + this.getDireccion() + "\n" +
+                " Área: " + this.getArea() + "\n" +
+                " Número de pisos: " + this.getNumPisos() + "\n" +
+                " Tipo de contrato: " + this.getTipoContrato() + "\n"+
+                " Número de pisos: " + this.getNumPisos() + "\n" +
+                " ¿Tiene parqueadero de carros?: " + this.getParqueaderoCarros() + "\n" +
+                " ¿Tiene parqueadero de motos?: " + this.getParqueaderoMotos() + "\n" +
+                " ¿Está amueblado?: " + this.getAmueblado() + "\n";
+	};
 	
 }

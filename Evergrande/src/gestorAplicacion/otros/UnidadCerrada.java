@@ -11,7 +11,7 @@ public class UnidadCerrada extends UnidadResidencial{
 	}
 	
 	public String presentarInforme() {
-		return  " Nombre de la Unidad: " + this.getNombre() + "\n" + 
+		return  "UNIDAD CERRADA\n" + " Nombre de la Unidad: " + this.getNombre() + "\n" + 
 				" Identificada con el id: " + this.getIdUnidadResidencial() + "\n" + 
 				" Ubicada en el barrio " + this.getBarrio() + " en la ciudad de Medellin, cuyo alcalde es "+ ALCALDE + " y actualmente presenta un IVA del "+ IVA + "\n" +
 				" Con " + this.getNumero_torres() + " torres" + "\n";

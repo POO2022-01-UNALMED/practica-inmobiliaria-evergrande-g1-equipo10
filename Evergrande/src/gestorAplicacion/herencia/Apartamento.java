@@ -6,12 +6,14 @@ public class Apartamento extends Inmueble{
 	private static final long serialVersionUID = 1L;
 	   private String nombreUnidad;
 	   private int torre;
+	   private int numeroApto;
 	   private int numHabitaciones;
 	   private int numBanos;
 	   private int patio;
 	   private int balcon;
+	   
 
-	    public Apartamento(double precio, String direccion, double area,String nombreUnidad, int torre, int numHabitaciones, int numBanos, int patio, int balcon) {
+	    public Apartamento(double precio, String direccion, double area,String nombreUnidad, int torre, int numHabitaciones, int numBanos, int patio, int balcon, int numeroApto) {
 	        super(precio, direccion, area);
 	    	this.nombreUnidad = nombreUnidad;
 	        this.torre = torre;
@@ -19,6 +21,7 @@ public class Apartamento extends Inmueble{
 	        this.numBanos = numBanos;
 	        this.patio = patio;
 	        this.balcon = balcon;
+	        this.numeroApto = numeroApto;
 	    }
 	    
 	    public Apartamento(double precio, String direccion, double area, TipoContrato tipoContrato, String nombreUnidad, int torre, int numHabitaciones, int numBanos, int patio, int balcon) {
@@ -79,5 +82,33 @@ public class Apartamento extends Inmueble{
 	    public void setBalcon(int balcon) {
 	        this.balcon = balcon;
 	    }
-
+	    
+	    public int getNumeroApto() {
+	        return numeroApto;
+	    }
+	    
+	    public void setNumeroApto(int numeroApto) {
+	        this.numeroApto = numeroApto;
+	    }
+	    
+	    public String toString() {
+	    	return  " APARTAMENTO\n" + " idInmueble: " + this.getIdInmueble() + "\n" +
+	                " Precio: " + this.getPrecio() + "\n" +
+	                " Direccion: " + this.getDireccion() + "\n" +
+	                " Área: '" + this.getArea() + "\n" +
+	                " Tipo de contrato: " + this.getTipoContrato() + "\n" +
+	                " Número de pisos: " + this.getNumPisos() + "\n" +
+	                " ¿Tiene parqueadero de carros? " + this.getParqueaderoCarros() + "\n" +
+	                " ¿Tiene parqueadero de motos? " + this.getParqueaderoMotos() + "\n" +
+	                " ¿Está amueblado? " + this.getAmueblado() + "\n" +
+	                " Nombre de la unidad: " + this.getNombreUnidad() + "\n"+
+	                " Torre: " + this.getTorre() + "\n"+
+	                " Número del apartaestudio: " + this.getNumeroApto() + "\n"+
+	                " Número de Habitaciones: " + this.getNumHabitaciones()  + "\n"+
+	                " Número de baños: "+ this.getNumBanos() +
+	                " Número de Habitaciones: " + this.getNumHabitaciones()  + "\n"+
+	                " Número de baños: "+ this.getNumBanos() + "\n"+
+	                " Patio: " + this.getPatio() + "\n"+
+	                " Balcon: " + this.getBalcon();
+	    }
 }
