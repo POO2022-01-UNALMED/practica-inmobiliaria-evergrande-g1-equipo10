@@ -33,20 +33,21 @@ public class Bodega extends Inmueble{
 	}
 	
     public String toString() {
-    	return  " BODEGA\n" + " idInmueble: " + this.getIdInmueble() + "\n" +
-                " Precio: " + this.getPrecio() + "\n" +
-                " Direccion: " + this.getDireccion() + "\n" +
-                " Area: " + this.getArea() + "\n" +
-                " Tipo de contrato: " + this.getTipoContrato() + "\n" +
-                " Número de pisos: " + this.getNumPisos() + "\n" +
-                " ¿Tiene parqueadero de carros?: " + this.getParqueaderoCarros() + "\n" +
-                " ¿Tiene parqueadero de motos?: " + this.getParqueaderoMotos() + "\n" +
-                " ¿Está amueblado?: " + this.getAmueblado() + "\n" +
-
-                " Capacidad: " + this.getCapacidad() + "\n"+
-                " Oficina: " + this.getOficina() + "\n"+
-                " Numero de baños: " + this.getbano()
-                ;
+    	String leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-6f | %-11s | %-19s | %-17s | %-20s | %-9d | %-8d | %-7d |%n";
+    	return  String.format(leftAlignFormat, 
+							this.getIdInmueble(),
+							this.getClass().getSimpleName(),
+							this.getPrecio(), 
+							this.getTipoContrato().name(),
+							this.getArea(),
+							this.getAmueblado(),
+							this.getParqueaderoCarros(),
+							this.getParqueaderoMotos(),
+							this.getDireccion(),
+							this.getCapacidad(),
+							this.getOficina(),
+							this.getbano()
+							);
     }
 	
 	public int getCapacidad() {

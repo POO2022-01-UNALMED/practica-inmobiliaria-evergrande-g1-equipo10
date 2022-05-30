@@ -50,22 +50,25 @@ public class Apartamento extends Inmueble{
 	    }
 	    
 	    public String toString() {
-	    	return  " idInmueble: " + this.getIdInmueble() + "\n" +
-	                " Precio: " + this.getPrecio() + "\n" +
-	                " Direccion: " + this.getDireccion() + "\n" +
-	                " Area: " + this.getArea() + "\n" +
-	                " Numero de pisos: " + this.getNumPisos() + "\n" +
-	                " Tipo de contrato: " + this.getTipoContrato() + "\n"+
-	                " Numero de pisos: " + this.getNumPisos() + "\n" +
-	                " Tiene parqueadero de carros? " + this.getParqueaderoCarros() + "\n" +
-	                " Tiene parqueadero de motos? " + this.getParqueaderoMotos() + "\n" +
-	                " Esta amueblado? " + this.getAmueblado() + "\n" +
-	                " Nombre de la unidad: " + this.getNombreUnidad() + "\n"+
-	                " Torre: " + this.getTorre() + "\n"+
-	                " Numero del apartaestudio: " + this.getNumApto() + "\n"+
-	                " Numero de Habitaciones: " + this.getNumHabitaciones()  + "\n"+
-	                " Numero de baños: "+ this.getNumBanos()
-	                ;
+	    	String leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-6f | %-11s | %-19s | %-17s | %-20s | %-20s | %-7s | %-20s | %-21d | %-14d | %-6s | %-6s |%n";
+	    	return  String.format(leftAlignFormat, 
+					this.getIdInmueble(),
+					this.getClass().getSimpleName(),
+					this.getPrecio(), 
+					this.getTipoContrato().name(),
+					this.getArea(),
+					this.getAmueblado(),
+					this.getParqueaderoCarros(),
+					this.getParqueaderoMotos(),
+					this.getDireccion(),
+					this.getNombreUnidad(),
+					this.getTorre(),
+					this.getNumApto(),
+					this.getNumHabitaciones(),
+					this.getNumBanos(),
+					this.getPatio(),
+					this.getBalcon()
+					);
 	    }
 
 	    public String getNombreUnidad() {
