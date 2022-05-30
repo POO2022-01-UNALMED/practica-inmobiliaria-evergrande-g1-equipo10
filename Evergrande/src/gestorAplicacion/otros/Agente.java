@@ -3,6 +3,16 @@ package gestorAplicacion.otros;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * @Autores:
+ * David Escobar Ruiz
+ * Julián Orozco Vanegas
+ * Juan Nicolas Piedrahita Salas
+ * 
+ * @Descripcion
+ * Esta clase representa a los agentes de la inmobiliaria que son los encargados de los inmuebles, de mostrarlos y hacer todo el seguimiento con el cliente 
+ */
+
 public class Agente extends Persona implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private static ArrayList<Agente> agentes = new ArrayList<Agente>();

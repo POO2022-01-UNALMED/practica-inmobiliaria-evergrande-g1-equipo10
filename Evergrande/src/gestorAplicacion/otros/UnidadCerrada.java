@@ -1,6 +1,18 @@
 package gestorAplicacion.otros;
 import java.io.Serializable;
 
+/**
+ * @Autores:
+ * David Escobar Ruiz
+ * Julián Orozco Vanegas
+ * Juan Nicolas Piedrahita Salas
+ * 
+ * @Descripcion
+ * Representa un tipo de unidad residencial (las unidade cerradas) y sus caracteristicas que son presentadas a traves de un 
+ * informe que puede ser de interes para el cliente 
+ *
+ */
+
 public class UnidadCerrada extends UnidadResidencial{
 	private static final long serialVersionUID = 1L;
 	private int numero_torres;

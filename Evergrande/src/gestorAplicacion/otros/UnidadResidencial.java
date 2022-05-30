@@ -3,6 +3,17 @@ package gestorAplicacion.otros;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * @Autores:
+ * David Escobar Ruiz
+ * Julián Orozco Vanegas
+ * Juan Nicolas Piedrahita Salas
+ * 
+ * @Descripcion
+ * Esta clase representa las unidades residenciales asociadas a cada inmueble
+ *
+ */
+
 public abstract class UnidadResidencial implements Ciudad, Serializable{
 	private static final long serialVersionUID = 1L;
 	private int idUnidadResidencial;

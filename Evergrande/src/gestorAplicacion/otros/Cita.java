@@ -2,6 +2,16 @@ package gestorAplicacion.otros;
 
 import java.util.ArrayList;
 
+/**
+ * @Autores:
+ * David Escobar Ruiz
+ * Julián Orozco Vanegas
+ * Juan Nicolas Piedrahita Salas
+ * 
+ * @Descripcion
+ * Cita representan las citas en las cuales cliente y agente se reunen para ver un inmueble del interes del cliente
+ */
+
 public class Cita {
 	private static int idCitas = 0;
 	private int idCita;

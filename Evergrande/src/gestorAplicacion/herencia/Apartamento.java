@@ -2,6 +2,16 @@ package gestorAplicacion.herencia;
 
 import gestorAplicacion.otros.TipoContrato;
 
+/**
+ * @Autores:
+ * David Escobar Ruiz
+ * Julián Orozco Vanegas
+ * Juan Nicolas Piedrahita Salas
+ * 
+ * @Descripcion
+ * Esta clase busca representar los apartamentos que son un tipo de inmueble que acepta la inmobiliaria
+ */
+
 public class Apartamento extends Inmueble{
 	private static final long serialVersionUID = 1L;
 	   private String nombreUnidad;
@@ -38,18 +48,18 @@ public class Apartamento extends Inmueble{
 	    	return  " idInmueble: " + this.getIdInmueble() + "\n" +
 	                " Precio: " + this.getPrecio() + "\n" +
 	                " Direccion: " + this.getDireccion() + "\n" +
-	                " Área: " + this.getArea() + "\n" +
-	                " Número de pisos: " + this.getNumPisos() + "\n" +
+	                " Area: " + this.getArea() + "\n" +
+	                " Numero de pisos: " + this.getNumPisos() + "\n" +
 	                " Tipo de contrato: " + this.getTipoContrato() + "\n"+
-	                " Número de pisos: " + this.getNumPisos() + "\n" +
-	                " ¿Tiene parqueadero de carros? " + this.getParqueaderoCarros() + "\n" +
-	                " ¿Tiene parqueadero de motos? " + this.getParqueaderoMotos() + "\n" +
-	                " ¿Está amueblado? " + this.getAmueblado() + "\n" +
+	                " Numero de pisos: " + this.getNumPisos() + "\n" +
+	                " Tiene parqueadero de carros? " + this.getParqueaderoCarros() + "\n" +
+	                " Tiene parqueadero de motos? " + this.getParqueaderoMotos() + "\n" +
+	                " Esta amueblado? " + this.getAmueblado() + "\n" +
 	                " Nombre de la unidad: " + this.getNombreUnidad() + "\n"+
 	                " Torre: " + this.getTorre() + "\n"+
-	                " Número del apartaestudio: " + this.getNumApto() + "\n"+
-	                " Número de Habitaciones: " + this.getNumHabitaciones()  + "\n"+
-	                " Número de baños: "+ this.getNumBanos()
+	                " Numero del apartaestudio: " + this.getNumApto() + "\n"+
+	                " Numero de Habitaciones: " + this.getNumHabitaciones()  + "\n"+
+	                " Numero de baños: "+ this.getNumBanos()
 	                ;
 	    }
 

@@ -5,6 +5,17 @@ import java.util.ArrayList;
 
 import gestorAplicacion.otros.TipoContrato;
 
+
+/**
+ * @Autores
+ * David Escobar Ruiz
+ * Julián Orozco Vanegas
+ * Juan Nicolas Piedrahita Salas
+ * 
+ * @Descripcion
+ * Esta clase representa todos los inmuebles en general, tanto los propios del cliente como los que ofrece la inmobiliaria para la venta o arrendamiento 
+ */
+
 public class Inmueble implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private static int totalInmuebles;
