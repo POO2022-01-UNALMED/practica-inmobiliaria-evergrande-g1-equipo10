@@ -33,7 +33,7 @@ public class Prueba2 {
         	System.out.println("1. Ver inmuebles disponibles");
             System.out.println("2. Comprar Inmueble");
             System.out.println("3. Iniciar contrato");
-            System.out.println("4. Presentar Informe");
+            System.out.println("4. Presentar Informe de Unidades Residenciales");
             System.out.println("5. Salir");
             
             System.out.print("Seleccione su opcion: ");
