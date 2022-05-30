@@ -493,7 +493,11 @@ public class Main {
                             case 3: //Iniciar contrato
                             	inmueblesDisponibles = new ArrayList<Inmueble>();
                         		for (Inmueble inmueble: Inmueble.getInmuebles()) {
+<<<<<<< HEAD
                         			if (!(inmueble.getArrendado() && !(inmueblesCliente.contains(inmueble)))) {
+=======
+                        			if (!(inmueble.getArrendado()) && (inmueble.getTipoContrato() == TipoContrato.ARRIENDO)) {
+>>>>>>> 5d1e12f3c14f58cd006effba5e512efca4d7e893
                         				inmueblesDisponibles.add(inmueble);
                         			}
                         		}
@@ -529,6 +533,7 @@ public class Main {
                             	break;
                         }
                     } while (opt3 != 5);
+                    sc.close();
                 
                 default:
                     break;
