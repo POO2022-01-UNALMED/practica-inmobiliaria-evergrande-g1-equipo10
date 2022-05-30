@@ -12,7 +12,7 @@ package gestorAplicacion.otros;
 
 public interface Ciudad {
 	double IVA = 0.16;
-	String ALCALDE = "Pepito";
-	
+	String ALCALDE = "Isidro Campuzano Correa";
+	String NOMBRE = "Medellín";
 	String presentarInforme();
 }

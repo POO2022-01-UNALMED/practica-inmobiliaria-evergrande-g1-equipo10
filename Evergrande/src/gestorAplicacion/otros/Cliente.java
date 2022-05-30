@@ -37,8 +37,10 @@ public class Cliente extends Persona implements Serializable{
     }
 
     public void comprarInmueble(int idInmueble){
-        if(Inmueble.buscarInmueble(idInmueble).getTipoContrato() == TipoContrato.VENTA){
-            this.inmuebles.add(idInmueble);   
+        Inmueble inmuebleComprar = Inmueble.buscarInmueble(idInmueble);
+    	if(inmuebleComprar.getTipoContrato() == TipoContrato.VENTA){
+            inmuebleComprar.setVendido(true);
+    		this.inmuebles.add(idInmueble);   
         }
     }
 
@@ -55,7 +57,9 @@ public class Cliente extends Persona implements Serializable{
     }
 
     public void iniciarContrato(int idInmueble){
-        if(Inmueble.buscarInmueble(idInmueble).getTipoContrato() == TipoContrato.ARRIENDO){
+    	Inmueble inmuebleArrendar = Inmueble.buscarInmueble(idInmueble);
+        if(inmuebleArrendar.getTipoContrato() == TipoContrato.ARRIENDO){
+        	inmuebleArrendar.setArrendado(true);
             this.inmuebles.add(idInmueble);
         }
     }

@@ -5,9 +5,12 @@ import gestorAplicacion.herencia.ApartaEstudio;
 import gestorAplicacion.herencia.Bodega;
 import gestorAplicacion.herencia.Casa;
 import gestorAplicacion.herencia.Inmueble;
+import gestorAplicacion.otros.Agente;
+import gestorAplicacion.otros.Ciudad;
 import gestorAplicacion.otros.Cliente;
 import gestorAplicacion.otros.Pago;
 import gestorAplicacion.otros.TipoContrato;
+import gestorAplicacion.otros.UnidadResidencial;
 import gestorAplicacion.herencia.Apartamento;
 import gestorAplicacion.otros.Pago;
 
@@ -22,7 +25,7 @@ abstract class TableGenerator {
 public class Main {
 	public static void printPagosTable(ArrayList<Pago> pagos, String table) {
 		String leftAlignFormat;
-		System.out.println("\nPAGOS");
+		
 		switch (table) {
 			case "pagos_1":
 				leftAlignFormat = "| %-9d | %-14f | %-11d | %-5s | %-10s | %-15s | %-14s |%n";
@@ -52,7 +55,6 @@ public class Main {
 	
 	public static void printInmueblesTable(ArrayList<Inmueble> inmuebles, String table) {
 		String leftAlignFormat;
-		System.out.println("\nINMUEBLES");
 		switch (table) {
 			case "inmuebles_1":
 				leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-6f | %-11s | %-19s | %-17s | %-20s |%n";
@@ -98,7 +100,6 @@ public class Main {
 	
 	public static void printApartaEstudioTable(ArrayList<ApartaEstudio> inmuebles, String table) {
 		String leftAlignFormat;
-		System.out.println("\nAPARTAESTUDIOS");
 		switch (table) {
 			case "apartaestudio_1":
 				leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-6f | %-11s | %-19s | %-17s | %-20s | %-20s | %-7s | %-20s | %-21d | %-14d |%n";
@@ -132,7 +133,6 @@ public class Main {
 	
 	public static void printBodegasTable(ArrayList<Bodega> inmuebles, String table) {
 		String leftAlignFormat;
-		System.out.println("\nBODEGAS");
 		switch (table) {
 			case "bodega_1":
 				leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-6f | %-11s | %-19s | %-17s | %-20s | %-9d | %-8d | %-7d |%n";
@@ -164,7 +164,6 @@ public class Main {
 	
 	public static void printCasasTable(ArrayList<Casa> inmuebles, String table) {
 		String leftAlignFormat;
-		System.out.println("\nCASAS");
 		switch (table) {
 			case "casa_1":
 				leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-6f | %-11s | %-19s | %-17s | %-20s | %-20d | %-12d | %-8d | %-6d |%n";
@@ -197,7 +196,6 @@ public class Main {
 	
 	public static void printApartamentoTable(ArrayList<Apartamento> inmuebles, String table) {
 		String leftAlignFormat;
-		System.out.println("\nAPARTAMENTOS");
 		switch (table) {
 			case "apartamento_1":
 				leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-6f | %-11s | %-19s | %-17s | %-20s | %-20s | %-7s | %-20s | %-21d | %-14d | %-6s | %-6s |%n";
@@ -231,6 +229,28 @@ public class Main {
 		}
 	}
 
+	public static void printUnidadesResidencialesTable(ArrayList<UnidadResidencial> unidades, String table) {
+		String leftAlignFormat;
+		switch (table) {
+			case "unidades_1":
+				leftAlignFormat = "| %-4d | %-13s | %-14s |%n";
+				System.out.format("+------+---------------+----------------+----------+%n");
+				System.out.format("|  ID  |    NOMBRE     |     BARRIO     |  CIUDAD  |%n");
+				System.out.format("+------+---------------+----------------+----------+%n");
+				for (UnidadResidencial unidad : unidades) {
+					System.out.format(leftAlignFormat, 
+							unidad.getIdUnidadResidencial(),
+							unidad.getNombre(),
+							unidad.getBarrio(),
+							Ciudad.NOMBRE
+							);
+				};
+				System.out.format("+------+---------------+----------------+----------+%n");
+				break;
+			default:
+				break;
+		}
+	}
 	
 	public static void clearConsole() {
 		try {
@@ -242,13 +262,21 @@ public class Main {
 		}
 	}
     public static void main(String[] args) {
-    	// OS    	
-        // deserializar cliente (solo un cliente ya que la app debe ser usada por un solo usuario)
-    	Cliente cliente = Deserializador.<Cliente>deserializar("Cliente").get(0);
+    	
+        // deserializar cliente
+        Cliente cliente = Deserializador.<Cliente>deserializar("Cliente").get(0);
+
+        // deserializar pagos
+        Pago.setPagos(Deserializador.<Pago>deserializar("Pago"));
 
         // deserializar inmuebles
         Inmueble.setInmuebles(Deserializador.<Inmueble>deserializar("Inmueble"));
         
+        //deserializar unidades 
+        UnidadResidencial.setUnidades(Deserializador.<UnidadResidencial>deserializar("UnidadResidencial"));
+        
+        //deserializar agentes
+        Agente.setAgentes(Deserializador.<Agente>deserializar("Agente"));
         
         
         Scanner sc =  new Scanner(System.in);
@@ -284,10 +312,9 @@ public class Main {
                     opt2 = sc.nextShort();
                     ArrayList<Inmueble> filtroInmuebles = new ArrayList<Inmueble>();
                     
-                        switch (opt2) {
-                        
+                        switch (opt2) {                        
                             case 1:
-                                //System.out.println(inmueble + "\n");
+                            	System.out.println("\nINMUEBLES");
                             	printInmueblesTable(inmueblesCliente, "inmuebles_1");
                                 break;
                             case 2:
@@ -295,6 +322,7 @@ public class Main {
                             	for(Inmueble inmueble : inmueblesCliente) {
                             		if (inmueble instanceof ApartaEstudio) filtroApartaEstudio.add(((ApartaEstudio) inmueble));
                             	};
+                            	System.out.println("\nAPARTAESTUDIOS");
                             	printApartaEstudioTable(filtroApartaEstudio, "apartaestudio_1");
                                 break;
                             case 3:
@@ -302,6 +330,7 @@ public class Main {
                             	for(Inmueble inmueble : inmueblesCliente) {
                             		if (inmueble instanceof Bodega) filtroBodega.add(((Bodega) inmueble));
                             	};
+                            	System.out.println("\nBODEGAS");
                                 printBodegasTable(filtroBodega, "bodega_1");
                                 break;
                             case 4:
@@ -309,6 +338,7 @@ public class Main {
                             	for(Inmueble inmueble : inmueblesCliente) {
                             		if (inmueble instanceof Casa) filtroCasas.add(((Casa) inmueble));
                             	};
+                            	System.out.println("\nCASAS");
                                 printCasasTable(filtroCasas, "casa_1");
                                 break;
                             case 5:
@@ -316,6 +346,7 @@ public class Main {
                             	for(Inmueble inmueble : inmueblesCliente) {
                             		if (inmueble instanceof Apartamento) filtroApartamento.add(((Apartamento)inmueble));
                             	};
+                            	System.out.println("\nAPARTAMENTOS");
                                 printApartamentoTable(filtroApartamento, "apartamento_1");
                                 break;
                             default:
@@ -330,7 +361,7 @@ public class Main {
                     for (Inmueble inmueble : Inmueble.buscarInmueble(cliente.listarInmuebles())) {
                     	if (!inmueble.getVendido()) inmuebles.add(inmueble);
                     }
-                    
+                    System.out.println("\nINMUEBLES");
                     printInmueblesTable(inmuebles, "inmuebles_2");
                     
                     System.out.print("Ingrese el id del inmueble (ingrese el número -1 para volver atrás): "); 
@@ -370,6 +401,7 @@ public class Main {
                 	for (Inmueble inmueble : inmueblesCliente) {
                 		pagosCliente.addAll(Pago.verPagos(inmueble.getIdInmueble()));
                 	}
+                	System.out.println("\nPAGOS");
                 	printPagosTable(pagosCliente,"pagos_1");
 
                     break;
@@ -381,11 +413,13 @@ public class Main {
                 			arriendosCliente.add(inmueble);
                 		}
                 	}
-                	
+                	System.out.println("\nINMUEBLES");
                 	printInmueblesTable(arriendosCliente, "inmuebles_1");
                 	
-                    System.out.print("Ingrese el id del inmueble: ");
+                    System.out.print("Ingresa el id del inmueble (ingresa -1 para volver atrás): ");
                     int idInmueble2 = sc.nextInt();
+                    
+                    if (idInmueble2 == -1) {break;}
                     
                     inmuebleBuscado = Inmueble.buscarInmueble(idInmueble2);
                     if (inmuebleBuscado == null) {
@@ -394,7 +428,7 @@ public class Main {
                     }
                     
                     if (!(arriendosCliente.contains(inmuebleBuscado))) {
-                    	System.out.println("Este inmueble no es arrendado!\n");
+                    	System.out.println("Este inmueble no es de tipo arriendo!\n");
                     	break;
                     }
                     
@@ -402,13 +436,102 @@ public class Main {
                     System.out.println("Contrato finalizado exitosamente !");
                     break;
                     
-                case 5:
-                	
+                case 5: // Explorar Inmuebles
+                	short opt3 = 0;
+                    do {
+                    	System.out.println("\nEXPLORAR INMUEBLES");
+                    	System.out.println("1. Ver inmuebles disponibles");
+                        System.out.println("2. Comprar Inmueble");
+                        System.out.println("3. Iniciar contrato");
+                        System.out.println("4. Ver Informe de Unidades Residenciales");
+                        System.out.println("5. Salir");
+                        
+                        System.out.print("Seleccione su opcion: ");
+                        opt3 = sc.nextShort();
+                        ArrayList<Inmueble> inmueblesDisponibles;
+                        switch (opt3) {
+                        	case 1: /*ver inmuebles disponibles, lista todos los inmuebles con sus caracteristicas
+                        	*los inmuebles disponibles son los que estan en el array de Inmuebles pero no en posesion del cliente
+                        	*/
+                        		inmueblesDisponibles = new ArrayList<Inmueble>();
+                        		for (Inmueble inmueble: Inmueble.getInmuebles()) {
+                        			if (!(inmueble.getVendido())) {
+                        				inmueblesDisponibles.add(inmueble);
+                        			}
+                        		}
+                        		System.out.println("INMUEBLES DISPONIBLES");
+                        		printInmueblesTable(inmueblesDisponibles, "inmuebles_1");
+                        		                        		
+                            case 2: //comprar inmueble
+                            	inmueblesDisponibles = new ArrayList<Inmueble>();
+                        		for (Inmueble inmueble: Inmueble.getInmuebles()) {
+                        			if (!(inmueble.getVendido()) && (inmueble.getTipoContrato() == TipoContrato.VENTA)) {
+                        				inmueblesDisponibles.add(inmueble);
+                        			}
+                        		}
+                        		
+                        		System.out.println("INMUEBLES DISPONIBLES");
+                        		printInmueblesTable(inmueblesDisponibles, "inmuebles_1");
+                        		
+                            	System.out.print("Ingresa el id del inmueble que deseas comprar (ingresa -1 para volver atrás): ");
+                            	int idInmueble1 = sc.nextInt();
+                            	if (idInmueble1 == -1) {break;}
+                            	
+                            	Inmueble inmueblefiltrar = Inmueble.buscarInmueble(idInmueble1);
+                            	if ((inmueblefiltrar == null ) || (!(inmueblesDisponibles.contains(inmueblefiltrar)))) {
+                                	System.out.println("No hay inmuebles disponibles con esta id!\n");
+                                	break;
+                                }
+                              
+                            	cliente.comprarInmueble(idInmueble1);
+                            	System.out.println("¡Felicidades! Haz comprado el inmueble con id " + idInmueble1 + "\n");
+                            	break;
+                                                                
+                                
+                            case 3: //Iniciar contrato
+                            	inmueblesDisponibles = new ArrayList<Inmueble>();
+                        		for (Inmueble inmueble: Inmueble.getInmuebles()) {
+                        			if (!(inmueble.getArrendado())) {
+                        				inmueblesDisponibles.add(inmueble);
+                        			}
+                        		}
+                        		System.out.print("Ingresa el id del inmueble que deseas arrendar (ingresa -1 para volver atrás): ");
+                        		
+                            	idInmueble1 = sc.nextInt();
+                            	if (idInmueble1 == -1) {break;}
+                            	inmueblefiltrar = Inmueble.buscarInmueble(idInmueble1);
+                            	if ((inmueblefiltrar == null ) || (!(inmueblesDisponibles.contains(inmueblefiltrar)))) {
+                                	System.out.println("No hay inmuebles disponibles con esta id!\n");
+                                	break;
+                                }
+                              
+                            	cliente.iniciarContrato(idInmueble1);
+                            	System.out.println("¡Felicidades! Haz iniciado contrato con el inmueble con id " + idInmueble1 + "\n");
+                            	break;
+
+                            case 4: //Muestra el informe de las unidades 
+                            	System.out.println("\nUNIDADES");
+                            	printUnidadesResidencialesTable(UnidadResidencial.getUnidades(), "unidades_1");
+                            	
+                            	System.out.println("Ingresa el id de la unidad (ingresa -1 para volver atrás): ");
+                            	int idUnidad = sc.nextInt();
+                            	
+                            	if (idUnidad == -1) {break;}
+                            	
+                            	for(UnidadResidencial unidad: UnidadResidencial.getUnidades()) {
+                            		if(unidad.getIdUnidadResidencial() == idUnidad) {
+                            			System.out.println(unidad.presentarInforme());
+                            			break;
+                            		}
+                            	}
+                            	break;
+                        }
+                    } while (opt3 != 5);
                 
                 default:
-                	System.out.println("\nADIÓS!");
                     break;
             }
         } while (opt1 != 6);
+        System.out.println("\nADIÓS!");
     }
 }

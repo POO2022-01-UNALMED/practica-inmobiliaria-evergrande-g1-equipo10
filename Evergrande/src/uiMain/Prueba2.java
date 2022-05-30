@@ -28,7 +28,7 @@ public class Prueba2 {
         //deserializar agentes
         Agente.setAgentes(Deserializador.<Agente>deserializar("Agente"));
 
-        short opt1 = 0;
+        short opt3 = 0;
         do {
         	System.out.println("1. Ver inmuebles disponibles");
             System.out.println("2. Comprar Inmueble");
@@ -37,9 +37,9 @@ public class Prueba2 {
             System.out.println("5. Salir");
             
             System.out.print("Seleccione su opcion: ");
-            opt1 = sc.nextShort();
+            opt3 = sc.nextShort();
 
-            switch (opt1) {
+            switch (opt3) {
             	case 1: /*ver inmuebles disponibles, lista todos los inmuebles con sus caracteristicas
             	*los inmuebles disponibles son los que estan en el array de Inmuebles pero no en posesion del cliente
             	*/
@@ -136,7 +136,7 @@ public class Prueba2 {
                 	}
                 	break;
             }
-        } while (opt1 != 5);
+        } while (opt3 != 5);
 
         sc.close();
     }

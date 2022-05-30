@@ -20,7 +20,6 @@ public class Inmueble implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private static int totalInmuebles;
 	private static ArrayList<Inmueble> inmuebles = new ArrayList<Inmueble>();
-
 	private int idInmueble;
 	private double precio;
 	private String direccion;
@@ -30,6 +29,7 @@ public class Inmueble implements Serializable{
 	private boolean parqueaderoMotos;
 	private boolean amueblado;
 	private boolean vendido;
+	private boolean arrendado;
 	private TipoContrato tipoContrato;
 	private int idUnidadResidencial;
 	
@@ -143,6 +143,14 @@ public class Inmueble implements Serializable{
 	
 	public boolean getVendido() {
 		return this.vendido;
+	}
+	
+	public boolean getArrendado() {
+		return this.arrendado;
+	}
+	
+	public void setArrendado(boolean arrendado) {
+		this.arrendado = arrendado;
 	}
 	
 	public void setPrecio(double precio) {
