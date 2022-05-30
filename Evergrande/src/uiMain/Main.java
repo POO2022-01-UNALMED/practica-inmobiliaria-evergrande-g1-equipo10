@@ -527,6 +527,7 @@ public class Main {
                             	break;
                         }
                     } while (opt3 != 5);
+                    sc.close();
                 
                 default:
                     break;
