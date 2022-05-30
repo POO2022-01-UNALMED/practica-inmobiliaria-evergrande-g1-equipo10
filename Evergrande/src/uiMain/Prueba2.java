@@ -40,7 +40,9 @@ public class Prueba2 {
             opt1 = sc.nextShort();
 
             switch (opt1) {
-            	case 1: //ver inmuebles disponibles, lista todos los inmuebles con sus caracteristicas
+            	case 1: /*ver inmuebles disponibles, lista todos los inmuebles con sus caracteristicas
+            	*los inmuebles disponibles son los que estan en el array de Inmuebles pero no en posesion del cliente
+            	*/
             		for (Inmueble inmueble: Inmueble.getInmuebles()) {
             			boolean disponible = true;
             			if(cliente.listarInmuebles().contains(inmueble.getIdInmueble())) {
