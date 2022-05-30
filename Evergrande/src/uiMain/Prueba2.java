@@ -49,7 +49,7 @@ public class Prueba2 {
             				disponible = false;
             			}
             			if(disponible == true) {
-            				System.out.print(inmueble);
+            				System.out.println(inmueble);
             			}
             		}
             		break;
