@@ -22,8 +22,8 @@ public class Apartamento extends Inmueble{
 	   private int patio;
 	   private int balcon;
 
-	    public Apartamento(double precio, String direccion, double area,String nombreUnidad, int torre, int numApto,int numHabitaciones, int numBanos, int patio, int balcon) {
-	        super(precio, direccion, area);
+	    public Apartamento(double precio, String direccion, double area,String nombreUnidad, int torre, int numApto,int numHabitaciones, int numBanos, int patio, int balcon,int idUnidadResidencia) {
+	        super(precio, direccion, area, idUnidadResidencia);
 	    	this.nombreUnidad = nombreUnidad;
 	        this.torre = torre;
 	        this.numApto = numApto;
@@ -33,8 +33,8 @@ public class Apartamento extends Inmueble{
 	        this.balcon = balcon;
 	    }
 	    
-	    public Apartamento(double precio, String direccion, double area, TipoContrato tipoContrato, String nombreUnidad, int torre,int numApto, int numHabitaciones, int numBanos, int patio, int balcon) {
-	        super(precio, direccion, area, tipoContrato);
+	    public Apartamento(double precio, String direccion, double area, TipoContrato tipoContrato, String nombreUnidad, int torre,int numApto, int numHabitaciones, int numBanos, int patio, int balcon,int idUnidadResidencia) {
+	        super(precio, direccion, area, tipoContrato, idUnidadResidencia);
 	    	this.nombreUnidad = nombreUnidad;
 	        this.torre = torre;
 	        this.numApto = numApto;

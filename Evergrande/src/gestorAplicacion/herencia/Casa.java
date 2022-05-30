@@ -20,16 +20,16 @@ public class Casa extends Inmueble {
     private int balcon;
 
 
-    public Casa(double precio, String direccion, double area,int numHabitaciones, int numBanos, int patio, int balcon) {
-        super(precio, direccion, area);
+    public Casa(double precio, String direccion, double area,int numHabitaciones, int numBanos, int patio, int balcon,int idUnidadResidencia) {
+        super(precio, direccion, area, idUnidadResidencia);
         this.numHabitaciones = numHabitaciones;
         this.numBanos = numBanos;
         this.patio = patio;
         this.balcon = balcon;
     }
 
-    public Casa(double precio, String direccion, double area, TipoContrato tipoContrato, int numHabitaciones, int numBanos, int patio, int balcon) {
-        super(precio, direccion, area, tipoContrato);
+    public Casa(double precio, String direccion, double area, TipoContrato tipoContrato, int numHabitaciones, int numBanos, int patio, int balcon, int idUnidadResidencia) {
+        super(precio, direccion, area, tipoContrato, idUnidadResidencia);
         this.numHabitaciones = numHabitaciones;
         this.numBanos = numBanos;
         this.patio = patio;

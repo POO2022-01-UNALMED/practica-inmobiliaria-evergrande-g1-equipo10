@@ -18,15 +18,15 @@ public class Bodega extends Inmueble{
 	private int oficina;
 	private int bano;  // baño
 	
-	public Bodega(double precio, String direccion, double area, int capacidad, int oficina, int bano) {
-		super(precio, direccion, area);
+	public Bodega(double precio, String direccion, double area, int capacidad, int oficina, int bano,int idUnidadResidencia) {
+		super(precio, direccion, area, idUnidadResidencia);
 		this.capacidad = capacidad;
 		this.oficina = oficina;
 		this.bano = bano;
 	}
 
-	public Bodega(double precio, String direccion, double area, TipoContrato tipoContrato, int capacidad, int oficina, int bano) {
-		super(precio, direccion, area, tipoContrato);
+	public Bodega(double precio, String direccion, double area, TipoContrato tipoContrato, int capacidad, int oficina, int bano,int idUnidadResidencia) {
+		super(precio, direccion, area, tipoContrato, idUnidadResidencia);
 		this.capacidad = capacidad;
 		this.oficina = oficina;
 		this.bano = bano;

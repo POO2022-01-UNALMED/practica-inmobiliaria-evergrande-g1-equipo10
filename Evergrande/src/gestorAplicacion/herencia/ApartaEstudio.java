@@ -22,8 +22,8 @@ public class ApartaEstudio extends Inmueble{
 
     public ApartaEstudio(){}
 
-    public ApartaEstudio(double precio, String direccion, double area, String nombreUnidad, int torre, int numeroApto, int numHabitaciones, int numBanos){
-        super(precio, direccion, area);
+    public ApartaEstudio(double precio, String direccion, double area, String nombreUnidad, int torre, int numeroApto, int numHabitaciones, int numBanos,int idUnidadResidencia){
+        super(precio, direccion, area, idUnidadResidencia);
 
         this.nombreUnidad = nombreUnidad;
         this.torre = torre;
@@ -32,8 +32,8 @@ public class ApartaEstudio extends Inmueble{
         this.numBanos = numBanos;
     }
 
-    public ApartaEstudio(double precio, String direccion, double area, TipoContrato tipoContrato, String nombreUnidad, int torre, int numeroApto, int numHabitaciones, int numBanos){
-        super(precio, direccion, area, tipoContrato);
+    public ApartaEstudio(double precio, String direccion, double area, TipoContrato tipoContrato, String nombreUnidad, int torre, int numeroApto, int numHabitaciones, int numBanos,int idUnidadResidencia){
+        super(precio, direccion, area, tipoContrato, idUnidadResidencia);
 
         this.nombreUnidad = nombreUnidad;
         this.torre = torre;
