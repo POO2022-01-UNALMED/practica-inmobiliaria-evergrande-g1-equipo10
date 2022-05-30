@@ -57,7 +57,7 @@ public class Main {
 		String leftAlignFormat;
 		switch (table) {
 			case "inmuebles_1":
-				leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-6f | %-11s | %-19s | %-17s | %-20s |%n";
+				leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-9f | %-11s | %-19s | %-17s | %-20s |%n";
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+%n");
 				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |%n");
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+%n");
@@ -233,10 +233,10 @@ public class Main {
 		String leftAlignFormat;
 		switch (table) {
 			case "unidades_1":
-				leftAlignFormat = "| %-4d | %-13s | %-14s |%n";
-				System.out.format("+------+---------------+----------------+----------+%n");
-				System.out.format("|  ID  |    NOMBRE     |     BARRIO     |  CIUDAD  |%n");
-				System.out.format("+------+---------------+----------------+----------+%n");
+				leftAlignFormat = "| %-4d | %-17s | %-14s | %-14s |%n";
+				System.out.format("+------+-------------------+----------------+----------------+%n");
+				System.out.format("|  ID  |      NOMBRE       |     BARRIO     |     CIUDAD     |%n");
+				System.out.format("+------+-------------------+----------------+----------------+%n");
 				for (UnidadResidencial unidad : unidades) {
 					System.out.format(leftAlignFormat, 
 							unidad.getIdUnidadResidencial(),
@@ -245,7 +245,7 @@ public class Main {
 							Ciudad.NOMBRE
 							);
 				};
-				System.out.format("+------+---------------+----------------+----------+%n");
+				System.out.format("+------+-------------------+----------------+----------------+%n");
 				break;
 			default:
 				break;
@@ -438,7 +438,9 @@ public class Main {
                     
                 case 5: // Explorar Inmuebles
                 	short opt3 = 0;
+                	
                     do {
+                    	inmueblesCliente = Inmueble.buscarInmueble(cliente.listarInmuebles());
                     	System.out.println("\nEXPLORAR INMUEBLES");
                     	System.out.println("1. Ver inmuebles disponibles");
                         System.out.println("2. Comprar Inmueble");
@@ -455,17 +457,17 @@ public class Main {
                         	*/
                         		inmueblesDisponibles = new ArrayList<Inmueble>();
                         		for (Inmueble inmueble: Inmueble.getInmuebles()) {
-                        			if (!(inmueble.getVendido())) {
+                        			if (!(inmueble.getVendido()) && !(inmueblesCliente.contains(inmueble))) {
                         				inmueblesDisponibles.add(inmueble);
                         			}
                         		}
                         		System.out.println("INMUEBLES DISPONIBLES");
                         		printInmueblesTable(inmueblesDisponibles, "inmuebles_1");
-                        		                        		
+                        		break;        		
                             case 2: //comprar inmueble
                             	inmueblesDisponibles = new ArrayList<Inmueble>();
                         		for (Inmueble inmueble: Inmueble.getInmuebles()) {
-                        			if (!(inmueble.getVendido()) && (inmueble.getTipoContrato() == TipoContrato.VENTA)) {
+                        			if (!(inmueble.getVendido()) && (inmueble.getTipoContrato() == TipoContrato.VENTA) && !(inmueblesCliente.contains(inmueble))) {
                         				inmueblesDisponibles.add(inmueble);
                         			}
                         		}
@@ -491,7 +493,7 @@ public class Main {
                             case 3: //Iniciar contrato
                             	inmueblesDisponibles = new ArrayList<Inmueble>();
                         		for (Inmueble inmueble: Inmueble.getInmuebles()) {
-                        			if (!(inmueble.getArrendado())) {
+                        			if (!(inmueble.getArrendado() && !(inmueblesCliente.contains(inmueble)))) {
                         				inmueblesDisponibles.add(inmueble);
                         			}
                         		}
