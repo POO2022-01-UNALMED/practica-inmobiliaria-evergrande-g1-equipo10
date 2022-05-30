@@ -4,6 +4,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import gestorAplicacion.herencia.Inmueble;
 
+/**
+ * @Autores:
+ * David Escobar Ruiz
+ * Julián Orozco Vanegas
+ * Juan Nicolas Piedrahita Salas
+ * 
+ * @Descripcion
+ * Esta clase se podria decir que es la principal, ya que representa al cliente, quien es, el sujeto al cual esta dirigida
+ * 
+ * @Estructuras_relevantes
+ * inmuebles corresponde a la lista de los inmuebles que el cliente ya tiene en posesion suya 
+ * 
+ */
+
 public class Cliente extends Persona implements Serializable{
     private ArrayList<Integer> inmuebles = new ArrayList<Integer>();
 	private static final long serialVersionUID = 1L;

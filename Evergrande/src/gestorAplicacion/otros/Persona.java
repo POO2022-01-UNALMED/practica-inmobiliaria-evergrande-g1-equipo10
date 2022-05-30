@@ -2,6 +2,17 @@ package gestorAplicacion.otros;
 
 import java.util.ArrayList;
 
+/**
+ * @Autores:
+ * David Escobar Ruiz
+ * Julián Orozco Vanegas
+ * Juan Nicolas Piedrahita Salas
+ * 
+ * @Descripcion
+ * Esta clase representa a las personas en general que se relacionan con la inmobiliaria, ya sea en forma de agente o de cliente
+ * 
+ */
+
 public abstract class Persona {
     protected int cedula;
     protected String nombreCompleto;

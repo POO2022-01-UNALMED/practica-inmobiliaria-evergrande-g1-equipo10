@@ -2,6 +2,16 @@ package gestorAplicacion.herencia;
 
 import gestorAplicacion.otros.TipoContrato;
 
+/**
+ * @Autores:
+ * David Escobar Ruiz
+ * Julián Orozco Vanegas
+ * Juan Nicolas Piedrahita Salas
+ * 
+ * @Descripcion
+ * Esta clase busca representar los apartaestudios que son un tipo de inmueble 
+ */
+
 public class ApartaEstudio extends Inmueble{
 	private static final long serialVersionUID = 1L;
     private String nombreUnidad;
@@ -12,8 +22,8 @@ public class ApartaEstudio extends Inmueble{
 
     public ApartaEstudio(){}
 
-    public ApartaEstudio(double precio, String direccion, double area, String nombreUnidad, int torre, int numeroApto, int numHabitaciones, int numBanos){
-        super(precio, direccion, area);
+    public ApartaEstudio(double precio, String direccion, double area, String nombreUnidad, int torre, int numeroApto, int numHabitaciones, int numBanos,int idUnidadResidencia){
+        super(precio, direccion, area, idUnidadResidencia);
 
         this.nombreUnidad = nombreUnidad;
         this.torre = torre;
@@ -22,8 +32,8 @@ public class ApartaEstudio extends Inmueble{
         this.numBanos = numBanos;
     }
 
-    public ApartaEstudio(double precio, String direccion, double area, TipoContrato tipoContrato, String nombreUnidad, int torre, int numeroApto, int numHabitaciones, int numBanos){
-        super(precio, direccion, area, tipoContrato);
+    public ApartaEstudio(double precio, String direccion, double area, TipoContrato tipoContrato, String nombreUnidad, int torre, int numeroApto, int numHabitaciones, int numBanos,int idUnidadResidencia){
+        super(precio, direccion, area, tipoContrato, idUnidadResidencia);
 
         this.nombreUnidad = nombreUnidad;
         this.torre = torre;
@@ -36,8 +46,8 @@ public class ApartaEstudio extends Inmueble{
     	return  " APARTAESTUDIO\n" + " idInmueble: " + this.getIdInmueble() + "\n" +
                 " Precio: " + this.getPrecio() + "\n" +
                 " Direccion: " + this.getDireccion() + "\n" +
-                " Área: " + this.getArea() + "\n" +
-                " Número de pisos: " + this.getNumPisos() + "\n" +
+                " Area: " + this.getArea() + "\n" +
+                " Numero de pisos: " + this.getNumPisos() + "\n" +
                 " Tipo de contrato: " + this.getTipoContrato() + "\n"+
                 " Número de pisos: " + this.getNumPisos() + "\n" +
                 " ¿Tiene parqueadero de carros?: " + this.getParqueaderoCarros() + "\n" +
@@ -45,9 +55,9 @@ public class ApartaEstudio extends Inmueble{
                 " ¿Está amueblado?: " + this.getAmueblado() + "\n" +
                 " Nombre de la unidad: " + this.getNombreUnidad() + "\n"+
                 " Torre: " + this.getTorre() + "\n"+
-                " Número del apartaestudio: " + this.getNumeroApto() + "\n"+
-                " Número de Habitaciones: " + this.getNumHabitaciones()  + "\n"+
-                " Número de baños: "+ this.getNumBanos()
+                " Numero del apartaestudio: " + this.getNumeroApto() + "\n"+
+                " Numero de Habitaciones: " + this.getNumHabitaciones()  + "\n"+
+                " Numero de baños: "+ this.getNumBanos()
                 ;
     }
     

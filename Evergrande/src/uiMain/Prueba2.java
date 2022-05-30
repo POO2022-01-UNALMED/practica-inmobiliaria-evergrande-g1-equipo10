@@ -102,7 +102,7 @@ public class Prueba2 {
                             }
                         }
                     
-                    //verifica si el inmueble ya está en posesión del cliente
+                    //verifica si el inmueble ya estï¿½ en posesiï¿½n del cliente
                     for (Inmueble inmueble: Inmueble.buscarInmueble(cliente.listarInmuebles())) {
                     	if(inmueble.getIdInmueble() == id) {
                     		System.out.println("El inmueble ya esta en posesion suya");

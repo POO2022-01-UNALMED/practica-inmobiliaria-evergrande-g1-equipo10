@@ -5,6 +5,17 @@ import java.util.ArrayList;
 
 import gestorAplicacion.otros.TipoContrato;
 
+
+/**
+ * @Autores
+ * David Escobar Ruiz
+ * Julián Orozco Vanegas
+ * Juan Nicolas Piedrahita Salas
+ * 
+ * @Descripcion
+ * Esta clase representa todos los inmuebles en general, tanto los propios del cliente como los que ofrece la inmobiliaria para la venta o arrendamiento 
+ */
+
 public class Inmueble implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private static int totalInmuebles;
@@ -20,10 +31,17 @@ public class Inmueble implements Serializable{
 	private boolean amueblado;
 	private boolean vendido;
 	private TipoContrato tipoContrato;
+	private int idUnidadResidencial;
 	
 	public Inmueble(){}
 
-	public Inmueble(double precio, String direccion, double area, TipoContrato tipoContrato){
+	public Inmueble(double precio, String direccion, double area) {
+		this.precio = precio;
+		this.direccion = direccion;
+		this.area = area;
+	}
+	
+	public Inmueble(double precio, String direccion, double area, TipoContrato tipoContrato,int idUnidadResidencia){
 		this.numPisos = 1;
 		this.parqueaderoCarros = true;
 		this.parqueaderoMotos = false;
@@ -32,14 +50,15 @@ public class Inmueble implements Serializable{
 		this.direccion = direccion;
 		this.area = area;
 		this.tipoContrato = tipoContrato;
+		this.idUnidadResidencial = idUnidadResidencia;
 
 		Inmueble.totalInmuebles++;
 		this.idInmueble = Inmueble.totalInmuebles;
 		agregarInmueble(this);
  	}
 
-	public Inmueble(double precio, String direccion, double area){
-		this(precio, direccion, area, TipoContrato.VENTA);
+	public Inmueble(double precio, String direccion, double area,int idUnidadResidencia){
+		this(precio, direccion, area, TipoContrato.VENTA,idUnidadResidencia);
 	}
 	
 	public static void agregarInmueble(Inmueble inmueble) {
@@ -178,5 +197,12 @@ public class Inmueble implements Serializable{
                 " ¿Tiene parqueadero de motos?: " + this.getParqueaderoMotos() + "\n" +
                 " ¿Está amueblado?: " + this.getAmueblado() + "\n";
 	};
+    public int getIdUnidadResidencial() {
+        return this.idUnidadResidencial;
+    }
+
+    public void setIdUnidadResidencial(int idUnidadResidencial) {
+        this.idUnidadResidencial = idUnidadResidencial;
+    }
 	
 }

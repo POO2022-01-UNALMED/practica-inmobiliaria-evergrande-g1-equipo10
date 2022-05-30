@@ -25,10 +25,10 @@ public class Main {
 		System.out.println("\nPAGOS");
 		switch (table) {
 			case "pagos_1":
-				leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-6f | %-11s | %-19s |%n";
-				System.out.format("+-----------+----------------+-------------+-------+------------+-------------+----------------+%n");
-				System.out.format("|  ID PAGO  |    VALOR       |     AÑO     |  MES  |    TIPO    |  DIRECCION  | TIPO CONTRATO  |%n");
-				System.out.format("+-----------+----------------+-------------+-------+------------+-------------+----------------+%n");
+				leftAlignFormat = "| %-9d | %-14f | %-11d | %-5s | %-10s | %-15s | %-14s |%n";
+				System.out.format("+-----------+----------------+-------------+-------+------------+-----------------+----------------+%n");
+				System.out.format("|  ID PAGO  |    VALOR       |     AÑO     |  MES  |    TIPO    |    DIRECCION    | TIPO CONTRATO  |%n");
+				System.out.format("+-----------+----------------+-------------+-------+------------+-----------------+----------------+%n");
 				for (Pago pago : pagos) {
 					Inmueble inmueble = Inmueble.buscarInmueble(pago.getidInmueble());
 					System.out.format(leftAlignFormat, 
@@ -41,7 +41,7 @@ public class Main {
 							inmueble.getTipoContrato()
 							);
 				}
-				System.out.format("+-----------+----------------+-------------+-------+------------+-------------+----------------+%n");
+				System.out.format("+-----------+----------------+-------------+-------+------------+-----------------+----------------+%n");
 				break;
 			default:
 				break;
@@ -217,7 +217,7 @@ public class Main {
 							inmueble.getDireccion(),
 							inmueble.getNombreUnidad(),
 							inmueble.getTorre(),
-							inmueble.getNumeroApto(),
+							inmueble.getNumApto(),
 							inmueble.getNumHabitaciones(),
 							inmueble.getNumBanos(),
 							inmueble.getPatio(),
@@ -333,8 +333,11 @@ public class Main {
                     
                     printInmueblesTable(inmuebles, "inmuebles_2");
                     
-                    System.out.print("Ingrese el id del inmueble: "); 
+                    System.out.print("Ingrese el id del inmueble (ingrese el número -1 para volver atrás): "); 
                     int idInmueble = sc.nextInt();
+                    if (idInmueble == -1) {
+                    	break;
+                    }
                     
                     inmuebleBuscado = Inmueble.buscarInmueble(idInmueble);
 

@@ -18,14 +18,14 @@ public class Serializador {
     public static void main(String[] args) { // registros iniciales
         // Inmuebles del cliente (hay que crear otros que compre el cliente)
         List<Inmueble> inmuebles = new ArrayList<Inmueble>();
-        inmuebles.add(new Inmueble(200000, "kra 45 # 32b", 160, TipoContrato.VENTA));
-        inmuebles.add(new ApartaEstudio(200000, "kra 45 # 32b", 160, TipoContrato.VENTA, "unidad", 1, 1, 2, 1));
-        inmuebles.add(new Bodega(600, "kra 45 # 32b", 160, TipoContrato.ARRIENDO, 15, 1, 1));
-        inmuebles.add(new Casa(200000, "kra 45 # 32b", 160, TipoContrato.ARRIENDO, 3, 2, 1, 0));
+        inmuebles.add(new Inmueble(200000, "kra 45 # 32b", 160, TipoContrato.VENTA,860));
+        inmuebles.add(new ApartaEstudio(200000, "kra 45 # 32b", 160, TipoContrato.VENTA, "unidad", 1, 1, 2, 1,007));
+        inmuebles.add(new Bodega(600, "kra 45 # 32b", 160, TipoContrato.ARRIENDO, 15, 1, 1,007));
+        inmuebles.add(new Casa(200000, "kra 45 # 32b", 160, TipoContrato.ARRIENDO, 3, 2, 1, 0,007));
         // Inmuebles que NO son del cliente
-        inmuebles.add(new Casa(40000, "kra 45 # 32b", 160, TipoContrato.VENTA, 3, 2, 1, 0));
-        inmuebles.add(new ApartaEstudio(80000, "calle 2a # 3b", 50, TipoContrato.VENTA, "unidad 2", 1, 2, 3, 2));
-        inmuebles.add(new Bodega(600, "kra 84 # 5 56", 20, TipoContrato.ARRIENDO, 15, 1, 0));
+        inmuebles.add(new Casa(40000, "kra 45 # 32b", 160, TipoContrato.VENTA, 3, 2, 1, 0,860));
+        inmuebles.add(new ApartaEstudio(80000, "calle 2a # 3b", 50, TipoContrato.VENTA, "unidad 2", 1, 2, 3, 2,860));
+        inmuebles.add(new Bodega(600, "kra 84 # 5 56", 20, TipoContrato.ARRIENDO, 15, 1, 0,007));
         serializar(inmuebles, "Inmueble");
 
         // pagos
@@ -47,8 +47,8 @@ public class Serializador {
         
         //Unidades
         List<UnidadResidencial> unidades = new ArrayList<UnidadResidencial>();
-        unidades.add(new UnidadCerrada(007, "Parques del rocio", "San Germán", 6));
-        unidades.add(new EdificioDeApartamentos(860, "Cielo azúl", "Laureles", 16));
+        unidades.add(new UnidadCerrada(007, "unidad", "San Germán", 6));
+        unidades.add(new EdificioDeApartamentos(860, "unidad 2", "Laureles", 16));
         serializar(unidades, "UnidadResidencial");
     }
 

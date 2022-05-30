@@ -2,6 +2,16 @@ package gestorAplicacion.herencia;
 
 import gestorAplicacion.otros.TipoContrato;
 
+/**
+ * @Autores:
+ * David Escobar Ruiz
+ * Julián Orozco Vanegas
+ * Juan Nicolas Piedrahita Salas
+ * 
+ * @Descripcion
+ * Esta clase busca representar las casas que son un tipo de inmueble 
+ */
+
 public class Casa extends Inmueble {
 	private static final long serialVersionUID = 1L;
     private int numHabitaciones;
@@ -10,16 +20,16 @@ public class Casa extends Inmueble {
     private int balcon;
 
 
-    public Casa(double precio, String direccion, double area,int numHabitaciones, int numBanos, int patio, int balcon) {
-        super(precio, direccion, area);
+    public Casa(double precio, String direccion, double area,int numHabitaciones, int numBanos, int patio, int balcon,int idUnidadResidencia) {
+        super(precio, direccion, area, idUnidadResidencia);
         this.numHabitaciones = numHabitaciones;
         this.numBanos = numBanos;
         this.patio = patio;
         this.balcon = balcon;
     }
 
-    public Casa(double precio, String direccion, double area, TipoContrato tipoContrato, int numHabitaciones, int numBanos, int patio, int balcon) {
-        super(precio, direccion, area, tipoContrato);
+    public Casa(double precio, String direccion, double area, TipoContrato tipoContrato, int numHabitaciones, int numBanos, int patio, int balcon, int idUnidadResidencia) {
+        super(precio, direccion, area, tipoContrato, idUnidadResidencia);
         this.numHabitaciones = numHabitaciones;
         this.numBanos = numBanos;
         this.patio = patio;
@@ -30,7 +40,7 @@ public class Casa extends Inmueble {
     	return  " CASA\n" + " idInmueble: " + this.getIdInmueble() + "\n" +
                 " Precio: " + this.getPrecio() + "\n" +
                 " Direccion: " + this.getDireccion() + "\n" +
-                " Área: '" + this.getArea() + "\n" +
+                " Area: '" + this.getArea() + "\n" +
                 " Tipo de contrato: " + this.getTipoContrato() + "\n" +
                 " Número de pisos: " + this.getNumPisos() + "\n" +
                 " ¿Tiene parqueadero de carros?: " + this.getParqueaderoCarros() + "\n" +

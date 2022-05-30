@@ -3,6 +3,20 @@ package gestorAplicacion.otros;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * @Autores:
+ * David Escobar Ruiz
+ * Julián Orozco Vanegas
+ * Juan Nicolas Piedrahita Salas
+ * 
+ * @Descripcion
+ * Esta clase representa los pagos que realiza el cliente de su inmueble de interes
+ *
+ * @Estructuras_relevantes
+ * pagos es una lista de todos los pagos que el cliente ha hecho
+ * 
+ */
+
 public class Pago implements Serializable{
 	private static final long serialVersionUID = 1L;
     private int idPago;
