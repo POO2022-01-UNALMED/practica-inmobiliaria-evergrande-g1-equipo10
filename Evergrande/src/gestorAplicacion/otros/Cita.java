@@ -36,8 +36,12 @@ public class Cita {
 		Cita.citas.add(this);
 	}
 	
-	public static void cancelar(Cita cita) {
-		Cita.citas.remove(cita);
+	public static void cancelar(int idCita) {
+		for (Cita cita: citas) {
+			if(cita.getIdCita() == idCita) {
+				Cita.citas.remove(idCita);
+			}
+		}
 	}
 	
 	public int getIdCita() {

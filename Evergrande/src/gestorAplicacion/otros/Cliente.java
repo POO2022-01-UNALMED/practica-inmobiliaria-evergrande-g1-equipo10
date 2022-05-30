@@ -20,6 +20,7 @@ import gestorAplicacion.herencia.Inmueble;
 
 public class Cliente extends Persona implements Serializable{
     private ArrayList<Integer> inmuebles = new ArrayList<Integer>();
+    private ArrayList<Integer> citas = new ArrayList<Integer>();
 	private static final long serialVersionUID = 1L;
 
     public Cliente(){
@@ -49,10 +50,15 @@ public class Cliente extends Persona implements Serializable{
     }
 
     public Cita pedirCita(int ano, int mes, int dia, String hora, int idAgente, int idInmueble){
-       return new Cita(ano, mes, dia, hora, idAgente, idInmueble);
+    	Cita cita = new Cita(ano, mes, dia, hora, idAgente, idInmueble);
+    	int idCita = cita.getIdCita();
+    	this.citas.add(idCita);
+    	System.out.println("\nNueva cita programada para las "+ cita.getHora() +" del dia "+ cita.getDia() + ", mes "+cita.getMes() + ", ano " + cita.getAno() + ". Con el agente con cedula " + cita.getIdAgente()+
+    			" para la visita del inmueble con id "+ cita.getIdInmueble());
+    	return cita;
     }
 
-    public void cancelarCita(Cita cita){
+    public void cancelarCita(int cita){
         Cita.cancelar(cita);
     }
 
