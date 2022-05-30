@@ -59,38 +59,44 @@ public class Prueba2 {
                 	System.out.print("Ingrese el id del inmueble que desea comprar: ");
                 	int idInmueble = sc.nextInt();
                 	
+                	boolean sePuedeComprar = true;
                 	//verifica si el inmueble es de tipo venta
                     for (Inmueble inmueblefiltrar : Inmueble.getInmuebles()) {
                         if (inmueblefiltrar.getIdInmueble() == idInmueble) {
                             if(inmueblefiltrar.getTipoContrato() == TipoContrato.ARRIENDO){
                                 System.out.println("El inmueble no esta a la venta, solo disponible para arriendo");
+                                sePuedeComprar = false;
                                 break;
                                 }
                             }
                         }
                     
-                    //verifica si el inmueble ya est� en posesi�n del cliente
+                    //verifica si el inmueble ya esta en posesion del cliente
                     for (Inmueble inmueble: Inmueble.buscarInmueble(cliente.listarInmuebles())) {
                     	if(inmueble.getIdInmueble() == idInmueble) {
                     		System.out.println("El inmueble ya esta en posesion suya");
+                    		sePuedeComprar = false;
                             break;
                     	}
                     }
                     
-                    cliente.comprarInmueble(idInmueble);
-                    System.out.println("Felicidades ha comprado el inmueble con id " + idInmueble);
+                    if(sePuedeComprar == true) {
+	                    cliente.comprarInmueble(idInmueble);
+	                    System.out.println("Felicidades ha comprado el inmueble con id " + idInmueble);
+                    }
                     break;
-                    
                     
                 case 3: //Iniciar contrato
                 	System.out.print("Ingrese el id del inmueble que desea arrendar: ");
                 	int id = sc.nextInt();
                 	
+                	boolean sePuedeArrendar = true;
                 	//verifica si el inmueble es de tipo arriendo
                     for (Inmueble inmueblefiltrar : Inmueble.getInmuebles()) {
                         if (inmueblefiltrar.getIdInmueble() == id) {
                             if(inmueblefiltrar.getTipoContrato() == TipoContrato.VENTA){
                                 System.out.println("El inmueble no esta disponible para ser arrendado, solo venta");
+                                sePuedeArrendar = false;
                                 break;
                                 }
                             }
@@ -100,12 +106,15 @@ public class Prueba2 {
                     for (Inmueble inmueble: Inmueble.buscarInmueble(cliente.listarInmuebles())) {
                     	if(inmueble.getIdInmueble() == id) {
                     		System.out.println("El inmueble ya esta en posesion suya");
+                    		sePuedeArrendar = false;
                             break;
                     	}
                     }
                     
-                    cliente.iniciarContrato(id);;
-                    System.out.println("Felicidades ha iniciado un contrato de arrendamiento del inmueble con id " + id);
+                    if(sePuedeArrendar == true) {
+	                    cliente.iniciarContrato(id);
+	                    System.out.println("Felicidades ha iniciado un contrato de arrendamiento del inmueble con id " + id);
+                    }
                     break;
                 
                     
