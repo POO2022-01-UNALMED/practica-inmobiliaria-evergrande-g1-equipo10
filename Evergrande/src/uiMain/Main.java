@@ -491,7 +491,7 @@ public class Main {
                             case 3: //Iniciar contrato
                             	inmueblesDisponibles = new ArrayList<Inmueble>();
                         		for (Inmueble inmueble: Inmueble.getInmuebles()) {
-                        			if (!(inmueble.getArrendado())) {
+                        			if (!(inmueble.getArrendado()) && (inmueble.getTipoContrato() == TipoContrato.ARRIENDO)) {
                         				inmueblesDisponibles.add(inmueble);
                         			}
                         		}
