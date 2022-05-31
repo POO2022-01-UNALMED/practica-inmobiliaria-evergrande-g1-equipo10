@@ -89,18 +89,29 @@ public class Main {
 	}
 	
 	public static void printInmueblesTable(ArrayList<Inmueble> inmuebles, String table) {
+		String leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-9f | %-11s | %-19s | %-17s | %-20s |%n";
 		switch (table) {
 			case "inmuebles_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+%n");
 				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |%n");
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+%n");
 				for (Inmueble inmueble : inmuebles) {
-					System.out.format(inmueble.toString());
+					System.out.format(leftAlignFormat, 
+							inmueble.getIdInmueble(),
+							inmueble.getClass().getSimpleName(),
+							inmueble.getPrecio(), 
+							inmueble.getTipoContrato().name(),
+							inmueble.getArea(),
+							inmueble.getAmueblado(),
+							inmueble.getParqueaderoCarros(),
+							inmueble.getParqueaderoMotos(),
+							inmueble.getDireccion()
+							);
+					//System.out.format(inmueble.toString());
 				}
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+%n");
 				break;
 			case "inmuebles_2":
-				String leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-20s |%n";
 				System.out.format("+------+---------------+----------------+-----------------+----------------------+%n");
 				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |      DIRECCION       |%n");
 				System.out.format("+------+---------------+----------------+-----------------+----------------------+%n");
