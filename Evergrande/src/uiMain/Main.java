@@ -13,6 +13,7 @@ import gestorAplicacion.otros.TipoContrato;
 import gestorAplicacion.otros.UnidadResidencial;
 import gestorAplicacion.herencia.Apartamento;
 import gestorAplicacion.otros.Pago;
+import gestorAplicacion.otros.Cita;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -226,7 +227,8 @@ public class Main {
             System.out.println("3. Ver mis pagos");
             System.out.println("4. Finalizar contrato");
             System.out.println("5. Explorar inmuebles");
-            System.out.println("6. Salir");
+            System.out.println("6. Agendar cita");
+            System.out.println("7. Salir");
             System.out.print("Seleccione su opcion: ");
             opt1 = sc.nextShort();
             
@@ -314,7 +316,7 @@ public class Main {
                     
                     
                     if (Pago.verPagos(idInmueble).size() != 0) {
-                    	System.out.println("El inmueble ya fue pagado, Año no puede volver a ser pagado!\n");
+                    	System.out.println("El inmueble ya fue pagado, no puede volver a ser pagado!\n");
                     	break;
                     }
                     
@@ -464,12 +466,73 @@ public class Main {
                             	break;
                         }
                     } while (opt3 != 5);
-                    sc.close();
+                    break;
+                    
+                case 6:
+                	int diaCita = 0;
+                	int mesCita = 0;
+                	int anoCita = 0;
+                	int idAgenteCita = 0;
+                	int idInmuebleCita = 0;
+                	String horaCita = null;
+                	
+                	System.out.println("\nInformacion general de los agentes inmobiliarios:");
+                	for(Agente agente: Agente.getAgentes()) {
+                		System.out.println(agente.toString());
+                	}
+                	
+                	System.out.println("\nIngrese el dia en el que desea la cita: ");
+                	diaCita = sc.nextInt();
+                	
+                	System.out.println("Ingrese la hora en el que desea la cita: ");
+                	horaCita = sc.next();
+                	
+                	System.out.println("Ingrese el mes en el que desea la cita: ");
+                	mesCita = sc.nextInt();
+                	
+                	System.out.println("Ingrese el ano en el que desea la cita: ");
+                	anoCita = sc.nextInt();
+                	
+                	System.out.println("Ingrese la cedula del agente con quien desea la cita: ");
+                	idAgenteCita = sc.nextInt();
+                			
+                	System.out.println("Ingrese el id del inmueble que desea visitar: ");
+                	idInmuebleCita = sc.nextInt();
+                	
+                	boolean disponible = true;
+                	
+                	//verificar si la cedula del agente es valida
+                	if( !(Agente.idAgentes().contains(idAgenteCita)) ) {
+                		System.out.println("\nPor favor ingrese una cedula de agente válida ");
+                		disponible = false;
+                	}
+                	
+                	//verificar si el cliente ya tiene el inmueble
+                	if(cliente.listarInmuebles().contains(idInmuebleCita)) {
+                		System.out.println("\nNo puede agendar una cita con un inmueble que ya tiene ");
+                		disponible = false;
+                	}
+                	
+                	//verificar si el id del inmueble es valido
+                	ArrayList<Integer> ids = new ArrayList<Integer>();
+                	for (Inmueble inmueble: Inmueble.getInmuebles()) {
+                		ids.add(inmueble.getIdInmueble());
+                	}
+                	if( !(ids.contains(idInmuebleCita)) ) {
+                		System.out.println("\nNo existe un inmueble con el id que intenta ingresar ");
+                		disponible = false;
+                	}
+                	
+                	
+                	if(disponible == true) {
+                		cliente.pedirCita(anoCita, mesCita, diaCita, horaCita, idAgenteCita, idInmuebleCita);
+                	}
+                	
                 
                 default:
                     break;
             }
-        } while (opt1 != 6);
+        } while (opt1 != 7);
         System.out.println("\nADIÓS!");
     }
 }

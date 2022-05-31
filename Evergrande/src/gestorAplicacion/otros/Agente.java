@@ -30,7 +30,10 @@ public class Agente extends Persona implements Serializable{
 
 		Agente.agentes.add(this);
 	}
-
+	
+	public String toString() {
+		return "Agente inmobiliario "+this.getNombreCompleto() + ", identificado con la cedula: " + this.getCedula();
+	}
 	public Agente buscarAgente(int cedula){
 		Agente r = null;
 		for (Agente agente : agentes) {
@@ -41,7 +44,15 @@ public class Agente extends Persona implements Serializable{
 
 		return r;
 	}
-
+	
+	//devuelve todas las cedulas de los agentes
+	public static ArrayList<Integer> idAgentes(){
+		ArrayList<Integer> idAgentes = new ArrayList<Integer>();
+		for (Agente agente: Agente.getAgentes()) {
+			idAgentes.add(agente.getCedula());
+		}
+		return idAgentes;
+	}
 	public ArrayList<Integer> listarInmuebles() {
 		return null;
 	}
