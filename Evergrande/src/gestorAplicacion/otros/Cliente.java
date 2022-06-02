@@ -84,4 +84,8 @@ public class Cliente extends Persona implements Serializable{
     public Pago realizarPago(double valor, int ano, int mes, int idInmueble){
         return new Pago(valor, ano, mes, idInmueble);
     }
+    
+    public ArrayList<Integer> getCitas(){
+    	return this.citas;
+    }
 }

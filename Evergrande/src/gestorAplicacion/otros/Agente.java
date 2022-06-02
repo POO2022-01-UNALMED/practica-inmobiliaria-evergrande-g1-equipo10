@@ -32,7 +32,15 @@ public class Agente extends Persona implements Serializable{
 	}
 	
 	public String toString() {
-		return "Agente inmobiliario "+this.getNombreCompleto() + ", identificado con la cedula: " + this.getCedula();
+		String leftAlignFormat = "| %-10d | %-20s | %-16d | %-13d | %-8s | %-14s |%n";
+		return String.format(leftAlignFormat,
+				this.cedula,
+				this.nombreCompleto,
+				this.telefonoCelular,
+				this.telefonoFijo,
+				this.vehiculo.name(),
+				this.placaVehiculo
+				);
 	}
 	public Agente buscarAgente(int cedula){
 		Agente r = null;

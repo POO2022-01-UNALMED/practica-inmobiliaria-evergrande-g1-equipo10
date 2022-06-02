@@ -12,7 +12,7 @@ import gestorAplicacion.otros.Pago;
 import gestorAplicacion.otros.TipoContrato;
 import gestorAplicacion.otros.UnidadResidencial;
 import gestorAplicacion.herencia.Apartamento;
-import gestorAplicacion.otros.Pago;
+//import gestorAplicacion.otros.Pago;
 import gestorAplicacion.otros.Cita;
 
 import java.io.IOException;
@@ -188,39 +188,95 @@ public class Main {
 		}
 	}
 	
-	public static void printCitasTable(ArrayList<Cita> citas, String table) {
-		String leftAlignFormat = "| %-4d | %-7s | %-20s |%n";;
+	public static void printCitasTable(ArrayList<Integer> citasIds, String table) {
+		String leftAlignFormat = "| %-11d | %-15s | %-17s |%n";;
 		ArrayList<Integer> inmueblesCitas = new ArrayList<Integer>();
-		for (Cita cita : citas) {
-			int idInmuebleCita = cita.getIdInmueble();
+		int citasCount = 0;
+		for (int idCita : citasIds) {
+			if (Cita.getCitaByID(idCita) == null) {
+				continue;
+			}
+			int idInmuebleCita = Cita.getCitaByID(idCita).getIdInmueble();
 			if (!(inmueblesCitas.contains(idInmuebleCita)) ) {
 				inmueblesCitas.add(idInmuebleCita);
 			}
 		}
 		switch (table) {
 			case "citas_1":
-				
-				System.out.format("+------+-------------------+----------------+----------------+%n");
-				System.out.format("||%n");
-				System.out.format("+------+-------------------+----------------+----------------+%n");
+				citasCount++;
 				for (int idInmuebleCita : inmueblesCitas) {
+					System.out.println("\nCita número " + citasCount);
+					System.out.format("+-------------+-----------------+-------------------+%n");
+					System.out.format("| ID INMUEBLE | NOMBRE INMUEBLE |     DIRECCIÓN     |%n");
+					System.out.format("+-------------+-----------------+-------------------+%n");
 					Inmueble inmuebleCita = Inmueble.buscarInmueble(idInmuebleCita);
 					System.out.format(leftAlignFormat,
 							idInmuebleCita,
 							inmuebleCita.getClass().getSimpleName(),
 							inmuebleCita.getDireccion()
 							);
-					for (Cita cita : citas) {
+					System.out.format("+-------------+-----------------+-------------------+%n");
+					System.out.format("+---------+-----+-----+-----+------+---------------+%n");
+					System.out.format("| ID CITA | DIA | MES | AÑO | HORA | NOMBRE AGENTE |%n");
+					System.out.format("+---------+-----+-----+-----+------+---------------+%n");
+					for (Cita cita : Cita.citas) {
 						if (cita.getIdInmueble() == idInmuebleCita) {
 							System.out.format(cita.toString());
 						}
 					}
+					System.out.format("+---------+-----+-----+-----+------+---------------+%n");
 					
 				};
-				System.out.format("+------+-------------------+----------------+----------------+%n");
+				// System.out.format("+------+-------------------+----------------+----------------+%n");
 				break;
 			default:
 				break;
+		}
+	}
+	
+	public static void printAgentesTable(ArrayList<Agente> agentes , String table) {
+		switch (table){
+		case "agentes_1":
+			String leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-10f | %-11s | %-19s | %-17s | %-20s |%n";
+			int agenteCount = 0;
+			for (Agente agente: agentes) {
+				agenteCount++;
+				System.out.println("Agente número " + agenteCount);
+				System.out.format("+------------+----------------------+------------------+---------------+----------+----------------+%n");
+				System.out.format("|   CEDULA   |        NOMBRE        | TELEFONO CELULAR | TELEFONO FIJO | VEHICULO | PLACA VEHICULO |%n");
+				System.out.format("+------------+----------------------+------------------+---------------+----------+----------------+%n");
+	    		System.out.format(agente.toString());
+	    		System.out.println("\nINMUEBLES ASIGNADOS");
+	    		System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+%n");
+				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |%n");
+				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+%n");
+	    		for (int idInmueble : agente.getIdInmuebles()) {
+	    			Inmueble inmueble = Inmueble.buscarInmueble(idInmueble);
+	    			System.out.format(leftAlignFormat, 
+							inmueble.getIdInmueble(),
+							inmueble.getClass().getSimpleName(),
+							inmueble.getPrecio(), 
+							inmueble.getTipoContrato().name(),
+							inmueble.getArea(),
+							inmueble.getAmueblado(),
+							inmueble.getParqueaderoCarros(),
+							inmueble.getParqueaderoMotos(),
+							inmueble.getDireccion()
+							);
+	    		}
+	    		System.out.println("\n");
+	    	}
+			break;
+		case "agentes_2":
+			for (Agente agente: agentes) {
+				System.out.format("+------------+----------------------+------------------+---------------+----------+----------------+%n");
+				System.out.format("|   CEDULA   |        NOMBRE        | TELEFONO CELULAR | TELEFONO FIJO | VEHICULO | PLACA VEHICULO |%n");
+				System.out.format("+------------+----------------------+------------------+---------------+----------+----------------+%n");
+	    		System.out.format(agente.toString());
+			}
+			break;
+		default:
+			break;
 		}
 	}
 	
@@ -286,7 +342,6 @@ public class Main {
                     System.out.println("6. Atrás");
                     System.out.print("Seleccione su opcion: ");
                     opt2 = sc.nextShort();
-                    ArrayList<Inmueble> filtroInmuebles = new ArrayList<Inmueble>();
                     
                         switch (opt2) {                        
                             case 1:
@@ -514,67 +569,92 @@ public class Main {
                 	int idAgenteCita = 0;
                 	int idInmuebleCita = 0;
                 	String horaCita = null;
+                	ArrayList<Integer> citasCliente;
                 	
-                	System.out.println("\nInformacion general de los agentes inmobiliarios:");
-                	for(Agente agente: Agente.getAgentes()) {
-                		System.out.println(agente.toString());
-                	}
+                	System.out.println("\nAGENTES INMOBILIARIOS");
+                	printAgentesTable(Agente.getAgentes(), "agentes_1");
                 	
-                	System.out.println("\nIngrese el dia en el que desea la cita: ");
+                	System.out.print("\nIngrese el dia en el que desea la cita (ingrese -1 para volver atrás): ");
                 	diaCita = sc.nextInt();
+                	if (diaCita == -1) {break;}
                 	
-                	System.out.println("Ingrese la hora en el que desea la cita: ");
+                	System.out.print("Ingrese la hora en el que desea la cita: ");
                 	horaCita = sc.next();
                 	
-                	System.out.println("Ingrese el mes en el que desea la cita: ");
+                	
+                	System.out.print("Ingrese el mes en el que desea la cita: ");
                 	mesCita = sc.nextInt();
                 	
-                	System.out.println("Ingrese el ano en el que desea la cita: ");
+                	System.out.print("Ingrese el año en el que desea la cita: ");
                 	anoCita = sc.nextInt();
                 	
-                	System.out.println("Ingrese la cedula del agente con quien desea la cita: ");
-                	idAgenteCita = sc.nextInt();
-                			
-                	System.out.println("Ingrese el id del inmueble que desea visitar: ");
+                	ArrayList<Inmueble> inmueblesDisponibles = new ArrayList<Inmueble>();
+                	ArrayList<Integer> inmueblesDisponiblesIDS = new ArrayList<Integer>();
+            		for (Inmueble inmueble: Inmueble.getInmuebles()) {
+            			if (!(inmueble.getVendido()) && !(inmueble.getArrendado())) {
+            				inmueblesDisponibles.add(inmueble);
+            				inmueblesDisponiblesIDS.add(inmueble.getIdInmueble());
+            			}
+            		}
+            		System.out.println("\n");
+            		printInmueblesTable(inmueblesDisponibles, "inmuebles_1");
+            		System.out.println("\n");
+                	System.out.print("Ingrese el id del inmueble que desea visitar: ");
                 	idInmuebleCita = sc.nextInt();
                 	
-                	boolean disponible = true;
-                	
-                	//verificar si la cedula del agente es valida
-                	if( !(Agente.idAgentes().contains(idAgenteCita)) ) {
-                		System.out.println("\nPor favor ingrese una cedula de agente válida ");
-                		disponible = false;
+                	if (!(inmueblesDisponiblesIDS.contains(idInmuebleCita))) {
+                		System.out.println("\nNo hay inmuebles disponibles con el ID ingresado!");
+                		break;
                 	}
                 	
-                	//verificar si el cliente ya tiene el inmueble
-                	if(cliente.listarInmuebles().contains(idInmuebleCita)) {
-                		System.out.println("\nNo puede agendar una cita con un inmueble que ya tiene ");
-                		disponible = false;
+                	ArrayList<Agente> agentesDisponibles = new ArrayList<Agente>();
+                	ArrayList<Integer> agentesDisponiblesIDS = new ArrayList<Integer>();
+                	for (Agente agente : Agente.getAgentes()) {
+                		if (agente.getIdInmuebles().contains(idInmuebleCita)){
+                			agentesDisponibles.add(agente);
+                			agentesDisponiblesIDS.add(agente.getCedula());
+                		}
                 	}
+                	System.out.println("\n");
+                	printAgentesTable(agentesDisponibles, "agentes_2");
+                	System.out.println("\n");
+                	System.out.print("Ingrese la cedula del agente con quien desea la cita: ");
+                	idAgenteCita = sc.nextInt();
                 	
-                	//verificar si el id del inmueble es valido
-                	ArrayList<Integer> ids = new ArrayList<Integer>();
-                	for (Inmueble inmueble: Inmueble.getInmuebles()) {
-                		ids.add(inmueble.getIdInmueble());
+                	if (!(agentesDisponiblesIDS.contains(idAgenteCita))) {
+                		System.out.println("\nNo hay agentes disponibles con la cédula ingresada!");
+                		break;
                 	}
-                	if( !(ids.contains(idInmuebleCita)) ) {
-                		System.out.println("\nNo existe un inmueble con el id que intenta ingresar ");
-                		disponible = false;
-                	}
-                	
-                	
-                	if(disponible == true) {
-                		cliente.pedirCita(anoCita, mesCita, diaCita, horaCita, idAgenteCita, idInmuebleCita);
-                	}
+                			
+                	cliente.pedirCita(anoCita, mesCita, diaCita, horaCita, idAgenteCita, idInmuebleCita);
+                	System.out.println("\n");
+                	break;
                 
                 case 7:
+                	citasCliente = cliente.getCitas();
+                	System.out.println("\nMIS CITAS");
+                	printCitasTable(citasCliente, "citas_1");
+                	System.out.println("\n");
+                	break;
+                case 8:
+                	citasCliente = cliente.getCitas();
                 	System.out.println("MIS CITAS");
                 	printCitasTable(citasCliente, "citas_1");
-                
+                	System.out.print("\nIngrese el ID de la cita a cancelar (ingrese -1 para volver atrás): ");
+                	int idCancelar = sc.nextInt();
+                	if (idCancelar == -1) {break;}
+                	if (!(citasCliente.contains(idCancelar))) {
+                		System.out.println("\nNo hay citas con el ID ingresado!");
+                		break;
+                	}
+                	Cita.cancelar(idCancelar);
+                	break;
                 default:
                     break;
+                
             }
         } while (opt1 != 9);
         System.out.println("\nADIÓS!");
+        sc.close();
     }
 }

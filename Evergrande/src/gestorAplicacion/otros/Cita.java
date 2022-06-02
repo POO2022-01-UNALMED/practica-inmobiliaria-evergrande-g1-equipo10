@@ -2,7 +2,7 @@ package gestorAplicacion.otros;
 
 import java.util.ArrayList;
 
-import gestorAplicacion.herencia.Inmueble;
+// import gestorAplicacion.herencia.Inmueble;
 
 /**
  * @Autores:
@@ -39,11 +39,10 @@ public class Cita {
 	}
 	
 	public static void cancelar(int idCita) {
-		for (Cita cita: citas) {
-			if(cita.getIdCita() == idCita) {
-				Cita.citas.remove(idCita);
-			}
+		if (!(Cita.getCitaByID(idCita) == null)) {
+			Cita.citas.remove(idCita);
 		}
+		System.out.println("Cita con id "+ idCita + " cancelada exitosamente!");
 	}
 	
 	public int getIdCita() {
@@ -103,7 +102,7 @@ public class Cita {
 	}
 	
 	public String toString() {
-		String leftAlignFormat = "| %-4d | %-5d | %-5d | %-5d | %-6d | %-4d |%n";
+		String leftAlignFormat = "| %-7d | %-3d | %-3d | %-3d | %-4s | %-13s |%n";
 		String nombreAgente = null;
 		for (Agente agente : Agente.getAgentes()) {
 			if (agente.getCedula() == this.getIdAgente()) {
@@ -120,6 +119,17 @@ public class Cita {
 				this.getHora(),
 				nombreAgente
 				);
+	}
+	
+	public static Cita getCitaByID(int id) {
+		Cita resultado = null;
+		for (Cita cita : Cita.citas) {
+			if (cita.getIdCita() == id) {
+				resultado = cita;
+				break;
+			}
+		}
+		return resultado;
 	}
 }
 
