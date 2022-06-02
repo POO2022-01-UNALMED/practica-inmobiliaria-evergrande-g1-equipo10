@@ -37,10 +37,11 @@ public class Serializador {
         // Inmuebles que NO son del cliente
         inmuebles.add(new Casa(40000, "calle 2a # 3b", 160, TipoContrato.VENTA, 3, 2, 1, 0,860));
         inmuebles.add(new ApartaEstudio(80000, "calle 2a # 3b", 50, TipoContrato.VENTA, "unidad 2", 1, 2, 3, 2,860));
-        inmuebles.add(new Bodega(600, "kra 45 # 32b", 20, TipoContrato.ARRIENDO, 15, 1, 0,007));
+        inmuebles.add(new Bodega(6000, "kra 45 # 32b", 20, TipoContrato.ARRIENDO, 15, 1, 0,007));
         inmuebles.add(new Apartamento(65000, "kra 45 # 32b", 96, TipoContrato.ARRIENDO, "unidad", 5, 201,4,2,1,0,007));
         inmuebles.add(new Casa(100000, "calle 2a # 3b", 200, TipoContrato.VENTA, 5, 4, 2, 3,860));
         inmuebles.add(new ApartaEstudio(30000, "kra 45 # 32b", 40, TipoContrato.ARRIENDO, "unidad 2", 4, 101, 2, 1,860));
+        inmuebles.add(new Bodega(10000, "kra 45 # 32b", 400, TipoContrato.ARRIENDO, 35, 5, 2,007));
         serializar(inmuebles, "Inmueble");
 
         // pagos
