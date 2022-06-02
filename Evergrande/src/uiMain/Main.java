@@ -91,6 +91,7 @@ public class Main {
 	
 	public static void printInmueblesTable(ArrayList<Inmueble> inmuebles, String table) {
 		String leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-9f | %-11s | %-19s | %-17s | %-20s |%n";
+		String leftAlignFormat2 = "| %-4d | %-13s | %-14f | %-15s | %-20s |%n";
 		switch (table) {
 			case "inmuebles_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+%n");
@@ -117,7 +118,7 @@ public class Main {
 				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |      DIRECCION       |%n");
 				System.out.format("+------+---------------+----------------+-----------------+----------------------+%n");
 				for (Inmueble inmueble : inmuebles) {
-					System.out.format(leftAlignFormat, 
+					System.out.format(leftAlignFormat2, 
 							inmueble.getIdInmueble(),
 							inmueble.getClass().getSimpleName(),
 							inmueble.getPrecio(), 
@@ -187,6 +188,42 @@ public class Main {
 		}
 	}
 	
+	public static void printCitasTable(ArrayList<Cita> citas, String table) {
+		String leftAlignFormat = "| %-4d | %-7s | %-20s |%n";;
+		ArrayList<Integer> inmueblesCitas = new ArrayList<Integer>();
+		for (Cita cita : citas) {
+			int idInmuebleCita = cita.getIdInmueble();
+			if (!(inmueblesCitas.contains(idInmuebleCita)) ) {
+				inmueblesCitas.add(idInmuebleCita);
+			}
+		}
+		switch (table) {
+			case "citas_1":
+				
+				System.out.format("+------+-------------------+----------------+----------------+%n");
+				System.out.format("||%n");
+				System.out.format("+------+-------------------+----------------+----------------+%n");
+				for (int idInmuebleCita : inmueblesCitas) {
+					Inmueble inmuebleCita = Inmueble.buscarInmueble(idInmuebleCita);
+					System.out.format(leftAlignFormat,
+							idInmuebleCita,
+							inmuebleCita.getClass().getSimpleName(),
+							inmuebleCita.getDireccion()
+							);
+					for (Cita cita : citas) {
+						if (cita.getIdInmueble() == idInmuebleCita) {
+							System.out.format(cita.toString());
+						}
+					}
+					
+				};
+				System.out.format("+------+-------------------+----------------+----------------+%n");
+				break;
+			default:
+				break;
+		}
+	}
+	
 	public static void clearConsole() {
 		try {
 			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -228,7 +265,9 @@ public class Main {
             System.out.println("4. Finalizar contrato");
             System.out.println("5. Explorar inmuebles");
             System.out.println("6. Agendar cita");
-            System.out.println("7. Salir");
+            System.out.println("7. Ver mis citas");
+            System.out.println("8. Cancelar cita");
+            System.out.println("9. Salir");
             System.out.print("Seleccione su opcion: ");
             opt1 = sc.nextShort();
             
@@ -527,12 +566,15 @@ public class Main {
                 	if(disponible == true) {
                 		cliente.pedirCita(anoCita, mesCita, diaCita, horaCita, idAgenteCita, idInmuebleCita);
                 	}
-                	
+                
+                case 7:
+                	System.out.println("MIS CITAS");
+                	printCitasTable(citasCliente, "citas_1");
                 
                 default:
                     break;
             }
-        } while (opt1 != 7);
+        } while (opt1 != 9);
         System.out.println("\nADIÓS!");
     }
 }

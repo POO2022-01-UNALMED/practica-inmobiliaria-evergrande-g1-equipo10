@@ -2,6 +2,8 @@ package gestorAplicacion.otros;
 
 import java.util.ArrayList;
 
+import gestorAplicacion.herencia.Inmueble;
+
 /**
  * @Autores:
  * David Escobar Ruiz
@@ -98,6 +100,26 @@ public class Cita {
 
 	public void setIdInmueble(int idInmueble) {
 		this.idInmueble = idInmueble;
+	}
+	
+	public String toString() {
+		String leftAlignFormat = "| %-4d | %-5d | %-5d | %-5d | %-6d | %-4d |%n";
+		String nombreAgente = null;
+		for (Agente agente : Agente.getAgentes()) {
+			if (agente.getCedula() == this.getIdAgente()) {
+				nombreAgente = agente.getNombreCompleto();
+				break;
+			}
+		}
+		
+		return String.format(leftAlignFormat,
+				this.getIdCita(),
+				this.getDia(),
+				this.getMes(),
+				this.getAno(),
+				this.getHora(),
+				nombreAgente
+				);
 	}
 }
 
