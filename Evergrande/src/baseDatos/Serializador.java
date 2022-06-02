@@ -18,7 +18,7 @@ public class Serializador {
     public static void main(String[] args) { // registros iniciales
         // Inmuebles del cliente (hay que crear otros que compre el cliente)
         List<Inmueble> inmuebles = new ArrayList<Inmueble>();
-        Inmueble inmuebleCliente = new Inmueble(200000, "kra 45 # 32b", 160, TipoContrato.VENTA,860);
+        Inmueble inmuebleCliente = new Inmueble(200000, "kra 45 # 32b", 160, TipoContrato.VENTA,007);
         inmuebleCliente.setVendido(true);
         inmuebles.add(inmuebleCliente);
         
@@ -35,9 +35,9 @@ public class Serializador {
         inmuebles.add(casaCliente);
         
         // Inmuebles que NO son del cliente
-        inmuebles.add(new Casa(40000, "kra 45 # 32b", 160, TipoContrato.VENTA, 3, 2, 1, 0,860));
+        inmuebles.add(new Casa(40000, "calle 2a # 3b", 160, TipoContrato.VENTA, 3, 2, 1, 0,860));
         inmuebles.add(new ApartaEstudio(80000, "calle 2a # 3b", 50, TipoContrato.VENTA, "unidad 2", 1, 2, 3, 2,860));
-        inmuebles.add(new Bodega(600, "kra 84 # 5 56", 20, TipoContrato.ARRIENDO, 15, 1, 0,007));
+        inmuebles.add(new Bodega(600, "kra 45 # 32b", 20, TipoContrato.ARRIENDO, 15, 1, 0,007));
         serializar(inmuebles, "Inmueble");
 
         // pagos
