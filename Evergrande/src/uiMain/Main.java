@@ -194,7 +194,7 @@ public class Main {
 					System.out.format("+---------+-----+-----+-----+------+---------------+%n");
 					System.out.format("| ID CITA | DIA | MES | AÑO | HORA | NOMBRE AGENTE |%n");
 					System.out.format("+---------+-----+-----+-----+------+---------------+%n");
-					for (Cita cita : Cita.citas) {
+					for (Cita cita : Cita.getCitas()) {
 						if (cita.getIdInmueble() == idInmuebleCita) {
 							System.out.format(cita.toString());
 						}
