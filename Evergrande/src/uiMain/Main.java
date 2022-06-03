@@ -30,7 +30,7 @@ public class Main {
 		switch (table) {
 			case "apartaestudio_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+---------+----------------------+-----------------------+----------------+%n");
-				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |    NOMBRE UNIDAD     |  TORRE  |  NÚMERO APARTAMENTO  |  NÚMERO HABITACIONES  |  NÚMERO BAÑOS  |%n");
+				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |    NOMBRE UNIDAD     |  TORRE  |  Nï¿½MERO APARTAMENTO  |  Nï¿½MERO HABITACIONES  |  Nï¿½MERO BAï¿½OS  |%n");
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+---------+----------------------+-----------------------+----------------+%n");
 				for (Inmueble inmueble : inmuebles) {
 					System.out.format(inmueble.toString());
@@ -46,7 +46,7 @@ public class Main {
 		switch (table) {
 			case "apartamento_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+---------+----------------------+-----------------------+----------------+-------+--------+%n");
-				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |    NOMBRE UNIDAD     |  TORRE  |  NÚMERO APARTAMENTO  |  NÚMERO HABITACIONES  |  NÚMERO BAÑOS  | PATIO | BALCÓN |%n");
+				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |    NOMBRE UNIDAD     |  TORRE  |  Nï¿½MERO APARTAMENTO  |  Nï¿½MERO HABITACIONES  |  Nï¿½MERO BAï¿½OS  | PATIO | BALCï¿½N |%n");
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+---------+----------------------+-----------------------+----------------+-------+--------+%n");
 				for (Inmueble inmueble : inmuebles) {
 					System.out.format(inmueble.toString());
@@ -62,7 +62,7 @@ public class Main {
 		switch (table) {
 			case "bodega_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+-----------+----------+---------+%n");
-				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       | CAPACIDAD |  OFICINA |  BAÑO   |%n");
+				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       | CAPACIDAD |  OFICINA |  BAï¿½O   |%n");
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+-----------+----------+---------+%n");
 				for (Inmueble inmueble : inmuebles) {
 					System.out.format(inmueble.toString());
@@ -78,7 +78,7 @@ public class Main {
 		switch (table) {
 			case "casa_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+--------------+----------+--------+%n");
-				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       | NÚMERO HABITACIONES  | NÚMERO BAÑOS |  PATIO   | BALCÓN |%n");
+				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       | Nï¿½MERO HABITACIONES  | Nï¿½MERO BAï¿½OS |  PATIO   | BALCï¿½N |%n");
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+--------------+----------+--------+%n");
 				for (Inmueble inmueble : inmuebles) {
 					System.out.format(inmueble.toString());
@@ -92,6 +92,7 @@ public class Main {
 	
 	public static void printInmueblesTable(ArrayList<Inmueble> inmuebles, String table) {
 		String leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-9f | %-11s | %-19s | %-17s | %-20s |%n";
+		String leftAlignFormat2 = "| %-4d | %-13s | %-14f | %-15s | %-20s |%n";
 		switch (table) {
 			case "inmuebles_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+%n");
@@ -117,7 +118,7 @@ public class Main {
 				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |      DIRECCION       |%n");
 				System.out.format("+------+---------------+----------------+-----------------+----------------------+%n");
 				for (Inmueble inmueble : inmuebles) {
-					System.out.format(leftAlignFormat, 
+					System.out.format(leftAlignFormat2, 
 							inmueble.getIdInmueble(),
 							inmueble.getClass().getSimpleName(),
 							inmueble.getPrecio(), 
@@ -140,7 +141,7 @@ public class Main {
 			case "pagos_1":
 				leftAlignFormat = "| %-9d | %-14f | %-11d | %-5s | %-10s | %-15s | %-14s |%n";
 				System.out.format("+-----------+----------------+-------------+-------+------------+-----------------+----------------+%n");
-				System.out.format("|  ID PAGO  |    VALOR       |     AÑO     |  MES  |    TIPO    |    DIRECCION    | TIPO CONTRATO  |%n");
+				System.out.format("|  ID PAGO  |    VALOR       |     Aï¿½O     |  MES  |    TIPO    |    DIRECCION    | TIPO CONTRATO  |%n");
 				System.out.format("+-----------+----------------+-------------+-------+------------+-----------------+----------------+%n");
 				for (Pago pago : pagos) {
 					Inmueble inmueble = Inmueble.buscarInmueble(pago.getidInmueble());
@@ -180,9 +181,9 @@ public class Main {
 			case "citas_1":
 				for (int idInmuebleCita : inmueblesCitas) {
 					citasCount++;
-					System.out.println("\nCita número " + citasCount);
+					System.out.println("\nCita nï¿½mero " + citasCount);
 					System.out.format("+-------------+-----------------+-------------------+%n");
-					System.out.format("| ID INMUEBLE | NOMBRE INMUEBLE |     DIRECCIÓN     |%n");
+					System.out.format("| ID INMUEBLE | NOMBRE INMUEBLE |     DIRECCIï¿½N     |%n");
 					System.out.format("+-------------+-----------------+-------------------+%n");
 					Inmueble inmuebleCita = Inmueble.buscarInmueble(idInmuebleCita);
 					System.out.format(leftAlignFormat,
@@ -192,7 +193,7 @@ public class Main {
 							);
 					System.out.format("+-------------+-----------------+-------------------+%n");
 					System.out.format("+---------+-----+-----+-----+------+---------------+%n");
-					System.out.format("| ID CITA | DIA | MES | AÑO | HORA | NOMBRE AGENTE |%n");
+					System.out.format("| ID CITA | DIA | MES | Aï¿½O | HORA | NOMBRE AGENTE |%n");
 					System.out.format("+---------+-----+-----+-----+------+---------------+%n");
 					for (Cita cita : Cita.getCitas()) {
 						if (cita.getIdInmueble() == idInmuebleCita) {
@@ -216,7 +217,7 @@ public class Main {
 			int agenteCount = 0;
 			for (Agente agente: agentes) {
 				agenteCount++;
-				System.out.println("Agente número " + agenteCount);
+				System.out.println("Agente nï¿½mero " + agenteCount);
 				System.out.format("+------------+----------------------+------------------+---------------+----------+----------------+%n");
 				System.out.format("|   CEDULA   |        NOMBRE        | TELEFONO CELULAR | TELEFONO FIJO | VEHICULO | PLACA VEHICULO |%n");
 				System.out.format("+------------+----------------------+------------------+---------------+----------+----------------+%n");
@@ -331,7 +332,7 @@ public class Main {
                     System.out.println("3. Ver mis bodegas");
                     System.out.println("4. Ver mis casas");
                     System.out.println("5. Ver mis apartamentos");
-                    System.out.println("6. Atrás");
+                    System.out.println("6. Atrï¿½s");
                     System.out.print("Seleccione su opcion: ");
                     opt2 = sc.nextShort();
                     
@@ -382,12 +383,12 @@ public class Main {
                     System.out.println("REALIZAR PAGO");
                     ArrayList<Inmueble> inmuebles = new ArrayList<Inmueble>();
                     for (Inmueble inmueble : Inmueble.buscarInmueble(cliente.listarInmuebles())) {
-                    	if (!inmueble.getVendido()) inmuebles.add(inmueble);
+                    	if (inmueble.getArrendado()) inmuebles.add(inmueble);
                     }
                     System.out.println("\nINMUEBLES");
                     printInmueblesTable(inmuebles, "inmuebles_2");
                     
-                    System.out.print("Ingrese el id del inmueble (ingrese el número -1 para volver atrás): "); 
+                    System.out.print("Ingrese el id del inmueble (ingrese el nï¿½mero -1 para volver atrï¿½s): "); 
                     int idInmueble = sc.nextInt();
                     if (idInmueble == -1) {
                     	break;
@@ -409,7 +410,7 @@ public class Main {
                     System.out.print("Ingrese el valor del pago: ");
                     double valor = sc.nextDouble();
 
-                    System.out.print("Ingrese el año del pago: ");
+                    System.out.print("Ingrese el aï¿½o del pago: ");
                     int ano = sc.nextInt();
 
                     System.out.print("Ingrese el mes del pago: ");
@@ -439,7 +440,7 @@ public class Main {
                 	System.out.println("\nINMUEBLES");
                 	printInmueblesTable(arriendosCliente, "inmuebles_1");
                 	
-                    System.out.print("Ingresa el id del inmueble (ingresa -1 para volver atrás): ");
+                    System.out.print("Ingresa el id del inmueble (ingresa -1 para volver atrï¿½s): ");
                     int idInmueble2 = sc.nextInt();
                     
                     if (idInmueble2 == -1) {break;}
@@ -498,7 +499,7 @@ public class Main {
                         		System.out.println("INMUEBLES DISPONIBLES");
                         		printInmueblesTable(inmueblesDisponibles, "inmuebles_1");
                         		
-                            	System.out.print("Ingresa el id del inmueble que deseas comprar (ingresa -1 para volver atrás): ");
+                            	System.out.print("Ingresa el id del inmueble que deseas comprar (ingresa -1 para volver atrï¿½s): ");
                             	int idInmueble1 = sc.nextInt();
                             	if (idInmueble1 == -1) {break;}
                             	
@@ -509,7 +510,7 @@ public class Main {
                                 }
                               
                             	cliente.comprarInmueble(idInmueble1);
-                            	System.out.println("¡Felicidades! Has comprado el inmueble con id " + idInmueble1 + "\n");
+                            	System.out.println("ï¿½Felicidades! Has comprado el inmueble con id " + idInmueble1 + "\n");
                             	break;
                                                                 
                                 
@@ -520,7 +521,7 @@ public class Main {
                         				inmueblesDisponibles.add(inmueble);
                         			}
                         		}
-                        		System.out.print("Ingresa el id del inmueble que deseas arrendar (ingresa -1 para volver atrás): ");
+                        		System.out.print("Ingresa el id del inmueble que deseas arrendar (ingresa -1 para volver atrï¿½s): ");
                         		
                             	idInmueble1 = sc.nextInt();
                             	if (idInmueble1 == -1) {break;}
@@ -531,14 +532,14 @@ public class Main {
                                 }
                               
                             	cliente.iniciarContrato(idInmueble1);
-                            	System.out.println("¡Felicidades! Has iniciado contrato con el inmueble con id " + idInmueble1 + "\n");
+                            	System.out.println("ï¿½Felicidades! Has iniciado contrato con el inmueble con id " + idInmueble1 + "\n");
                             	break;
 
                             case 4: //Muestra el informe de las unidades 
                             	System.out.println("\nUNIDADES");
                             	printUnidadesResidencialesTable(UnidadResidencial.getUnidades(), "unidades_1");
                             	
-                            	System.out.println("Ingresa el id de la unidad (ingresa -1 para volver atrás): ");
+                            	System.out.println("Ingresa el id de la unidad (ingresa -1 para volver atrï¿½s): ");
                             	int idUnidad = sc.nextInt();
                             	
                             	if (idUnidad == -1) {break;}
@@ -566,7 +567,7 @@ public class Main {
                 	System.out.println("\nAGENTES INMOBILIARIOS");
                 	printAgentesTable(Agente.getAgentes(), "agentes_1");
                 	
-                	System.out.print("\nIngrese el dia en el que desea la cita (ingrese -1 para volver atrás): ");
+                	System.out.print("\nIngrese el dia en el que desea la cita (ingrese -1 para volver atrï¿½s): ");
                 	diaCita = sc.nextInt();
                 	if (diaCita == -1) {break;}
                 	
@@ -577,7 +578,7 @@ public class Main {
                 	System.out.print("Ingrese el mes en el que desea la cita: ");
                 	mesCita = sc.nextInt();
                 	
-                	System.out.print("Ingrese el año en el que desea la cita: ");
+                	System.out.print("Ingrese el aï¿½o en el que desea la cita: ");
                 	anoCita = sc.nextInt();
                 	
                 	ArrayList<Inmueble> inmueblesDisponibles = new ArrayList<Inmueble>();
@@ -614,7 +615,7 @@ public class Main {
                 	idAgenteCita = sc.nextInt();
                 	
                 	if (!(agentesDisponiblesIDS.contains(idAgenteCita))) {
-                		System.out.println("\nNo hay agentes disponibles con la cédula ingresada!");
+                		System.out.println("\nNo hay agentes disponibles con la cï¿½dula ingresada!");
                 		break;
                 	}
                 			
@@ -632,7 +633,7 @@ public class Main {
                 	citasCliente = cliente.getCitas();
                 	System.out.println("MIS CITAS");
                 	printCitasTable(citasCliente, "citas_1");
-                	System.out.print("\nIngrese el ID de la cita a cancelar (ingrese -1 para volver atrás): ");
+                	System.out.print("\nIngrese el ID de la cita a cancelar (ingrese -1 para volver atrï¿½s): ");
                 	int idCancelar = sc.nextInt();
                 	if (idCancelar == -1) {break;}
                 	if (!(citasCliente.contains(idCancelar))) {
@@ -646,7 +647,7 @@ public class Main {
                 
             }
         } while (opt1 != 9);
-        System.out.println("\nADIÓS!");
+        System.out.println("\nADIï¿½S!");
         Serializador.serializar(Inmueble.getInmuebles(), "Inmueble");
         Serializador.serializar(Pago.verPagos(), "Pago");
         Serializador.serializar(Agente.getAgentes(), "Agente");
