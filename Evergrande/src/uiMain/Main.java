@@ -1,6 +1,7 @@
 package uiMain;
 
 import baseDatos.Deserializador;
+import baseDatos.Serializador;
 import gestorAplicacion.herencia.ApartaEstudio;
 import gestorAplicacion.herencia.Bodega;
 import gestorAplicacion.herencia.Casa;
@@ -193,7 +194,7 @@ public class Main {
 					System.out.format("+---------+-----+-----+-----+------+---------------+%n");
 					System.out.format("| ID CITA | DIA | MES | AÑO | HORA | NOMBRE AGENTE |%n");
 					System.out.format("+---------+-----+-----+-----+------+---------------+%n");
-					for (Cita cita : Cita.citas) {
+					for (Cita cita : Cita.getCitas()) {
 						if (cita.getIdInmueble() == idInmuebleCita) {
 							System.out.format(cita.toString());
 						}
@@ -646,6 +647,12 @@ public class Main {
             }
         } while (opt1 != 9);
         System.out.println("\nADIÓS!");
+        Serializador.serializar(Inmueble.getInmuebles(), "Inmueble");
+        Serializador.serializar(Pago.verPagos(), "Pago");
+        Serializador.serializar(Agente.getAgentes(), "Agente");
+        Serializador.serializar(UnidadResidencial.getUnidades(), "UnidadResidencial");
+        Serializador.serializar(Cita.getCitas(), "Citas");
+
         sc.close();
     }
 }
