@@ -30,7 +30,7 @@ public class Main {
 		switch (table) {
 			case "apartaestudio_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+---------+----------------------+-----------------------+----------------+%n");
-				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |    NOMBRE UNIDAD     |  TORRE  |  Nï¿½MERO APARTAMENTO  |  Nï¿½MERO HABITACIONES  |  Nï¿½MERO BAï¿½OS  |%n");
+				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |    NOMBRE UNIDAD     |  TORRE  |  NÚMERO APARTAMENTO  |  NÚMERO HABITACIONES  |  NÚMERO BAÑOS  |%n");
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+---------+----------------------+-----------------------+----------------+%n");
 				for (Inmueble inmueble : inmuebles) {
 					System.out.format(inmueble.toString());
@@ -46,7 +46,7 @@ public class Main {
 		switch (table) {
 			case "apartamento_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+---------+----------------------+-----------------------+----------------+-------+--------+%n");
-				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |    NOMBRE UNIDAD     |  TORRE  |  Nï¿½MERO APARTAMENTO  |  Nï¿½MERO HABITACIONES  |  Nï¿½MERO BAï¿½OS  | PATIO | BALCï¿½N |%n");
+				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |    NOMBRE UNIDAD     |  TORRE  |  NÚMERO APARTAMENTO  |  NÚMERO HABITACIONES  |  NÚMERO BAÑOS  | PATIO | BALCÓN |%n");
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+---------+----------------------+-----------------------+----------------+-------+--------+%n");
 				for (Inmueble inmueble : inmuebles) {
 					System.out.format(inmueble.toString());
@@ -62,7 +62,7 @@ public class Main {
 		switch (table) {
 			case "bodega_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+-----------+----------+---------+%n");
-				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       | CAPACIDAD |  OFICINA |  BAï¿½O   |%n");
+				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       | CAPACIDAD |  OFICINA |  BAÑO   |%n");
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+-----------+----------+---------+%n");
 				for (Inmueble inmueble : inmuebles) {
 					System.out.format(inmueble.toString());
@@ -78,7 +78,7 @@ public class Main {
 		switch (table) {
 			case "casa_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+--------------+----------+--------+%n");
-				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       | Nï¿½MERO HABITACIONES  | Nï¿½MERO BAï¿½OS |  PATIO   | BALCï¿½N |%n");
+				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       | NÚMERO HABITACIONES  | NÚMERO BAÑOS |  PATIO   | BALCÓN |%n");
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+--------------+----------+--------+%n");
 				for (Inmueble inmueble : inmuebles) {
 					System.out.format(inmueble.toString());
