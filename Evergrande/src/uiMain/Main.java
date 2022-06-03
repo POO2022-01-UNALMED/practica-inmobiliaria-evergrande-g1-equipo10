@@ -517,7 +517,7 @@ public class Main {
                                 }
                               
                             	cliente.comprarInmueble(idInmueble1);
-                            	System.out.println("¡Felicidades! Haz comprado el inmueble con id " + idInmueble1 + "\n");
+                            	System.out.println("¡Felicidades! Has comprado el inmueble con id " + idInmueble1 + "\n");
                             	break;
                                                                 
                                 
@@ -539,7 +539,7 @@ public class Main {
                                 }
                               
                             	cliente.iniciarContrato(idInmueble1);
-                            	System.out.println("¡Felicidades! Haz iniciado contrato con el inmueble con id " + idInmueble1 + "\n");
+                            	System.out.println("¡Felicidades! Has iniciado contrato con el inmueble con id " + idInmueble1 + "\n");
                             	break;
 
                             case 4: //Muestra el informe de las unidades 
