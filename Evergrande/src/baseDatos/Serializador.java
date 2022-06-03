@@ -66,6 +66,13 @@ public class Serializador {
         unidades.add(new UnidadCerrada(007, "unidad", "San Germán", 6));
         unidades.add(new EdificioDeApartamentos(860, "unidad 2", "Laureles", 16));
         serializar(unidades, "UnidadResidencial");
+        
+        //Citas
+        List<Cita> citas = new ArrayList<Cita>();
+        citas.add(new Cita(2022,8,30, "6:30", 123, 6));
+        citas.add(new Cita(2022,10,3, "8:00", 889, 7));
+        citas.add(new Cita(2022,6,3, "16:00", 123, 8));
+        serializar(citas, "Citas");
     }
 
     public static <E> void serializar(List<E> objetos, String nomClase){

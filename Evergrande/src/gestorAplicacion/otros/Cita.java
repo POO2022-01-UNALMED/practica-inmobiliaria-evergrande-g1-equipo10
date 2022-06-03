@@ -1,5 +1,6 @@
 package gestorAplicacion.otros;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 // import gestorAplicacion.herencia.Inmueble;
@@ -14,7 +15,8 @@ import java.util.ArrayList;
  * Cita representan las citas en las cuales cliente y agente se reunen para ver un inmueble del interes del cliente
  */
 
-public class Cita {
+public class Cita implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private static int idCitas = 0;
 	private int idCita;
 	private int dia;
@@ -43,6 +45,10 @@ public class Cita {
 			Cita.citas.remove(idCita);
 		}
 		System.out.println("Cita con id "+ idCita + " cancelada exitosamente!");
+	}
+	
+	public static void setCitas(ArrayList<Cita> citas) {
+		Cita.citas = citas;
 	}
 	
 	public int getIdCita() {

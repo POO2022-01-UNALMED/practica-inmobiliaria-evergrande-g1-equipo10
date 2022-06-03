@@ -304,6 +304,9 @@ public class Main {
         //deserializar agentes
         Agente.setAgentes(Deserializador.<Agente>deserializar("Agente"));
         
+        //deserializar citas
+        Cita.setCitas(Deserializador.<Cita>deserializar("Citas"));
+        
         
         Scanner sc =  new Scanner(System.in);
         short opt1 = 0;
