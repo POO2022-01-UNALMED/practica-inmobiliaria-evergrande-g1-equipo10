@@ -23,7 +23,6 @@ public class Agente extends Persona implements Serializable{
 	
 	public Agente(int cedula, String nombreCompleto, Vehiculo vehiculo, String placaVehiculo, int telefonoFijo, int telefonoCelular, ArrayList<Integer> idInmuebles) {
 		super(cedula, nombreCompleto, telefonoFijo, telefonoCelular);
-
 		this.vehiculo = vehiculo;
 		this.placaVehiculo = placaVehiculo;
 		this.idInmuebles = idInmuebles;
@@ -34,10 +33,10 @@ public class Agente extends Persona implements Serializable{
 	public String toString() {
 		String leftAlignFormat = "| %-10d | %-20s | %-16d | %-13d | %-8s | %-14s |%n";
 		return String.format(leftAlignFormat,
-				this.cedula,
-				this.nombreCompleto,
-				this.telefonoCelular,
-				this.telefonoFijo,
+				this.getCedula(),
+				this.getNombreCompleto(),
+				this.gettelefonoCelular(),
+				this.gettelefonoFijo(),
 				this.vehiculo.name(),
 				this.placaVehiculo
 				);
@@ -66,22 +65,6 @@ public class Agente extends Persona implements Serializable{
 	}
 
 	
-	public int getCedula() {
-		return cedula;
-	}
-	
-	public void setCedula(int cedula) {
-		this.cedula = cedula;
-	}
-	
-	public String nombreCompleto() {
-		return nombreCompleto;
-	}
-	
-	public void setNombreCompleto(String nombreCompleto) {
-		this.nombreCompleto = nombreCompleto;
-	}
-	
 	public Vehiculo getvehiculo() {
 		return vehiculo;
 	}
@@ -97,23 +80,7 @@ public class Agente extends Persona implements Serializable{
 	public void setPlacaVehiculo(String placa) {
 		this.placaVehiculo = placa;
 	}
-	
-	public int getTelefonoFijo() {
-		return telefonoFijo;
-	}
-	
-	public void setTelefonoFijo(int telefonoFijo) {
-		this.telefonoFijo = telefonoFijo;
-	}
-	
-	public int getTelefonoCelular() {
-		return telefonoCelular;
-	}
-	
-	public void setTelefonoCelular(int telefonoCelular) {
-		this.telefonoCelular = telefonoCelular;
-	}
-	
+		
     public ArrayList<Integer> getIdInmuebles() {
         return this.idInmuebles;
     }

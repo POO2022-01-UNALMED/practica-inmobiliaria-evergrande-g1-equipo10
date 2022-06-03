@@ -25,13 +25,13 @@ abstract class TableGenerator {
 
 public class Main {
 	
-	public static void printApartaEstudioTable(ArrayList<ApartaEstudio> inmuebles, String table) {
+	public static void printApartaEstudioTable(ArrayList<Inmueble> inmuebles, String table) {
 		switch (table) {
 			case "apartaestudio_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+---------+----------------------+-----------------------+----------------+%n");
-				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |    NOMBRE UNIDAD     |  TORRE  |  NÚMERO APARTAMENTO  |  NÚMERO HABITACIONES  |  NÚMERO BAÑOS  |%n");
+				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |    NOMBRE UNIDAD     |  TORRE  |  Nï¿½MERO APARTAMENTO  |  Nï¿½MERO HABITACIONES  |  Nï¿½MERO BAï¿½OS  |%n");
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+---------+----------------------+-----------------------+----------------+%n");
-				for (ApartaEstudio inmueble : inmuebles) {
+				for (Inmueble inmueble : inmuebles) {
 					System.out.format(inmueble.toString());
 				};
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+---------+----------------------+-----------------------+----------------+%n");
@@ -41,13 +41,13 @@ public class Main {
 		}
 	}
 	
-	public static void printApartamentoTable(ArrayList<Apartamento> inmuebles, String table) {
+	public static void printApartamentoTable(ArrayList<Inmueble> inmuebles, String table) {
 		switch (table) {
 			case "apartamento_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+---------+----------------------+-----------------------+----------------+-------+--------+%n");
-				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |    NOMBRE UNIDAD     |  TORRE  |  NÚMERO APARTAMENTO  |  NÚMERO HABITACIONES  |  NÚMERO BAÑOS  | PATIO | BALCÓN |%n");
+				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |    NOMBRE UNIDAD     |  TORRE  |  Nï¿½MERO APARTAMENTO  |  Nï¿½MERO HABITACIONES  |  Nï¿½MERO BAï¿½OS  | PATIO | BALCï¿½N |%n");
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+---------+----------------------+-----------------------+----------------+-------+--------+%n");
-				for (Apartamento inmueble : inmuebles) {
+				for (Inmueble inmueble : inmuebles) {
 					System.out.format(inmueble.toString());
 				};
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+---------+----------------------+-----------------------+----------------+-------+--------+%n");
@@ -57,13 +57,13 @@ public class Main {
 		}
 	}
 
-	public static void printBodegasTable(ArrayList<Bodega> inmuebles, String table) {
+	public static void printBodegasTable(ArrayList<Inmueble> inmuebles, String table) {
 		switch (table) {
 			case "bodega_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+-----------+----------+---------+%n");
-				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       | CAPACIDAD |  OFICINA |  BAÑO   |%n");
+				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       | CAPACIDAD |  OFICINA |  BAï¿½O   |%n");
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+-----------+----------+---------+%n");
-				for (Bodega inmueble : inmuebles) {
+				for (Inmueble inmueble : inmuebles) {
 					System.out.format(inmueble.toString());
 				};
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+------------+---------+---------+%n");
@@ -73,13 +73,13 @@ public class Main {
 		}
 	}
 	
-	public static void printCasasTable(ArrayList<Casa> inmuebles, String table) {
+	public static void printCasasTable(ArrayList<Inmueble> inmuebles, String table) {
 		switch (table) {
 			case "casa_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+--------------+----------+--------+%n");
-				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       | NÚMERO HABITACIONES  | NÚMERO BAÑOS |  PATIO   | BALCÓN |%n");
+				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       | Nï¿½MERO HABITACIONES  | Nï¿½MERO BAï¿½OS |  PATIO   | BALCï¿½N |%n");
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+--------------+----------+--------+%n");
-				for (Casa inmueble : inmuebles) {
+				for (Inmueble inmueble : inmuebles) {
 					System.out.format(inmueble.toString());
 				};
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+----------------------+--------------+----------+--------+%n");
@@ -91,17 +91,16 @@ public class Main {
 	
 	public static void printInmueblesTable(ArrayList<Inmueble> inmuebles, String table) {
 		String leftAlignFormat = "| %-4d | %-13s | %-14f | %-15s | %-9f | %-11s | %-19s | %-17s | %-20s |%n";
-		String leftAlignFormat2 = "| %-4d | %-13s | %-14f | %-15s | %-20s |%n";
 		switch (table) {
 			case "inmuebles_1":
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+%n");
 				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |    AREA    |  AMUEBLADO  | PARQUEADERO CARROS  | PARQUEADERO MOTOS |      DIRECCION       |%n");
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+%n");
 				for (Inmueble inmueble : inmuebles) {
-					System.out.format(leftAlignFormat, 
+					System.out.format(leftAlignFormat,
 							inmueble.getIdInmueble(),
 							inmueble.getClass().getSimpleName(),
-							inmueble.getPrecio(), 
+							inmueble.getPrecio(),
 							inmueble.getTipoContrato().name(),
 							inmueble.getArea(),
 							inmueble.getAmueblado(),
@@ -109,7 +108,6 @@ public class Main {
 							inmueble.getParqueaderoMotos(),
 							inmueble.getDireccion()
 							);
-					//System.out.format(inmueble.toString());
 				}
 				System.out.format("+------+---------------+----------------+-----------------+------------+-------------+---------------------+-------------------+----------------------+%n");
 				break;
@@ -118,7 +116,7 @@ public class Main {
 				System.out.format("|  ID  |    TIPO       |     PRECIO     |  TIPO CONTRATO  |      DIRECCION       |%n");
 				System.out.format("+------+---------------+----------------+-----------------+----------------------+%n");
 				for (Inmueble inmueble : inmuebles) {
-					System.out.format(leftAlignFormat2, 
+					System.out.format(leftAlignFormat, 
 							inmueble.getIdInmueble(),
 							inmueble.getClass().getSimpleName(),
 							inmueble.getPrecio(), 
@@ -133,7 +131,6 @@ public class Main {
 			
 		}
 	}
-
 	
 	public static void printPagosTable(ArrayList<Pago> pagos, String table) {
 		String leftAlignFormat;
@@ -163,29 +160,6 @@ public class Main {
 			
 		}
 
-	}
-
-	public static void printUnidadesResidencialesTable(ArrayList<UnidadResidencial> unidades, String table) {
-		String leftAlignFormat;
-		switch (table) {
-			case "unidades_1":
-				leftAlignFormat = "| %-4d | %-17s | %-14s | %-14s |%n";
-				System.out.format("+------+-------------------+----------------+----------------+%n");
-				System.out.format("|  ID  |      NOMBRE       |     BARRIO     |     CIUDAD     |%n");
-				System.out.format("+------+-------------------+----------------+----------------+%n");
-				for (UnidadResidencial unidad : unidades) {
-					System.out.format(leftAlignFormat, 
-							unidad.getIdUnidadResidencial(),
-							unidad.getNombre(),
-							unidad.getBarrio(),
-							Ciudad.NOMBRE
-							);
-				};
-				System.out.format("+------+-------------------+----------------+----------------+%n");
-				break;
-			default:
-				break;
-		}
 	}
 	
 	public static void printCitasTable(ArrayList<Integer> citasIds, String table) {
@@ -280,6 +254,29 @@ public class Main {
 		}
 	}
 	
+	public static void printUnidadesResidencialesTable(ArrayList<UnidadResidencial> unidades, String table) {
+		String leftAlignFormat;
+		switch (table) {
+			case "unidades_1":
+				leftAlignFormat = "| %-4d | %-17s | %-14s | %-14s |%n";
+				System.out.format("+------+-------------------+----------------+----------------+%n");
+				System.out.format("|  ID  |      NOMBRE       |     BARRIO     |     CIUDAD     |%n");
+				System.out.format("+------+-------------------+----------------+----------------+%n");
+				for (UnidadResidencial unidad : unidades) {
+					System.out.format(leftAlignFormat, 
+							unidad.getIdUnidadResidencial(),
+							unidad.getNombre(),
+							unidad.getBarrio(),
+							Ciudad.NOMBRE
+							);
+				};
+				System.out.format("+------+-------------------+----------------+----------------+%n");
+				break;
+			default:
+				break;
+		}
+	}
+	
 	public static void clearConsole() {
 		try {
 			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -349,7 +346,7 @@ public class Main {
                             	printInmueblesTable(inmueblesCliente, "inmuebles_1");
                                 break;
                             case 2:
-                            	ArrayList<ApartaEstudio> filtroApartaEstudio = new ArrayList<ApartaEstudio>();
+                            	ArrayList<Inmueble> filtroApartaEstudio = new ArrayList<Inmueble>();
                             	for(Inmueble inmueble : inmueblesCliente) {
                             		if (inmueble instanceof ApartaEstudio) filtroApartaEstudio.add(((ApartaEstudio) inmueble));
                             	};
@@ -357,7 +354,7 @@ public class Main {
                             	printApartaEstudioTable(filtroApartaEstudio, "apartaestudio_1");
                                 break;
                             case 3:
-                            	ArrayList<Bodega> filtroBodega = new ArrayList<Bodega>();
+                            	ArrayList<Inmueble> filtroBodega = new ArrayList<Inmueble>();
                             	for(Inmueble inmueble : inmueblesCliente) {
                             		if (inmueble instanceof Bodega) filtroBodega.add(((Bodega) inmueble));
                             	};
@@ -365,7 +362,7 @@ public class Main {
                                 printBodegasTable(filtroBodega, "bodega_1");
                                 break;
                             case 4:
-                            	ArrayList<Casa> filtroCasas = new ArrayList<Casa>();
+                            	ArrayList<Inmueble> filtroCasas = new ArrayList<Inmueble>();
                             	for(Inmueble inmueble : inmueblesCliente) {
                             		if (inmueble instanceof Casa) filtroCasas.add(((Casa) inmueble));
                             	};
@@ -373,7 +370,7 @@ public class Main {
                                 printCasasTable(filtroCasas, "casa_1");
                                 break;
                             case 5:
-                            	ArrayList<Apartamento> filtroApartamento = new ArrayList<Apartamento>();
+                            	ArrayList<Inmueble> filtroApartamento = new ArrayList<Inmueble>();
                             	for(Inmueble inmueble : inmueblesCliente) {
                             		if (inmueble instanceof Apartamento) filtroApartamento.add(((Apartamento)inmueble));
                             	};

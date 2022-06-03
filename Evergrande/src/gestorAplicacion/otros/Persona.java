@@ -1,6 +1,7 @@
 package gestorAplicacion.otros;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  * @Autores:
@@ -13,18 +14,15 @@ import java.util.ArrayList;
  * 
  */
 
-public abstract class Persona {
+public abstract class Persona implements Serializable{
     protected int cedula;
     protected String nombreCompleto;
     protected int telefonoFijo;
     protected int telefonoCelular;
 
     public Persona(){
-        this.cedula = 1;
-        this.nombreCompleto = "Pepito perez";
-        this.telefonoFijo = 1;
-        this.telefonoCelular = 1;
-    }
+    	this(1, "Pepito Perez", 1, 1);
+   }
 
     public Persona(int cedula, String nombreCompleto, int telefonoFijo, int telefonoCelular){
         this.cedula = cedula;
