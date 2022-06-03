@@ -1,6 +1,7 @@
 package uiMain;
 
 import baseDatos.Deserializador;
+import baseDatos.Serializador;
 import gestorAplicacion.herencia.ApartaEstudio;
 import gestorAplicacion.herencia.Bodega;
 import gestorAplicacion.herencia.Casa;
@@ -646,6 +647,12 @@ public class Main {
             }
         } while (opt1 != 9);
         System.out.println("\nADIÓS!");
+        Serializador.serializar(Inmueble.getInmuebles(), "Inmueble");
+        Serializador.serializar(Pago.verPagos(), "Pago");
+        Serializador.serializar(Agente.getAgentes(), "Agente");
+        Serializador.serializar(UnidadResidencial.getUnidades(), "UnidadResidencial");
+        Serializador.serializar(Cita.getCitas(), "Citas");
+
         sc.close();
     }
 }

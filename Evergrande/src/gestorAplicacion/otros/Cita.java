@@ -26,7 +26,7 @@ public class Cita implements Serializable{
 	private int idAgente;
 	private int idInmueble;
 
-	public static ArrayList<Cita> citas = new ArrayList<Cita>();
+	private static ArrayList<Cita> citas = new ArrayList<Cita>();
 	
 	public Cita(int ano, int mes, int dia, String hora, int idAgente, int idInmueble) {
 		this.ano = ano;
@@ -49,6 +49,10 @@ public class Cita implements Serializable{
 	
 	public static void setCitas(ArrayList<Cita> citas) {
 		Cita.citas = citas;
+	}
+	
+	public static ArrayList<Cita> getCitas() {
+		return Cita.citas;
 	}
 	
 	public int getIdCita() {
