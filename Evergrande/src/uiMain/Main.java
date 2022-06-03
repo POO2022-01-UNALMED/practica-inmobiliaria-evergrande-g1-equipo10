@@ -177,8 +177,8 @@ public class Main {
 		}
 		switch (table) {
 			case "citas_1":
-				citasCount++;
 				for (int idInmuebleCita : inmueblesCitas) {
+					citasCount++;
 					System.out.println("\nCita número " + citasCount);
 					System.out.format("+-------------+-----------------+-------------------+%n");
 					System.out.format("| ID INMUEBLE | NOMBRE INMUEBLE |     DIRECCIÓN     |%n");
@@ -275,17 +275,8 @@ public class Main {
 			default:
 				break;
 		}
-	}
-	
-	public static void clearConsole() {
-		try {
-			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	}	
+
 	
     public static void main(String[] args) {
     	

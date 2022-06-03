@@ -36,6 +36,13 @@ public class Cliente extends Persona implements Serializable{
 
         this.inmuebles = inmuebles;
     }
+    
+    public Cliente(int cedula, String nombreCompleto, int telefonofijo, int telefonocelular, ArrayList<Integer> inmuebles, ArrayList<Integer> citas){
+        this(cedula, nombreCompleto, telefonofijo, telefonocelular);
+
+        this.inmuebles = inmuebles;
+        this.citas = citas;
+    }
 
     public void comprarInmueble(int idInmueble){
         Inmueble inmuebleComprar = Inmueble.buscarInmueble(idInmueble);

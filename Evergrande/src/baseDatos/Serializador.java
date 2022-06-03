@@ -51,7 +51,7 @@ public class Serializador {
         serializar(pagos, "Pago");
 
         // Clientes
-        Cliente cliente = new Cliente(123456, "Sancho Panza", 654321, 30026456, new ArrayList<Integer>(){{add(1);add(2);add(3);add(4);}});
+        Cliente cliente = new Cliente(123456, "Sancho Panza", 654321, 30026456, new ArrayList<Integer>(){{add(1);add(2);add(3);add(4);}}, new ArrayList<Integer>() {{add(0); add(1); add(2);}});
         serializar(new ArrayList<Cliente>(){{add(cliente);}}, "Cliente");
         
 
