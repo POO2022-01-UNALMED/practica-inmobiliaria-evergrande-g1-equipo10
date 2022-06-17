@@ -6,7 +6,21 @@ class Bodega(Inmueble):
         self._capacidad = capacidad
         self._oficina = oficina
         self._bano = bano
-        
+    
+    #toString
+    def __str__(self):
+        return "| {:<4d} | {:<13s} | {:<14f} | {:<15s} | {:<6f} | {:<11s} | {:<19s} | {:<17s} | {:<20s} | {:<9d} | {:<8d} | {:<7d} |".format(self.getIdInmueble(),
+                                                                                                                                            type(self).__name__,
+                                                                                                                                            self.getPrecio(), 
+                                                                                                                                            self.getTipoContrato(),
+                                                                                                                                            self.getArea(),
+                                                                                                                                            self.getAmueblado(),
+                                                                                                                                            self.getParqueaderoCarros(),
+                                                                                                                                            self.getParqueaderoMotos(),
+                                                                                                                                            self.getDireccion(),
+                                                                                                                                            self.getCapacidad(),
+                                                                                                                                            self.getOficina(),
+                                                                                                                                            self.getBano())
     #getters and setters 
     def getCapacidad(self):
         return self._capacidad

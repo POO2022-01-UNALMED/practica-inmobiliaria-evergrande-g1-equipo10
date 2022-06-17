@@ -8,6 +8,23 @@ class Casa(Inmueble):
         self._patio = patio
         self._balcon = balcon
     
+    #toString
+    def __str__(self):
+        return "| {:<4d} | {:<13s} | {:<14f} | {:<15s} | {:<6f} | {:<11s} | {:<19s} | {:<17s} | {:<20s} | {:<20d} | {:<12d} | {:<8d} | {:<6d} |".format(self.getIdInmueble(),
+                                                                                                                                                        type(self).__name__,
+                                                                                                                                                        self.getPrecio(), 
+                                                                                                                                                        self.getTipoContrato(),
+                                                                                                                                                        self.getArea(),
+                                                                                                                                                        self.getAmueblado(),
+                                                                                                                                                        self.getParqueaderoCarros(),
+                                                                                                                                                        self.getParqueaderoMotos(),
+                                                                                                                                                        self.getDireccion(),
+                                                                                                                                                        self.getNumHabitaciones(),
+                                                                                                                                                        self.getNumBanos(),
+                                                                                                                                                        self.getPatio(),
+                                                                                                                                                        self.getBalcon())
+        
+        
     #getters and setters 
     def getNumHabitaciones(self):
         return self._numHabitaciones
