@@ -1,4 +1,4 @@
-from herencia.Inmueble import Inmueble
+from Inmueble import Inmueble
 
 
 class Apartaestudio(Inmueble):
