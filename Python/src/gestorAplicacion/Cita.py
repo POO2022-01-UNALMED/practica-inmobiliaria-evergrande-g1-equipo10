@@ -23,6 +23,9 @@ class Cita:
     def getCitaByID(cls, id):
         return list(filter(lambda cita: cita.idCita == id, cls._citas))[0]
 
+    def __str__(self):
+        return ""
+
     # getters y setters
     @classmethod
     def getCitas(cls):
