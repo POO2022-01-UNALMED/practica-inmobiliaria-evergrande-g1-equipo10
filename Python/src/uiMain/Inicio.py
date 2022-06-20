@@ -6,8 +6,8 @@ from .otrapagina import otraVentana
 
 # FALTA EL MENU
 class Inicio:
-    H = 650 # height
-    W = 850 # width
+    H = 700 # height
+    W = 1000 # width
 
     # controlar cual imagen del proyecto se muestra 
     imgEVERactual = 1
