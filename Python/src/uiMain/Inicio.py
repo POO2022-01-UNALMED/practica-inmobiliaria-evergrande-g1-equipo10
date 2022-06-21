@@ -1,6 +1,7 @@
 import os
 from PIL import Image, ImageTk
 import tkinter as tk
+from tkinter import messagebox
 
 from .otrapagina import otraVentana
 
@@ -87,6 +88,17 @@ class Inicio:
         # self.imgLabelEVERGRANDE = self.imgLabelEVERGRANDE.resize(( self.labelEVERGRANDE.winfo_width() , self.labelEVERGRANDE.winfo_height() ))
         self.imgLabelEVERGRANDE = ImageTk.PhotoImage(self.imgLabelEVERGRANDE)
         self.labelEVERGRANDE.config(image=self.imgLabelEVERGRANDE)
+        
+        #Menu Inicio///////////////////////////
+        #No se por qué sale una opcion "------" que abre como una subventana al menu 
+        self.menuBar = tk.Menu(self.VENTANA)
+        self.VENTANA.config(menu = self.menuBar)
+        
+        self.menu1 = tk.Menu(self.menuBar)
+        self.menuBar.add_cascade(label = "Inicio", menu = self.menu1)
+        
+        self.menu1.add_command(label = "Salir", command= self.salir)
+        self.menu1.add_command(label = "Descripcion", command= self.descripcion)
         # ///////////////////////////////////////////////////////////////////
 
         self.VENTANA.mainloop()
@@ -107,7 +119,12 @@ class Inicio:
 
         Inicio.perActual = (Inicio.perActual + 1) % 3
 
-
+    def salir(self):
+        self.VENTANA.quit()
+    
+    def descripcion(self):
+        self.descripcion = messagebox.showinfo( "Descripción del sistema","Se creó una solución aplicando la programación orientada a objetos para el problema que suponía la inmobiliaria Evergrande. El cliente necesita una aplicación para realizar diversas tareas relacionadas con los inmuebles propios y los ofrecidos por la inmobiliaria. En dicha solución el cliente puede gestionar sus citas (visualizarlas, agendarlas y cancelarlas), gestionar sus propios inmuebles (visualizar su información general, realizar y ver con claridad los pagos realizados y finalizar sus contratos de arrendamiento), además de explorar nuevos inmuebles que despierten su interés y así guiarlo a una compra exitosa de este, a iniciar un contrato de arrendamiento o a ver los presentados por las unidades residenciales asociadas a Evergrande.")
+        
     def ingresoSistema(self):
         otraVentana()
 

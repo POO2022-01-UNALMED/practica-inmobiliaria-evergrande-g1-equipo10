@@ -19,6 +19,7 @@ class Inmueble():
 
         self._vendido = False
         self._arrendado = False
+        Inmueble.agregarInmueble(self)
 
     @staticmethod
     def agregarInmueble(cls, inmueble):
