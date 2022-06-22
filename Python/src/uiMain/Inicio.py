@@ -5,7 +5,6 @@ from tkinter import messagebox
 
 from .otrapagina import otraVentana
 
-# FALTA EL MENU
 class Inicio:
     H = 700 # height
     W = 1000 # width
@@ -33,7 +32,8 @@ class Inicio:
         self.VENTANA.geometry(F"{Inicio.W}x{Inicio.H}")
         self.VENTANA.title("Inicio")
         self.VENTANA.resizable(0,0)
-
+        self.VENTANA.option_add("*tearOff", False)
+        
         # estructura de frames ////////////////////////////////////////////// 
         self.P1 = tk.Frame(self.VENTANA, width=Inicio.W/2)
         self.P1.pack(side="left", fill="both")
@@ -84,13 +84,12 @@ class Inicio:
         self.labelEVERGRANDE.place(relx=0, rely=0, relheight=0.7, relwidth=1)
         self.labelEVERGRANDE.bind("<Enter>", self.cambiarImgEVERGRANDE)
 
-        self.imgLabelEVERGRANDE = Image.open(os.path.abspath("img/inicio/EVERGRANDE") + f"/0.jpg")
+        self.imgLabelEVERGRANDE = Image.open(os.path.abspath("img/inicio/EVERGRANDE") + "/0.jpg")
         # self.imgLabelEVERGRANDE = self.imgLabelEVERGRANDE.resize(( self.labelEVERGRANDE.winfo_width() , self.labelEVERGRANDE.winfo_height() ))
         self.imgLabelEVERGRANDE = ImageTk.PhotoImage(self.imgLabelEVERGRANDE)
         self.labelEVERGRANDE.config(image=self.imgLabelEVERGRANDE)
         
         #Menu Inicio///////////////////////////
-        #No se por qué sale una opcion "------" que abre como una subventana al menu 
         self.menuBar = tk.Menu(self.VENTANA)
         self.VENTANA.config(menu = self.menuBar)
         

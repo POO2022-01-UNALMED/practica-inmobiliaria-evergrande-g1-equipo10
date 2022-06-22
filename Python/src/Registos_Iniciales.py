@@ -1,5 +1,6 @@
 
 from gestorAplicacion.otros.Pago import Pago
+from gestorAplicacion.otros.Cita import Cita
 from baseDatos.serializador import Serializador
 
 if __name__ == "__main__":
@@ -9,6 +10,9 @@ if __name__ == "__main__":
 
     Serializador.serializar(pagos, "Pago")
 
-    pagos2 = Serializador.deserializar("Pago")
+    citas = [
+        Cita(2022, 6, 22, 4, 1, 1),
+        Cita(2022, 6, 1, 4, 1, 1),
+    ]
 
-    print(pagos2[0].getValor())
+    Serializador.serializar(citas, "Cita")
