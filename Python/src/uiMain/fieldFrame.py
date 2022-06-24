@@ -1,73 +1,66 @@
+#Es solo una prueba basada en la practica que mandaron como guia
 import tkinter as tk
+from tkinter import DISABLED, Frame
 
-class fieldFrame(tk.Frame):
-    def __init__(self, master, tituloCriterios, criterios, tituloValores, valores = None, habilitado = None):
-        super().__init__(master)
+class fieldFrame(Frame):
+    def __init__(self, ventana, tituloCriterios, criterios, tituloValores, valores = None, nohabilitado = None):
+        super().__init__(ventana)
+        self._tituloCriterios = tituloCriterios
+        self._criterios = criterios
+        self._tituloValores = tituloValores
+        self._valores = valores
+        self._nohabilitado = nohabilitado #Son los valores que no se pueden modificar
+        self._entradas = list()
+        
+        
+        self.label1 = tk.Label(self, text=self._tituloCriterios)
+        self.label1.grid(padx = 80, column = 0, row = 0)
+        
+        self.label2 = tk.Label(self, text=self._tituloValores)
+        self.label2.grid(padx = 80, column = 1, row = 0)
+        
+        for i in range(len(self._valores)):
+            self.label3 = tk.Label(self, text=self._criterios[i])
+            self.label3.grid(padx = 80, pady=2, column=0, row=i+1)
+            if self._criterios[i] in self._nohabilitado:
+                texto = tk.StringVar(value=self._valores[i])
+                entrada = tk.Entry(self, width = 40, textvariable=texto, state=DISABLED, justify="center")
+            else:
+                texto = tk.StringVar(value=self._valores[i])
+                entrada = tk.Entry(self, width = 40, textvariable=texto, justify="center")
+        
+            entrada.grid(pady =2, column=1, row=i+1)
+            self._entradas.append(entrada)
+    
 
-        self.config(highlightbackground="red", highlightthickness=1)
 
-        self.criterio = tk.Label(self, text=tituloCriterios, font=("Arial", 14))
-        self.criterio.grid(row=0, column=0)
-        # self.criterio.pack(side="top")
-
-        self.valor = tk.Label(self, text=tituloValores, font=("Arial", 14))
-        self.valor.grid(row=0, column=1)
-        # self.valor.pack(side="top")
-        # /////////////////////////////////////////////////////////////////////////
-
-        if valores == None: valores = [""]*len(criterios)
-
-        if habilitado == None: habilitado = [True]*len(criterios)
-        habilitado = list(map(lambda estado: "normal" if estado else "disabled", habilitado))
-
-        self.inputs = {}
-        for i in range(len(criterios)):
-
-            nomCriterio = tk.Label(self, text=criterios[i], font=("Arial", 12))
-            nomCriterio.grid(row=(i+1), column=0)
-
-            self.inputs[criterios[i]] = tk.Entry(self, state=habilitado[i], textvariable=tk.StringVar(self, valores[i]))
-            self.inputs[criterios[i]].grid(row=(i+1), column=1)
-
-
+    
+    #Funcion del boton borrar
+    def borrarEntradas(self):
+        for entrada in self._entradas:
+            entrada.delete(0, "end")
+            
+    #Funcion del boton aceptar
+    def aceptar(self):
+        pass
+        
     def getValue(self, criterio):
-        return self.inputs[criterio].get()
-
+        criterios_dict = dict(zip(self._criterios, self._valores))
+        return criterios_dict[criterio]
+    
+    def getCriterios(self): 
+        return self._criterios
         
-        
-        
-        
-        
-        
-    # otra opcion para hacer el fieldframe
-    # # titulos ///////////////////////////////////////////////////////////////////
-    # izquierda = tk.Frame(self, highlightbackground="blue", highlightthickness=1)
-    # izquierda.place(relheight=1, relwidth=0.35, relx=0, rely=0)
+    def getValores(self):
+        return self._valores
 
-    # derecha = tk.Frame(self, highlightbackground="red", highlightthickness=1)
-    # derecha.place(relheight=1, relwidth=0.65, relx=0.35, rely=0)
+    def setValores(self, valores):
+        self._valores = valores
+    
+    def setEntradas(self, entradas):
+        self._entradas = entradas
 
-    # self.criterio = tk.Label(izquierda, text=tituloCriterios, font=("Arial", 14))
-    # self.criterio.grid(row=0, column=0)
-    # # self.criterio.pack(side="top")
 
-    # self.valor = tk.Label(derecha, text=tituloValores, font=("Arial", 14))
-    # self.valor.grid(row=0, column=0)
-    # # self.valor.pack(side="top")
-    # # /////////////////////////////////////////////////////////////////////////
-
-    # if valores == None: valores = [""]*len(criterios)
-
-    # if habilitado == None: habilitado = [True]*len(criterios)
-    # habilitado = list(map(lambda estado: "normal" if estado else "disabled", habilitado))
-
-    # self.inputs = {}
-    # for i in range(len(criterios)):
-
-    #     nomCriterio = tk.Label(izquierda, text=criterios[i], font=("Arial", 12))
-    #     nomCriterio.grid(row=(i+1), column=0)
-
-    #     self.inputs[criterios[i]] = tk.Entry(derecha,state=habilitado[i], textvariable=tk.StringVar(derecha, valores[i]))
-    #     self.inputs[criterios[i]].grid(row=(i+1), column=0)
-
-    # titulos ///////////////////////////////////////////////////////////////////
+    def crearBotones(self):
+        aceptar = tk.Button(self, text="Aceptar",command=self.aceptar).grid(pady = 50, column = 0, row = len(self._criterios)+1)
+        borrar = tk.Button(self, text="Borrar",command=self.borrarEntradas).grid(pady = 50, column = 1, row = len(self._criterios)+1)
