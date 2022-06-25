@@ -12,28 +12,37 @@ class fieldFrame(Frame):
         self._nohabilitado = nohabilitado #Son los valores que no se pueden modificar
         self._entradas = list()
         
+        if self._valores == None: self._valores = [""]*len(self._criterios)
+        if self._nohabilitado == None: self._nohabilitado = [False]*len(self._criterios)
         
         self.label1 = tk.Label(self, text=self._tituloCriterios)
         self.label1.grid(padx = 80, column = 0, row = 0)
         
         self.label2 = tk.Label(self, text=self._tituloValores)
         self.label2.grid(padx = 80, column = 1, row = 0)
+
+        # configuracion del grid
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_columnconfigure(1, weight=1)
+        self.grid_rowconfigure(0, weight=1)
         
-        for i in range(len(self._valores)):
+        # for i in range(len(self._valores)):
+        for i in range(len(self._criterios)):
             self.label3 = tk.Label(self, text=self._criterios[i])
             self.label3.grid(padx = 80, pady=2, column=0, row=i+1)
-            if self._criterios[i] in self._nohabilitado:
-                texto = tk.StringVar(value=self._valores[i])
+
+            texto = tk.StringVar(value=self._valores[i])
+            if self._nohabilitado[i]:
                 entrada = tk.Entry(self, width = 40, textvariable=texto, state=DISABLED, justify="center")
             else:
-                texto = tk.StringVar(value=self._valores[i])
                 entrada = tk.Entry(self, width = 40, textvariable=texto, justify="center")
         
-            entrada.grid(pady =2, column=1, row=i+1)
+            entrada.grid(pady=2, column=1, row=i+1)
             self._entradas.append(entrada)
+
+            self.grid_rowconfigure(i+1, weight=1)
+
     
-
-
     
     #Funcion del boton borrar
     def borrarEntradas(self):

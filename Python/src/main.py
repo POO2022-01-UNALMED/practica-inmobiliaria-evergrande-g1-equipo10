@@ -10,6 +10,6 @@ from uiMain.gestionarCitas.verCitas import verCitas
 
 Cita.setCitas(Serializador.deserializar("Cita"))
 
-Inicio()
+# Inicio()
 
-# verCitas()
+verCitas()
