@@ -1,6 +1,8 @@
 
 import tkinter as tk
 from fieldFrame import fieldFrame
+'''from gestorAplicacion.herencia.Inmueble import Inmueble
+from gestorAplicacion.otros.Pago import Pago'''
 
 class Prueba:
     width = 700
@@ -98,13 +100,22 @@ class Prueba:
         self.nombre = tk.Label(self.VENTANA, text="", bd=10 )
         self.descripcion = tk.Label(self.VENTANA, text="", bd=10)
         self.frame = tk.Frame()
+        self.texto = tk.Text()
         
         self.VENTANA.mainloop()
     
     
         
     def aplicacion(self): #Crear ventana de dialogo
-        pass
+        ventana_dialogo = tk.Toplevel(self.VENTANA)
+        ventana_dialogo.geometry("500x300")
+        ventana_dialogo.resizable(False,False)
+        ventana_dialogo.title("Aplicacion")
+        
+        texto = "EVERGRANDE, una inmobiliaria que busca crear un software capaz\nde simular su comportamiento e interacciones con el cliente, tales como\ncomprar o arrendar un inmueble, realizar pagos, agendar citas,\nvisualizar los inmuebles disponibles y los que son propios,\nver informes de las unidades afiliadas, entre otros."
+        
+        tk.Label(ventana_dialogo, text= texto).pack(fill=tk.BOTH, expand=True)
+        
     
     def salir(self):
         self.VENTANA.destroy()
@@ -121,7 +132,20 @@ class Prueba:
     
     #Procesos de Gestionar inmuebles
     def verInmuebles(self):
-        pass   
+        #Es para "reiniciar" los widgets y no se superpongan
+        self.nombre.pack_forget()
+        self.descripcion.pack_forget()
+        self.frame.pack_forget()
+        self.texto.pack_forget()
+        
+        self.texto = tk.Text(self.VENTANA, height=len(Inmueble._inmuebles)) 
+        
+        tex = ""
+        for inmueble in Inmueble._inmuebles:
+            tex += str(inmueble)
+        
+        self.texto.insert(tk.INSERT, tex)
+        self.texto.pack(fill=tk.X, expand=True)
     
     def realizarPago(self):
         
@@ -129,6 +153,7 @@ class Prueba:
         self.nombre.pack_forget()
         self.descripcion.pack_forget()
         self.frame.pack_forget()
+        self.texto.pack_forget()
         
         self.nombre = tk.Label(self.VENTANA, text="Realizar Pago", bd=10)
         
@@ -152,10 +177,45 @@ class Prueba:
         self.frame.pack(fill = tk.BOTH, expand=True)
     
     def verPagos(self):
-        pass
+        #Es para "reiniciar" los widgets y no se superpongan
+        self.nombre.pack_forget()
+        self.descripcion.pack_forget()
+        self.frame.pack_forget()
+        self.texto.pack_forget()
+        
+        self.texto = tk.Text(self.VENTANA, height=len(Pago._pagos)) 
+        
+        tex = ""
+        for pago in Pago._pagos:
+            tex += str(pago)
+        
+        self.texto.insert(tk.INSERT, tex)
+        self.texto.pack(fill=tk.X, expand=True)
     
     def finalizarContrato(self):
-        pass
+        #Es para "reiniciar" los widgets y no se superpongan
+        self.nombre.pack_forget()
+        self.descripcion.pack_forget()
+        self.frame.pack_forget()
+        self.texto.pack_forget()
+        
+        self.nombre = tk.Label(self.VENTANA, text="Finalizar contrato", bd=10)
+        
+        self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá realizar los finalizar el contrato de sus inmuebles, por favor rellene los datos necesarios", bd = 10 )
+        
+        self.frame = fieldFrame(self.VENTANA, "Datos", ["ID Inmueble"], "Valor", [None], [])
+        self.frame.grid_columnconfigure(0, weight=1)
+        self.frame.grid_columnconfigure(1, weight=1)
+        self.frame.grid_rowconfigure(0, weight=1)
+        self.frame.grid_rowconfigure(1, weight=1)
+        self.frame.grid_rowconfigure(2, weight=1)
+        
+        
+        self.frame.crearBotones()
+        
+        self.nombre.pack()
+        self.descripcion.pack()
+        self.frame.pack(fill = tk.BOTH, expand=True)
         
     #Procesos de Explorar Inmuebles
     def verInmueblesDisponibles(self):
@@ -199,7 +259,15 @@ class Prueba:
     
     
     def acercaDe(self):
-        pass
+        ventana_dialogo = tk.Toplevel(self.VENTANA)
+        ventana_dialogo.geometry("500x300")
+        ventana_dialogo.resizable(False,False)
+        ventana_dialogo.title("Acerca de")
+        
+        texto = "AUTORES:\n\nJulián Orozco Vanegas\nJuan Nicolas Piedrahita Salas\nDavid Escobar Ruiz"
+        
+        tk.Label(ventana_dialogo, text= texto, font=('Times 15 italic bold')).pack(fill=tk.BOTH, expand=True)
+        
     
     
 Prueba()
