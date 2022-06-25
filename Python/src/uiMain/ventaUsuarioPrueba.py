@@ -1,5 +1,6 @@
 
 import tkinter as tk
+# from uiMain.fieldFrame import fieldFrame si se ejecuta desde el main toca con este import
 from fieldFrame import fieldFrame
 '''from gestorAplicacion.herencia.Inmueble import Inmueble
 from gestorAplicacion.otros.Pago import Pago'''
@@ -105,6 +106,12 @@ class Prueba:
         self.VENTANA.mainloop()
     
     
+    def resetVentana(self):
+        #Es para "reiniciar" los widgets y no se superpongan
+        self.nombre.pack_forget()
+        self.descripcion.pack_forget()
+        self.frame.pack_forget()
+        self.texto.pack_forget()
         
     def aplicacion(self): #Crear ventana de dialogo
         ventana_dialogo = tk.Toplevel(self.VENTANA)
@@ -132,11 +139,7 @@ class Prueba:
     
     #Procesos de Gestionar inmuebles
     def verInmuebles(self):
-        #Es para "reiniciar" los widgets y no se superpongan
-        self.nombre.pack_forget()
-        self.descripcion.pack_forget()
-        self.frame.pack_forget()
-        self.texto.pack_forget()
+        self.resetVentana()
         
         self.texto = tk.Text(self.VENTANA, height=len(Inmueble._inmuebles)) 
         
@@ -148,12 +151,7 @@ class Prueba:
         self.texto.pack(fill=tk.X, expand=True)
     
     def realizarPago(self):
-        
-        #Es para "reiniciar" los widgets y no se superpongan
-        self.nombre.pack_forget()
-        self.descripcion.pack_forget()
-        self.frame.pack_forget()
-        self.texto.pack_forget()
+        self.resetVentana()
         
         self.nombre = tk.Label(self.VENTANA, text="Realizar Pago", bd=10)
         
@@ -177,11 +175,7 @@ class Prueba:
         self.frame.pack(fill = tk.BOTH, expand=True)
     
     def verPagos(self):
-        #Es para "reiniciar" los widgets y no se superpongan
-        self.nombre.pack_forget()
-        self.descripcion.pack_forget()
-        self.frame.pack_forget()
-        self.texto.pack_forget()
+        self.resetVentana()
         
         self.texto = tk.Text(self.VENTANA, height=len(Pago._pagos)) 
         
@@ -193,11 +187,7 @@ class Prueba:
         self.texto.pack(fill=tk.X, expand=True)
     
     def finalizarContrato(self):
-        #Es para "reiniciar" los widgets y no se superpongan
-        self.nombre.pack_forget()
-        self.descripcion.pack_forget()
-        self.frame.pack_forget()
-        self.texto.pack_forget()
+        self.resetVentana()
         
         self.nombre = tk.Label(self.VENTANA, text="Finalizar contrato", bd=10)
         
@@ -269,5 +259,5 @@ class Prueba:
         tk.Label(ventana_dialogo, text= texto, font=('Times 15 italic bold')).pack(fill=tk.BOTH, expand=True)
         
     
-    
-Prueba()
+if __name__ == "__main__":
+    Prueba()

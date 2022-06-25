@@ -3,7 +3,7 @@ from PIL import Image, ImageTk
 import tkinter as tk
 from tkinter import messagebox
 
-from .otrapagina import otraVentana
+from uiMain.ventaUsuarioPrueba import Prueba
 
 class Inicio:
     H = 700 # height
@@ -125,7 +125,8 @@ class Inicio:
         self.descripcion = messagebox.showinfo( "Descripción del sistema","Se creó una solución aplicando la programación orientada a objetos para el problema que suponía la inmobiliaria Evergrande. El cliente necesita una aplicación para realizar diversas tareas relacionadas con los inmuebles propios y los ofrecidos por la inmobiliaria. En dicha solución el cliente puede gestionar sus citas (visualizarlas, agendarlas y cancelarlas), gestionar sus propios inmuebles (visualizar su información general, realizar y ver con claridad los pagos realizados y finalizar sus contratos de arrendamiento), además de explorar nuevos inmuebles que despierten su interés y así guiarlo a una compra exitosa de este, a iniciar un contrato de arrendamiento o a ver los presentados por las unidades residenciales asociadas a Evergrande.")
         
     def ingresoSistema(self):
-        otraVentana()
+        self.VENTANA.destroy()
+        Prueba()
 
     def cambiarImgEVERGRANDE(self, event):
         path = os.path.abspath("img/inicio/EVERGRANDE")
