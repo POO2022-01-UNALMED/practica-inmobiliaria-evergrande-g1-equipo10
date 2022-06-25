@@ -1,9 +1,12 @@
 
 import tkinter as tk
-# from uiMain.fieldFrame import fieldFrame si se ejecuta desde el main toca con este import
-from fieldFrame import fieldFrame
+from tkinter import CENTER, ttk, NO
+from uiMain.fieldFrame import fieldFrame # si se ejecuta desde el main toca con este import
+# from fieldFrame import fieldFrame
 '''from gestorAplicacion.herencia.Inmueble import Inmueble
 from gestorAplicacion.otros.Pago import Pago'''
+
+from gestorAplicacion.otros.Cita import Cita
 
 class Prueba:
     width = 700
@@ -129,13 +132,76 @@ class Prueba:
         
     #Procesos de Gestionar Citas
     def agendarCita(self):
-        pass
+        self.resetVentana()
+
+        self.nombre = tk.Label(self.VENTANA, text="Agendar Cita", bd=10)
+        self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá agendar las citas para los inmuebles que quiera ver, por favor rellene los datos necesarios", bd = 10 )
+        
+        self.frame = fieldFrame(self.VENTANA, "Datos", ["dia", "mes", "ano", "hora", "idAgente", "idInmueble"], "Valor")
+
+        def funcionAgendarCita():
+            cita = Cita(
+                dia = int(self.frame.getValue("dia")),
+                mes = int(self.frame.getValue("mes")),
+                ano = int(self.frame.getValue("ano")),
+                hora = int(self.frame.getValue("hora")),
+                idAgente = int(self.frame.getValue("idAgente")),
+                idInmueble = int(self.frame.getValue("idInmueble"))
+            )
+
+            self.frame.borrarEntradas()
+
+        self.frame.crearBotones(funcionAgendarCita)
+        
+        self.nombre.pack()
+        self.descripcion.pack()
+        self.frame.pack(fill = tk.BOTH, expand=True)
     
     def verCitas(self):
-        pass
+        self.resetVentana()
+
+        cols = ["idCita", "dia", "mes", "ano", "hora", "idAgente", "idInmueble"]
+
+        self.nombre = tk.Label(self.VENTANA, text="Ver Citas", bd=10)
+        self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá ver las citas que tenga agendadas", bd = 10)
+
+        self.frame = tk.Frame(self.VENTANA)
+        tabla = ttk.Treeview(self.frame, columns=cols)
+        tabla.place(relheight=1, relwidth=1)
+        
+        tabla.column("#0", width=0,  stretch=False)
+        tabla.heading("#0",text="",anchor=CENTER)
+
+        for c in cols:
+            tabla.column(c, anchor=CENTER, stretch=True, width=80)
+            tabla.heading(c, text=c, anchor=CENTER)
+
+        for c in Cita.getCitas():
+            tabla.insert("", "end", text="", values=(c.getIdCita(), c.getDia(), c.getMes(), c.getAno(), c.getHora(), c.getIdAgente(), c.getIdInmueble()))
+
+        self.nombre.pack()
+        self.descripcion.pack()
+        self.frame.pack(fill = tk.BOTH, expand=True)
+
     
     def cancelarCitas(self):
-        pass
+        self.resetVentana()
+
+        self.nombre = tk.Label(self.VENTANA, text="Cancelar Cita", bd=10)
+        self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá cancelar las citas que tenga programadas, por favor rellene los datos necesarios", bd = 10 )
+        
+        self.frame = fieldFrame(self.VENTANA, "Datos", ["idCita"], "Valor")
+
+        def funcionCancelarCita():
+            Cita.cancelar(int(self.frame.getValue("idCita")))
+            self.frame.borrarEntradas()
+
+        self.frame.crearBotones(funcionCancelarCita)
+        
+        self.nombre.pack()
+        self.descripcion.pack()
+        self.frame.pack(fill = tk.BOTH, expand=True)
+
     
     #Procesos de Gestionar inmuebles
     def verInmuebles(self):

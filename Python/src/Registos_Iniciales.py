@@ -11,8 +11,8 @@ if __name__ == "__main__":
     Serializador.serializar(pagos, "Pago")
 
     citas = [
-        Cita(2022, 6, 22, 4, 1, 1),
-        Cita(2022, 6, 1, 4, 1, 1),
+        Cita(22, 6, 2022, 4, 1, 1),
+        Cita(1, 6, 2022, 4, 1, 1),
     ]
 
     Serializador.serializar(citas, "Cita")

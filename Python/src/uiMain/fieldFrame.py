@@ -48,13 +48,9 @@ class fieldFrame(Frame):
     def borrarEntradas(self):
         for entrada in self._entradas:
             entrada.delete(0, "end")
-            
-    #Funcion del boton aceptar
-    def aceptar(self):
-        pass
         
     def getValue(self, criterio):
-        criterios_dict = dict(zip(self._criterios, self._valores))
+        criterios_dict = dict(zip(self._criterios, [entry.get() for entry in self._entradas]))
         return criterios_dict[criterio]
     
     def getCriterios(self): 
@@ -70,6 +66,6 @@ class fieldFrame(Frame):
         self._entradas = entradas
 
 
-    def crearBotones(self):
-        aceptar = tk.Button(self, text="Aceptar",command=self.aceptar).grid(pady = 50, column = 0, row = len(self._criterios)+1)
+    def crearBotones(self, funcionAceptar):
+        aceptar = tk.Button(self, text="Aceptar",command=funcionAceptar).grid(pady = 50, column = 0, row = len(self._criterios)+1)
         borrar = tk.Button(self, text="Borrar",command=self.borrarEntradas).grid(pady = 50, column = 1, row = len(self._criterios)+1)

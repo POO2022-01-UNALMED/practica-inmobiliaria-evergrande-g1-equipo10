@@ -1,7 +1,7 @@
 class Cita:
     _citas = []
 
-    def __init__(self, ano, mes, dia, hora, idAgente, idInmueble):
+    def __init__(self, dia, mes, ano, hora, idAgente, idInmueble):
         self._dia = dia
         self._mes = mes
         self._ano = ano
@@ -9,7 +9,12 @@ class Cita:
         self._idAgente = idAgente
         self._idInmueble = idInmueble
 
-        self._idCita = len(Cita._citas) + 1
+        try:
+            self._idCita = None
+            self._idCita = Cita._citas[-1]._idCita + 1
+        except:
+            self._idCita = 0
+
         Cita._citas.append(self)
 
     @classmethod
@@ -35,6 +40,12 @@ class Cita:
     def setCitas(cls, citas):
         cls._citas = citas
 
+    def getIdCita(self):
+        return self._idCita
+
+    def setIdCita(self, idCita):
+        self._idCita = idCita
+
     def getDia(self):
         return self._dia
 
@@ -53,20 +64,20 @@ class Cita:
     def getIdInmueble(self):
         return self._idInmueble
 
-    def getDia(self, dia):
+    def setDia(self, dia):
         self._dia = dia
 
-    def getMes(self, mes):
+    def setMes(self, mes):
         self._mes = mes
 
-    def getAno(self, ano):
+    def setAno(self, ano):
         self._ano = ano
 
-    def getHora(self, hora):
+    def setHora(self, hora):
         self._hora = hora
 
-    def getIdAgente(self, idAgente):
+    def setIdAgente(self, idAgente):
         self._idAgente = idAgente
 
-    def getIdInmueble(self, idInmueble):
+    def setIdInmueble(self, idInmueble):
         self._idInmueble = idInmueble
