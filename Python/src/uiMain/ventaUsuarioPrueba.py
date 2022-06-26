@@ -9,6 +9,7 @@ from gestorAplicacion.herencia.Bodega import Bodega
 from gestorAplicacion.herencia.Casa import Casa
 from gestorAplicacion.herencia.Inmueble import Inmueble
 from gestorAplicacion.otros.Pago import Pago
+from gestorAplicacion.otros.Agente import Agente
 from gestorAplicacion.otros.Cita import Cita
 
 from uiMain.fieldFrame import fieldFrame
@@ -172,7 +173,7 @@ class Prueba:
     def agendarCita(self):
         self.resetVentana()
 
-        cols = ["dia", "mes", "año", "hora", "idAgente", "idInmueble"]
+        cols = ["dia", "mes", "año", "hora", "ced. agente", "idInmueble"]
 
         self.nombre = tk.Label(self.VENTANA, text="Agendar Cita", bd=10)
         self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá agendar las citas para los inmuebles que quiera ver, por favor rellene los datos necesarios", bd = 10 )
@@ -192,14 +193,15 @@ class Prueba:
                 if not Inmueble.existeInmueble(int(self.frame.getValue("idInmueble"))):
                     raise NonExistException("El inmueble ingresado no existe, por favor verifiquelo")
 
-                # falta verificar el agente
+                if not Agente.existeAgente(int(self.frame.getValue("ced. agente"))):
+                    raise NonExistException("El agente ingresado no existe, por favor verifiquelo")
                         
                 cita = Cita(
                     dia = int(self.frame.getValue("dia")),
                     mes = int(self.frame.getValue("mes")),
                     ano = int(self.frame.getValue("año")),
                     hora = int(self.frame.getValue("hora")),
-                    idAgente = int(self.frame.getValue("idAgente")),
+                    idAgente = int(self.frame.getValue("ced. agente")),
                     idInmueble = int(self.frame.getValue("idInmueble"))
                 )
 
@@ -218,7 +220,7 @@ class Prueba:
     def verCitas(self):
         self.resetVentana()
 
-        cols = ["idCita", "dia", "mes", "ano", "hora", "idAgente", "idInmueble"]
+        cols = ["idCita", "dia", "mes", "ano", "hora", "ced. agente", "idInmueble"]
 
         self.nombre = tk.Label(self.VENTANA, text="Ver Citas", bd=10)
         self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá ver las citas que tenga agendadas", bd = 10)
