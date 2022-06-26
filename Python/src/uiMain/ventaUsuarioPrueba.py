@@ -1,10 +1,14 @@
 
 import tkinter as tk
 from tkinter import CENTER, ttk, NO
+from gestorAplicacion.herencia.ApartaEstudio import ApartaEstudio
+from gestorAplicacion.herencia.Apartamento import Apartamento
+from gestorAplicacion.herencia.Bodega import Bodega
+from gestorAplicacion.herencia.Casa import Casa
 from uiMain.fieldFrame import fieldFrame # si se ejecuta desde el main toca con este import
 # from fieldFrame import fieldFrame
-'''from gestorAplicacion.herencia.Inmueble import Inmueble
-from gestorAplicacion.otros.Pago import Pago'''
+from gestorAplicacion.herencia.Inmueble import Inmueble
+from gestorAplicacion.otros.Pago import Pago
 
 from gestorAplicacion.otros.Cita import Cita
 
@@ -47,7 +51,7 @@ class Prueba:
                                      command= self.salir)
         
         #Submenu de Procesos y Consultas 
-        #Submenu de gestionar citas
+        #----------Submenu de gestionar citas---------------
         self.submenu_GestionarCitas = tk.Menu(self.menuprocesos)
         
         self.menuprocesos.add_cascade(menu = self.submenu_GestionarCitas,
@@ -62,15 +66,34 @@ class Prueba:
                                                 command=self.cancelarCitas)
         
         
-        #Submenu de gestionar inmuebles
+        #----------Submenu de gestionar inmuebles----------
         self.submenu_GestionarInmuebles = tk.Menu(self.menuprocesos)
         
         self.menuprocesos.add_cascade(menu = self.submenu_GestionarInmuebles,
                                       label = 'Gestionar Inmuebles',
                                       command= lambda: None)
         
-        self.submenu_GestionarInmuebles.add_command(label= 'Ver Mis Inmuebles',
+        #sub-submenu de ver inmuebles
+        self.submenu_verInmuebles = tk.Menu(self.submenu_GestionarInmuebles)
+        
+        self.submenu_GestionarInmuebles.add_cascade(menu = self.submenu_verInmuebles,
+                                      label = 'Ver Mis Inmuebles',
+                                      command= lambda: None)
+        
+        self.submenu_verInmuebles.add_command(label= 'Ver Todos Mis Inmuebles',
                                                 command= self.verInmuebles)
+        
+        self.submenu_verInmuebles.add_command(label= 'Ver Mis Apartaestudios',
+                                                command= self.verApartaestudios)
+        
+        self.submenu_verInmuebles.add_command(label= 'Ver Mis Apartamentos',
+                                                command= self.verApartamentos)
+        
+        self.submenu_verInmuebles.add_command(label= 'Ver Mis Casas',
+                                                command= self.verCasas)
+        
+        self.submenu_verInmuebles.add_command(label= 'Ver Mis Bodegas',
+                                                command= self.verBodegas)
         
             
         self.submenu_GestionarInmuebles.add_command(label = 'Realizar Pago',
@@ -80,7 +103,7 @@ class Prueba:
         self.submenu_GestionarInmuebles.add_command(label='Finalizar Contrato',
                                                 command=self.finalizarContrato)
         
-        #Submenu de Explorar Inmuebles
+        #--------Submenu de Explorar Inmuebles--------------
         self.submenu_ExplorarInmuebles = tk.Menu(self.menuprocesos)
         
         self.menuprocesos.add_cascade(menu = self.submenu_ExplorarInmuebles,
@@ -130,7 +153,7 @@ class Prueba:
     def salir(self):
         self.VENTANA.destroy()
         
-    #Procesos de Gestionar Citas
+    #---------------Procesos y consultas de Gestionar Citas---------------
     def agendarCita(self):
         self.resetVentana()
 
@@ -203,19 +226,183 @@ class Prueba:
         self.frame.pack(fill = tk.BOTH, expand=True)
 
     
-    #Procesos de Gestionar inmuebles
+    #-----------Procesos y consultas de Gestionar inmuebles-------------------
+    
+    #Frame de ver inmuebles
     def verInmuebles(self):
         self.resetVentana()
+
+        cols = ["Id", "Tipo", "Dirección", "Precio", "Tipo contrato", "Área", "Amueblado", "Parqueadero carro",  "Parqueadero moto"]
+
+        self.nombre = tk.Label(self.VENTANA, text="Ver Mis Inmuebles", bd=10)
+        self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá ver los inmuebles que tenga en posesión", bd = 10)
+
+        self.frame = tk.Frame(self.VENTANA)
+        tabla = ttk.Treeview(self.frame, columns=cols)
+        tabla.place(relheight=1, relwidth=1)
         
-        self.texto = tk.Text(self.VENTANA, height=len(Inmueble._inmuebles)) 
+        tabla.column("#0", width=0,  stretch=False)
+        tabla.heading("#0",text="",anchor=CENTER)
+
+        for c in cols:
+            tabla.column(c, anchor=CENTER, stretch=True, width=80)
+            tabla.heading(c, text=c, anchor=CENTER)
+
+        for i in Inmueble.getInmuebles():
+            
+            tipo = "Inmueble"
+            if isinstance(i, ApartaEstudio):
+                tipo = "Apartaestudio"
+            elif isinstance(i, Apartamento):
+                tipo = "Apartamento"
+            elif isinstance(i, Bodega):
+                tipo = "Bodega"
+            elif isinstance(i, Casa):
+                tipo = "Casa"
+                
+            tabla.insert("", "end", text="", values=(i.getIdInmueble(), tipo, i.getDireccion(), i.getPrecio(), i.getTipoContrato(), i.getArea(), i.getAmueblado(),i.getParqueaderoCarros(), i.getParqueaderoMotos()))
+
+        self.nombre.pack()
+        self.descripcion.pack()
+        self.frame.pack(fill = tk.BOTH, expand=True)
         
-        tex = ""
-        for inmueble in Inmueble._inmuebles:
-            tex += str(inmueble)
+    def verApartaestudios(self):
+        self.resetVentana()
+
+        cols = ["Id", "Precio", "Tipo Contrato", "Área", "Amueblado","Parqueadero carro",  "Parqueadero moto", "Direccion", "Unidad", "Torre", "Interior", "# Habitaciones", "# Baños"]
+
+        self.nombre = tk.Label(self.VENTANA, text="Ver Mis Apartaestudios", bd=10)
+        self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá ver los apartaestudios que tenga en posesión", bd = 10)
+
+        self.frame = tk.Frame(self.VENTANA)
+        tabla = ttk.Treeview(self.frame, columns=cols)
+        tabla.place(relheight=1, relwidth=1)
         
-        self.texto.insert(tk.INSERT, tex)
-        self.texto.pack(fill=tk.X, expand=True)
+        tabla.column("#0", width=0,  stretch=False)
+        tabla.heading("#0",text="",anchor=CENTER)
+
+        for c in cols:
+            tabla.column(c, anchor=CENTER, stretch=True, width=80)
+            tabla.heading(c, text=c, anchor=CENTER)
+        
+        #filtrar los inmuebles tipo apartaestudio
+        Apartaestudios = []
+        for i in Inmueble.getInmuebles():
+            if isinstance(i, ApartaEstudio):
+                Apartaestudios.append(i)
+                
+
+        for a in Apartaestudios:
+                
+            tabla.insert("", "end", text="", values=(a.getIdInmueble(),a.getPrecio(), a.getTipoContrato(), a.getArea(), a.getAmueblado(), a.getParqueaderoCarros(), a.getParqueaderoMotos(), a.getDireccion(), a.getNombreUnidad(), a.getTorre(), a.getNumeroApto(), a.getNumHabitaciones(), a.getNumBanos()))
+
+        self.nombre.pack()
+        self.descripcion.pack()
+        self.frame.pack(fill = tk.BOTH, expand=True)
+        
+    def verApartamentos(self):
+        self.resetVentana()
+
+        cols = ["Id", "Precio", "Tipo Contrato", "Área", "Amueblado","Parqueadero carro",  "Parqueadero moto", "Direccion", "Unidad", "Torre", "Interior", "# Habitaciones", "# Baños", "# Patios", "# Balcones"]
+
+        self.nombre = tk.Label(self.VENTANA, text="Ver Mis Apartamentos", bd=10)
+        self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá ver los apartamentos que tenga en posesión", bd = 10)
+
+        self.frame = tk.Frame(self.VENTANA)
+        tabla = ttk.Treeview(self.frame, columns=cols)
+        tabla.place(relheight=1, relwidth=1)
+        
+        tabla.column("#0", width=0,  stretch=False)
+        tabla.heading("#0",text="",anchor=CENTER)
+
+        for c in cols:
+            tabla.column(c, anchor=CENTER, stretch=True, width=80)
+            tabla.heading(c, text=c, anchor=CENTER)
+        
+        #filtrar los inmuebles tipo apartamento
+        Apartamentos = []
+        for i in Inmueble.getInmuebles():
+            if isinstance(i, Apartamento):
+                Apartamentos.append(i)
+                
+
+        for a in Apartamentos:
+                
+            tabla.insert("", "end", text="", values=(a.getIdInmueble(),a.getPrecio(), a.getTipoContrato(), a.getArea(), a.getAmueblado(), a.getParqueaderoCarros(), a.getParqueaderoMotos(), a.getDireccion(), a.getNombreUnidad(), a.getTorre(), a.getNumApto(), a.getNumHabitaciones(), a.getNumBanos(), a.getPatio(),a.getBalcon()))
+
+        self.nombre.pack()
+        self.descripcion.pack()
+        self.frame.pack(fill = tk.BOTH, expand=True)
     
+    def verCasas(self):
+        self.resetVentana()
+
+        cols = ["Id", "Precio", "Tipo Contrato", "Área", "Amueblado","Parqueadero carro",  "Parqueadero moto", "Direccion", "# Habitaciones", "# Baños", "# Patios", "# Balcones"]
+
+        self.nombre = tk.Label(self.VENTANA, text="Ver Mis Casas", bd=10)
+        self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá ver las casas que tenga en posesión", bd = 10)
+
+        self.frame = tk.Frame(self.VENTANA)
+        tabla = ttk.Treeview(self.frame, columns=cols)
+        tabla.place(relheight=1, relwidth=1)
+        
+        tabla.column("#0", width=0,  stretch=False)
+        tabla.heading("#0",text="",anchor=CENTER)
+
+        for c in cols:
+            tabla.column(c, anchor=CENTER, stretch=True, width=80)
+            tabla.heading(c, text=c, anchor=CENTER)
+        
+        #filtrar los inmuebles tipo casa
+        Casas = []
+        for i in Inmueble.getInmuebles():
+            if isinstance(i, Casa):
+                Casas.append(i)
+                
+
+        for c in Casas:
+                
+            tabla.insert("", "end", text="", values=(c.getIdInmueble(),c.getPrecio(), c.getTipoContrato(), c.getArea(), c.getAmueblado(), c.getParqueaderoCarros(), c.getParqueaderoMotos(), c.getDireccion(),c.getNumHabitaciones(), c.getNumBanos(), c.getPatio(),c.getBalcon()))
+
+        self.nombre.pack()
+        self.descripcion.pack()
+        self.frame.pack(fill = tk.BOTH, expand=True)
+    
+    def verBodegas(self):
+        self.resetVentana()
+
+        cols = ["Id", "Precio", "Tipo Contrato", "Área", "Amueblado","Parqueadero carro",  "Parqueadero moto", "Direccion", "Capacidad", "# Oficinas", "# Baños"]
+
+        self.nombre = tk.Label(self.VENTANA, text="Ver Mis Bodegas", bd=10)
+        self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá ver las bodegas que tenga en posesión", bd = 10)
+
+        self.frame = tk.Frame(self.VENTANA)
+        tabla = ttk.Treeview(self.frame, columns=cols)
+        tabla.place(relheight=1, relwidth=1)
+        
+        tabla.column("#0", width=0,  stretch=False)
+        tabla.heading("#0",text="",anchor=CENTER)
+
+        for c in cols:
+            tabla.column(c, anchor=CENTER, stretch=True, width=80)
+            tabla.heading(c, text=c, anchor=CENTER)
+        
+        #filtrar los inmuebles tipo bodega
+        Bodegas = []
+        for i in Inmueble.getInmuebles():
+            if isinstance(i, Bodega):
+                Bodegas.append(i)
+                
+
+        for b in Bodegas:
+                
+            tabla.insert("", "end", text="", values=(b.getIdInmueble(),b.getPrecio(), b.getTipoContrato(), b.getArea(), b.getAmueblado(), b.getParqueaderoCarros(), b.getParqueaderoMotos(), b.getCapacidad(),b.getOficina(), c.getBano()))
+
+        self.nombre.pack()
+        self.descripcion.pack()
+        self.frame.pack(fill = tk.BOTH, expand=True)
+    
+    #Frame de funcionalidad realizar pago
     def realizarPago(self):
         self.resetVentana()
         
@@ -223,27 +410,69 @@ class Prueba:
         
         self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá realizar los pagos de sus inmuebles, por favor rellene los datos", bd = 10 )
         
-        self.frame = fieldFrame(self.VENTANA, "Datos Inmueble que desea pagar", ["ID Inmueble", "Valor", "Años", "Mes"], "Valor", [None, None, None, None])
+        self.frame = fieldFrame(self.VENTANA, "Datos Inmueble que desea pagar", ["ID Inmueble", "Valor", "Año", "Mes"], "Valor", [None, None, None, None])
         
+        def funcionRealizarPago(): #Funcion del botón aceptar que sirve para realizar un pago
+            p = Pago(int(self.frame.getValue("Valor")),int(self.frame.getValue("Año")), int(self.frame.getValue("Mes")), int(self.frame.getValue("ID Inmueble")))
+            self.frame.borrarEntradas()
+            
+            #ver el resultado
+            ventana_dialogo = tk.Toplevel(self.VENTANA)
+            ventana_dialogo.geometry("500x300")
+            ventana_dialogo.resizable(False,False)
+            ventana_dialogo.title("Resultado del pago")
+            
+            texto = "Se ha realizado un pago por: " + str(p.getValor()) + "\nEl mes número " + str(p.getMes()) + " del año "+ str(p.getAno()) + "\nAl inmueble con id " + str(p.getIdInmueble())
+            tk.Label(ventana_dialogo, text= texto).pack(fill=tk.BOTH, expand=True)
         
-        self.frame.crearBotones()
+        self.frame.crearBotones(funcionRealizarPago)
         
         self.nombre.pack()
         self.descripcion.pack()
         self.frame.pack(fill = tk.BOTH, expand=True)
     
+    
+    #Frame de ver pago
     def verPagos(self):
         self.resetVentana()
+
+        cols = ["Id", "Valor", "Año", "Mes", "Tipo inmueble", "Direccion", "Tipo contrato"]
+
+        self.nombre = tk.Label(self.VENTANA, text="Ver Mis Pagos", bd=10)
+        self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá ver los pagos que ha realizado a sus inmuebles", bd = 10)
+
+        self.frame = tk.Frame(self.VENTANA)
+        tabla = ttk.Treeview(self.frame, columns=cols)
+        tabla.place(relheight=1, relwidth=1)
         
-        self.texto = tk.Text(self.VENTANA, height=len(Pago._pagos)) 
-        
-        tex = ""
-        for pago in Pago._pagos:
-            tex += str(pago)
-        
-        self.texto.insert(tk.INSERT, tex)
-        self.texto.pack(fill=tk.X, expand=True)
+        tabla.column("#0", width=0,  stretch=False)
+        tabla.heading("#0",text="",anchor=CENTER)
+
+        for c in cols:
+            tabla.column(c, anchor=CENTER, stretch=True, width=80)
+            tabla.heading(c, text=c, anchor=CENTER)
+
+        for p in Pago._pagos:
+            i = Inmueble.buscarInmueble(p.getIdInmueble())
+            
+            tipo = "Inmueble"
+            if isinstance(i, ApartaEstudio):
+                tipo = "Apartaestudio"
+            elif isinstance(i, Apartamento):
+                tipo = "Apartamento"
+            elif isinstance(i, Bodega):
+                tipo = "Bodega"
+            elif isinstance(i, Casa):
+                tipo = "Casa"
+                
+            tabla.insert("", "end", text="", values=(p.getId(), p.getValor(), p.getAno(), p.getMes(), tipo, i.getDireccion(), i.getTipoContrato()))
+
+        self.nombre.pack()
+        self.descripcion.pack()
+        self.frame.pack(fill = tk.BOTH, expand=True)
     
+    
+    #Frame de funcionalidad finalizar contrato
     def finalizarContrato(self):
         self.resetVentana()
         
@@ -253,14 +482,26 @@ class Prueba:
         
         self.frame = fieldFrame(self.VENTANA, "Datos", ["ID Inmueble"], "Valor", [None])
         
-        
-        self.frame.crearBotones()
+        def funcionFinalizarContrato(): #Funcion del botón aceptar que sirve para finalizar un contrato
+            idInmueble = self.frame.getValue("ID Inmueble")
+            Cliente.finalizarContrato(idInmueble)
+            
+            #ver el resultado
+            ventana_dialogo = tk.Toplevel(self.VENTANA)
+            ventana_dialogo.geometry("500x300")
+            ventana_dialogo.resizable(False,False)
+            ventana_dialogo.title("Resultado del pago")
+            
+            texto = "Usted ha finalizado el contrato de arrendamiento para\nel inmueble con id: " + str(idInmueble)
+            tk.Label(ventana_dialogo, text= texto).pack(fill=tk.BOTH, expand=True)
+            
+        self.frame.crearBotones(funcionFinalizarContrato)
         
         self.nombre.pack()
         self.descripcion.pack()
         self.frame.pack(fill = tk.BOTH, expand=True)
         
-    #Procesos de Explorar Inmuebles
+    #-------------Procesos y consultas de Explorar Inmuebles--------------
     def verInmueblesDisponibles(self):
         pass
     

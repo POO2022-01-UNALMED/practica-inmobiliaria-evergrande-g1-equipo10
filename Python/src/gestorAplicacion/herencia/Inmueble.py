@@ -1,6 +1,6 @@
 
 class Inmueble():
-    _totalImuebles = 0
+    _totalInmuebles = 0
     _inmuebles = []
 
     def __init__(self, precio, direccion, area, numPisos, parqueaderoCarros, parquederoMotos, amueblado,tipoContrato,idUnidad):
@@ -14,20 +14,20 @@ class Inmueble():
         self._tipoContarto = tipoContrato
         self._idUnidadResidencial = idUnidad
 
-        self._idInmueble = Inmueble._totalImuebles
-        Inmueble._totalImuebles += 1
+        self._idInmueble = Inmueble._totalInmuebles
+        Inmueble._totalInmuebles += 1
 
         self._vendido = False
         self._arrendado = False
         Inmueble.agregarInmueble(self)
 
-    @staticmethod
+    @classmethod
     def agregarInmueble(cls, inmueble):
-        cls._totalInmuebles += inmueble
+        cls._inmuebles.append(inmueble)
         
     
     #Método pra buscar un grupo de inmuebles por sus id
-    @staticmethod
+    @classmethod
     def buscarInmueblesLista(cls,idImueble):
         listaInmuebles = []
         for id in idImueble:
@@ -38,9 +38,9 @@ class Inmueble():
         return listaInmuebles
     
     #Metodo para buscar un inmueble por su id
-    @staticmethod
+    @classmethod
     def buscarInmueble(cls,idInmueble):
-        if type(idInmueble).__name__ == 'list':
+        if isinstance(idInmueble, list):
             return cls.buscarImueblesLista(idInmueble)
         
         for inmueble in cls._inmuebles:
@@ -61,19 +61,19 @@ class Inmueble():
             
             
     #Getters and Setters de atributos de clase
-    @staticmethod
+    @classmethod
     def getTotalInmuebles(cls):
         return cls._totalInmuebles
     
-    @staticmethod
+    @classmethod
     def setTotalInmuebles(cls, total):
-        cls._totalImuebles = total
+        cls._totalInmuebles = total
         
-    @staticmethod
+    @classmethod
     def getInmuebles(cls):
         return cls._inmuebles
     
-    @staticmethod
+    @classmethod
     def setInmuebles(cls,inmuebles):
         cls._inmuebles = inmuebles
         
@@ -128,7 +128,7 @@ class Inmueble():
         self._amueblado = amueblado
         
     def getTipoContrato(self):
-        return self._tipoContarto
+        return self._tipoContarto.value
     
     def setTipoContrato(self,tipo):
         self._tipoContarto = tipo

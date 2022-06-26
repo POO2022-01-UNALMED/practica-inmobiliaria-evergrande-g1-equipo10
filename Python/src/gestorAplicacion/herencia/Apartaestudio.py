@@ -1,4 +1,4 @@
-from Inmueble import Inmueble
+from .Inmueble import Inmueble
 
 
 class ApartaEstudio(Inmueble):

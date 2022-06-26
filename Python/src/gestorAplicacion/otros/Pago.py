@@ -32,6 +32,8 @@ class Pago:
         return self._mes
     def getIdInmueble(self):
         return self._idInmueble
+    def getId(self):
+        return self._idPago
 
     def setValor(self, valor):
         self._valor = valor

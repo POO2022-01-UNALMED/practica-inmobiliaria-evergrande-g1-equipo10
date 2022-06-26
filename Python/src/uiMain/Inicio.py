@@ -22,7 +22,7 @@ class Inicio:
         """
         Mi nombre es Juan Nicolas
         """,
-        """hoja vida 2""", 
+        """Mi nombre es Julián Orozco""", 
         """hoja vida 3"""
     ]
     # ///////////////////////////////////////////////////////////////////////
