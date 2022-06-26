@@ -396,7 +396,7 @@ class Prueba:
 
         for b in Bodegas:
                 
-            tabla.insert("", "end", text="", values=(b.getIdInmueble(),b.getPrecio(), b.getTipoContrato(), b.getArea(), b.getAmueblado(), b.getParqueaderoCarros(), b.getParqueaderoMotos(), b.getCapacidad(),b.getOficina(), c.getBano()))
+            tabla.insert("", "end", text="", values=(b.getIdInmueble(),b.getPrecio(), b.getTipoContrato(), b.getArea(), b.getAmueblado(), b.getParqueaderoCarros(), b.getParqueaderoMotos(), b.getCapacidad(),b.getOficina(), b.getBano()))
 
         self.nombre.pack()
         self.descripcion.pack()

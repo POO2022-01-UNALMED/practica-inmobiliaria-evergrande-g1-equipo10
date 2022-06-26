@@ -110,7 +110,7 @@ class Inicio:
         for i in range(4):
             imgs[i] = tk.PhotoImage(file=path + f"/dev{Inicio.perActual}/{i}.png")
 
-            self.labelImgs[i].config(image=imgs[i], justify=CENTER)
+            self.labelImgs[i].config(image=imgs[i])
             self.labelImgs[i].image = imgs[i]
         
         Inicio.perActual = (Inicio.perActual + 1) % 3
