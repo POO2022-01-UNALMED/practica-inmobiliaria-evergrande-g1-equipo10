@@ -9,6 +9,6 @@ from gestorAplicacion.otros.Cita import Cita
 
 Cita.setCitas(Serializador.deserializar("Cita"))
 
-# Inicio()
+Inicio()
 
-Prueba()
+# Prueba()

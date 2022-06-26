@@ -1,13 +1,13 @@
 import os
 from PIL import Image, ImageTk
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import CENTER, messagebox
 
 from uiMain.ventaUsuarioPrueba import Prueba
 
 class Inicio:
-    H = 700 # height
-    W = 1000 # width
+    H = 650 # height
+    W = 1300 # width
 
     # controlar cual imagen del proyecto se muestra 
     imgEVERactual = 1
@@ -65,14 +65,13 @@ class Inicio:
         self.hojaVida.config(cursor="hand2")
 
         # imagenes de los desarrolladores /////////////////////////////////////
+        color = ["red", "blue", "green", "purple"]
         self.labelImgs = [tk.Label(self.P6) for _ in range(4)]
 
-        self.labelImgs[0].grid(row=0, column=0)
-        self.labelImgs[1].grid(row=0, column=1)
-        self.labelImgs[2].grid(row=1, column=0)
-        self.labelImgs[3].grid(row=1, column=1)
-
-        self.imgs = [None]*4
+        self.labelImgs[0].grid(row=0, column=0, sticky="nw")
+        self.labelImgs[1].grid(row=0, column=1, sticky="nw")
+        self.labelImgs[2].grid(row=1, column=0, sticky="nw")
+        self.labelImgs[3].grid(row=1, column=1, sticky="nw")
         # ////////////////////////////////////////////////////////////////////
 
         # boton de ingreso al sistema
@@ -107,15 +106,13 @@ class Inicio:
 
         self.hojaVida.config(text=Inicio.HV[Inicio.perActual])
 
+        imgs = [None]*4
         for i in range(4):
-            self.imgs[i] = Image.open(path + f"/dev{Inicio.perActual}/{i}.jpg")
-            
-            self.imgs[i] = self.imgs[i].resize(( self.P6.winfo_width()//2 , self.P6.winfo_height()//2 ))
+            imgs[i] = tk.PhotoImage(file=path + f"/dev{Inicio.perActual}/{i}.png")
 
-            self.imgs[i] = ImageTk.PhotoImage(self.imgs[i])
-
-            self.labelImgs[i].config(image=self.imgs[i])
-
+            self.labelImgs[i].config(image=imgs[i], justify=CENTER)
+            self.labelImgs[i].image = imgs[i]
+        
         Inicio.perActual = (Inicio.perActual + 1) % 3
 
     def salir(self):

@@ -26,7 +26,6 @@ class fieldFrame(Frame):
         self.grid_columnconfigure(1, weight=1)
         self.grid_rowconfigure(0, weight=1)
         
-        # for i in range(len(self._valores)):
         for i in range(len(self._criterios)):
             self.label3 = tk.Label(self, text=self._criterios[i])
             self.label3.grid(padx = 80, pady=2, column=0, row=i+1)
