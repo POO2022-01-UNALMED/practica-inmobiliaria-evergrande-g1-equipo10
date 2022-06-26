@@ -26,7 +26,11 @@ class Cita:
     
     @classmethod
     def getCitaByID(cls, id):
-        return list(filter(lambda cita: cita.idCita == id, cls._citas))[0]
+        return list(filter(lambda cita: cita._idCita == id, cls._citas))[0]
+
+    @classmethod
+    def existeCita(cls, id):
+        return len(list(filter(lambda cita: cita._idCita == id, cls._citas))) > 0
 
     def __str__(self):
         return ""

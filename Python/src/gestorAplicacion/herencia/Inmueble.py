@@ -46,6 +46,12 @@ class Inmueble():
         for inmueble in cls._inmuebles:
             if inmueble.getIdInmueble() == idInmueble:
                 return inmueble
+        
+        return None
+
+    @classmethod
+    def existeInmueble(self, idInmueble):
+        return self.buscarInmueble(idInmueble) != None
     
     #ToString
     def __str__(self):

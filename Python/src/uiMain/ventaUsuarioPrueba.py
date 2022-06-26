@@ -1,16 +1,29 @@
 
 import tkinter as tk
-from tkinter import CENTER, ttk, NO
+from tkinter import CENTER, ttk, NO , messagebox
+
+from more_itertools import strip
 from gestorAplicacion.herencia.ApartaEstudio import ApartaEstudio
 from gestorAplicacion.herencia.Apartamento import Apartamento
 from gestorAplicacion.herencia.Bodega import Bodega
 from gestorAplicacion.herencia.Casa import Casa
-from uiMain.fieldFrame import fieldFrame # si se ejecuta desde el main toca con este import
-# from fieldFrame import fieldFrame
 from gestorAplicacion.herencia.Inmueble import Inmueble
 from gestorAplicacion.otros.Pago import Pago
-
 from gestorAplicacion.otros.Cita import Cita
+
+from uiMain.fieldFrame import fieldFrame
+
+# exceptions
+from uiMain.exepciones.ErrorAplicacion import ErrorAplicacion
+from uiMain.exepciones.FunctionalException  import FunctionalException
+from uiMain.exepciones.FieldException import FieldException
+from uiMain.exepciones.YaPagadoException import YaPagadoException
+from uiMain.exepciones.MesYaPagadoException import MesYaPagadoException
+from uiMain.exepciones.NonExistException import NonExistException
+from uiMain.exepciones.NumericException import NumericException
+from uiMain.exepciones.EmptyException import EmptyException
+from uiMain.exepciones.wordException import wordException
+
 
 class Prueba:
     width = 700
@@ -159,22 +172,42 @@ class Prueba:
     def agendarCita(self):
         self.resetVentana()
 
+        cols = ["dia", "mes", "año", "hora", "idAgente", "idInmueble"]
+
         self.nombre = tk.Label(self.VENTANA, text="Agendar Cita", bd=10)
         self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá agendar las citas para los inmuebles que quiera ver, por favor rellene los datos necesarios", bd = 10 )
         
-        self.frame = fieldFrame(self.VENTANA, "Datos", ["dia", "mes", "ano", "hora", "idAgente", "idInmueble"], "Valor")
+        self.frame = fieldFrame(self.VENTANA, "Datos", cols, "Valor")
 
         def funcionAgendarCita():
-            cita = Cita(
-                dia = int(self.frame.getValue("dia")),
-                mes = int(self.frame.getValue("mes")),
-                ano = int(self.frame.getValue("ano")),
-                hora = int(self.frame.getValue("hora")),
-                idAgente = int(self.frame.getValue("idAgente")),
-                idInmueble = int(self.frame.getValue("idInmueble"))
-            )
+            from regex import search
+            try:
+                for col in cols:
+                    if self.frame.getValue(col).strip() == "": # verificar campos vacios
+                        raise EmptyException("Debe llenar el campo " + col.upper())
 
-            self.frame.borrarEntradas()
+                    if search(r"[^0-9]", self.frame.getValue(col)) != None: # verificar campos numericos
+                        raise NumericException("El campo " + col.upper() + " debe ser numerico")
+                    
+                if not Inmueble.existeInmueble(int(self.frame.getValue("idInmueble"))):
+                    raise NonExistException("El inmueble ingresado no existe, por favor verifiquelo")
+
+                # falta verificar el agente
+                        
+                cita = Cita(
+                    dia = int(self.frame.getValue("dia")),
+                    mes = int(self.frame.getValue("mes")),
+                    ano = int(self.frame.getValue("año")),
+                    hora = int(self.frame.getValue("hora")),
+                    idAgente = int(self.frame.getValue("idAgente")),
+                    idInmueble = int(self.frame.getValue("idInmueble"))
+                )
+
+            except ErrorAplicacion as error:
+                error.mostrarMensajeError()
+            else:
+                self.frame.borrarEntradas()
+                messagebox.showinfo("", "La cita fue agendada con exito")
 
         self.frame.crearBotones(funcionAgendarCita)
         
@@ -218,8 +251,25 @@ class Prueba:
         self.frame = fieldFrame(self.VENTANA, "Datos", ["idCita"], "Valor")
 
         def funcionCancelarCita():
-            Cita.cancelar(int(self.frame.getValue("idCita")))
-            self.frame.borrarEntradas()
+            from regex import search
+            try:
+
+                if self.frame.getValue("idCita").strip() == "": # verificar campo vacio
+                    raise EmptyException("Debe llenar el campo idCita")
+
+                if search(r"[^0-9]", self.frame.getValue("idCita")) != None: # verificar campos numericos
+                    raise NumericException("El campo idCita debe ser numerico")
+                
+                if not Cita.existeCita(int(self.frame.getValue("idCita"))): # verificar si existe la cita
+                    raise NonExistException("La cita ingresada no existe, por favor verifiquela")
+                
+                Cita.cancelar(int(self.frame.getValue("idCita")))
+
+            except ErrorAplicacion as error:
+                error.mostrarMensajeError()
+            else:
+                self.frame.borrarEntradas()
+                messagebox.showinfo("", "La cita fue cancelada con exito")
 
         self.frame.crearBotones(funcionCancelarCita)
         
