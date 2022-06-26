@@ -1,5 +1,4 @@
 import os
-from PIL import Image, ImageTk
 import tkinter as tk
 from tkinter import CENTER, messagebox
 
@@ -10,12 +9,9 @@ class Inicio:
     W = 1300 # width
 
     # controlar cual imagen del proyecto se muestra 
-    imgEVERactual = 1
+    imgEVERactual = 0
 
     # atributos para controlar que HV se muestra ///////////////////////////
-    # 0 => Juan Nicolas
-    # 1 => 
-    # 2 => 
     perActual = 0
 
     HV = [
@@ -75,7 +71,7 @@ class Inicio:
         # ////////////////////////////////////////////////////////////////////
 
         # boton de ingreso al sistema
-        self.btnIngreso = tk.Button(self.P4, text="Ingreso al sistema",cursor="hand2" , command=self.ingresoSistema)
+        self.btnIngreso = tk.Button(self.P4, text="Ingreso al sistema",cursor="hand2", command=self.ingresoSistema)
         self.btnIngreso.place(relx=0, rely=0.7, relheight=0.3, relwidth=1)
 
         # imagenes del proyecto /////////////////////////////////////////////
@@ -83,11 +79,7 @@ class Inicio:
         self.labelEVERGRANDE.place(relx=0, rely=0, relheight=0.7, relwidth=1)
         self.labelEVERGRANDE.bind("<Enter>", self.cambiarImgEVERGRANDE)
 
-        self.imgLabelEVERGRANDE = Image.open(os.path.abspath("img/inicio/EVERGRANDE") + "/0.jpg")
-        # self.imgLabelEVERGRANDE = self.imgLabelEVERGRANDE.resize(( self.labelEVERGRANDE.winfo_width() , self.labelEVERGRANDE.winfo_height() ))
-        self.imgLabelEVERGRANDE = ImageTk.PhotoImage(self.imgLabelEVERGRANDE)
-        self.labelEVERGRANDE.config(image=self.imgLabelEVERGRANDE)
-        
+        self.cambiarImgEVERGRANDE()
         #Menu Inicio///////////////////////////
         self.menuBar = tk.Menu(self.VENTANA)
         self.VENTANA.config(menu = self.menuBar)
@@ -116,7 +108,7 @@ class Inicio:
         Inicio.perActual = (Inicio.perActual + 1) % 3
 
     def salir(self):
-        self.VENTANA.quit()
+        self.VENTANA.destroy()
     
     def descripcion(self):
         self.descripcion = messagebox.showinfo("Descripción del sistema","Se creó una solución aplicando la programación orientada a objetos para el problema que suponía la inmobiliaria Evergrande. El cliente necesita una aplicación para realizar diversas tareas relacionadas con los inmuebles propios y los ofrecidos por la inmobiliaria. En dicha solución el cliente puede gestionar sus citas (visualizarlas, agendarlas y cancelarlas), gestionar sus propios inmuebles (visualizar su información general, realizar y ver con claridad los pagos realizados y finalizar sus contratos de arrendamiento), además de explorar nuevos inmuebles que despierten su interés y así guiarlo a una compra exitosa de este, a iniciar un contrato de arrendamiento o a ver los presentados por las unidades residenciales asociadas a Evergrande.")
@@ -125,15 +117,12 @@ class Inicio:
         self.VENTANA.destroy()
         Prueba()
 
-    def cambiarImgEVERGRANDE(self, event):
+    def cambiarImgEVERGRANDE(self, event = None):
         path = os.path.abspath("img/inicio/EVERGRANDE")
 
-        self.imgLabelEVERGRANDE = Image.open(path + f"/{self.imgEVERactual}.jpg")
+        imgLabelEVERGRANDE = tk.PhotoImage(file=path + f"/{self.imgEVERactual}.png")
 
-        self.imgLabelEVERGRANDE = self.imgLabelEVERGRANDE.resize(( self.labelEVERGRANDE.winfo_width() , self.labelEVERGRANDE.winfo_height() ))
-
-        self.imgLabelEVERGRANDE = ImageTk.PhotoImage(self.imgLabelEVERGRANDE)
-
-        self.labelEVERGRANDE.config(image=self.imgLabelEVERGRANDE)
+        self.labelEVERGRANDE.config(image=imgLabelEVERGRANDE)
+        self.labelEVERGRANDE.image = imgLabelEVERGRANDE
 
         Inicio.imgEVERactual = (Inicio.imgEVERactual + 1) % 5

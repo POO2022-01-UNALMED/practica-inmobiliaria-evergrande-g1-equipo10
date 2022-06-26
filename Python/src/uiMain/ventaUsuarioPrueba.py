@@ -151,7 +151,9 @@ class Prueba:
         
     
     def salir(self):
+        from uiMain.Inicio import Inicio
         self.VENTANA.destroy()
+        Inicio()
         
     #---------------Procesos y consultas de Gestionar Citas---------------
     def agendarCita(self):
