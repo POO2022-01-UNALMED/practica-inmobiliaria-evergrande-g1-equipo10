@@ -1,6 +1,12 @@
 
 from gestorAplicacion.otros.Pago import Pago
 from gestorAplicacion.otros.Cita import Cita
+from gestorAplicacion.herencia.Inmueble import Inmueble
+from gestorAplicacion.herencia.ApartaEstudio import ApartaEstudio
+from gestorAplicacion.herencia.Apartamento import Apartamento
+from gestorAplicacion.herencia.Bodega import Bodega
+from gestorAplicacion.herencia.Casa import Casa
+from gestorAplicacion.otros.TipoContrato import TipoContrato
 from baseDatos.serializador import Serializador
 
 if __name__ == "__main__":
@@ -16,3 +22,14 @@ if __name__ == "__main__":
     ]
 
     Serializador.serializar(citas, "Cita")
+    
+    inmuebles = [
+        Inmueble(10000,"cll 2 #49-15", 60,1,True,False,True, TipoContrato.ARRIENDO, 1),
+        Casa(50000, "crr 6 #5a", 80, 2, False, False, False, TipoContrato.VENTA, 2, 2, 1, 0, 1),
+        ApartaEstudio(200000, "cll 2 #49-15", 100, 1, True, True, False, TipoContrato.VENTA, 1, "Unidad 1", 3,201,4,2 ),
+        Apartamento(4000000, "crr 6 #5a", 90, 1, True, False, True, TipoContrato.ARRIENDO, 2, "Unidad 2", 5, 503, 3, 2, 1, 2),
+        Bodega(15000,"cll 2 #49-15", 500, 1, False, False, False, TipoContrato.VENTA, 1, 200, 2, 1)
+    ]
+    
+    Serializador.serializar(inmuebles, "Inmueble")
+    

@@ -1,4 +1,4 @@
-from Inmueble import Inmueble
+from .Inmueble import Inmueble
 
 class Bodega(Inmueble):
     def __init__(self, precio, direccion, area, numPisos, parqueaderoCarros, parquederoMotos, amueblado, tipoContrato, idUnidad, capacidad, oficina, bano):
