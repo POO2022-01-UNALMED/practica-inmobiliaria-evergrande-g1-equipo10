@@ -630,7 +630,7 @@ class Prueba:
                 if search(r"[^0-9]", self.frame.getValue("ID Inmueble")) != None: 
                     raise NumericException("El campo \"ID Inmueble\" debe ser número positivo")
                 
-                #Verifica qie el inmueble exista
+                #Verifica que el inmueble exista
                 if not Inmueble.existeInmueble(int(self.frame.getValue("ID Inmueble"))):
                     raise NonExistException("El inmueble ingresado no existe, por favor verifiquelo")
                 
