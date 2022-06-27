@@ -1,7 +1,7 @@
 from gestorAplicacion.otros.Persona import Persona
 
 class Agente(Persona):
-  _AGENTES = []
+  _agentes = []
 
   def __init__(self, cedula, nombreCompleto, telefonoFijo, telefonoCelular, vehiculo, placaVehiculo):
     super().__init__(cedula, nombreCompleto, telefonoFijo, telefonoCelular)
@@ -34,4 +34,10 @@ class Agente(Persona):
   def getAgente(cls):
     return cls._AGENTES
 
-  # def buscarAgente(self, id)
+  
+  def buscarAgente(cedula):
+    agentes_busqueda = []
+    for agente in Agente._agentes:
+      if agente.getCedula() == cedula:
+        agentes_busqueda.append(agente.getCedula())
+    return agentes_busqueda
