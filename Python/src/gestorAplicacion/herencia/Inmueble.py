@@ -33,7 +33,7 @@ class Inmueble():
         for id in idImueble:
             for inmueble in cls._inmuebles:
                 if inmueble.getIdInmueble() == id:
-                    listaInmuebles.append(id)
+                    listaInmuebles.append(inmueble)
                 
         return listaInmuebles
     

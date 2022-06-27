@@ -325,8 +325,11 @@ class VentanaUsuario:
         for c in cols:
             tabla.column(c, anchor=CENTER, stretch=True, width=80)
             tabla.heading(c, text=c, anchor=CENTER)
+            
+        idInmuebles = Cliente.cliente.getInmuebles()
+        inmuebles = Inmueble.buscarInmueblesLista(idInmuebles)
 
-        for i in Inmueble.getInmuebles():
+        for i in inmuebles:
             
             tipo = "Inmueble"
             if isinstance(i, ApartaEstudio):
@@ -364,8 +367,11 @@ class VentanaUsuario:
             tabla.heading(c, text=c, anchor=CENTER)
         
         #filtrar los inmuebles tipo apartaestudio
+        idInmuebles = Cliente.cliente.getInmuebles()
+        inmuebles = Inmueble.buscarInmueblesLista(idInmuebles)
+        
         Apartaestudios = []
-        for i in Inmueble.getInmuebles():
+        for i in inmuebles:
             if isinstance(i, ApartaEstudio):
                 Apartaestudios.append(i)
                 
@@ -398,8 +404,11 @@ class VentanaUsuario:
             tabla.heading(c, text=c, anchor=CENTER)
         
         #filtrar los inmuebles tipo apartamento
+        idInmuebles = Cliente.cliente.getInmuebles()
+        inmuebles = Inmueble.buscarInmueblesLista(idInmuebles)
+        
         Apartamentos = []
-        for i in Inmueble.getInmuebles():
+        for i in inmuebles:
             if isinstance(i, Apartamento):
                 Apartamentos.append(i)
                 
@@ -432,8 +441,11 @@ class VentanaUsuario:
             tabla.heading(c, text=c, anchor=CENTER)
         
         #filtrar los inmuebles tipo casa
+        idInmuebles = Cliente.cliente.getInmuebles()
+        inmuebles = Inmueble.buscarInmueblesLista(idInmuebles)
+        
         Casas = []
-        for i in Inmueble.getInmuebles():
+        for i in inmuebles:
             if isinstance(i, Casa):
                 Casas.append(i)
                 
@@ -466,8 +478,11 @@ class VentanaUsuario:
             tabla.heading(c, text=c, anchor=CENTER)
         
         #filtrar los inmuebles tipo bodega
+        idInmuebles = Cliente.cliente.getInmuebles()
+        inmuebles = Inmueble.buscarInmueblesLista(idInmuebles)
+        
         Bodegas = []
-        for i in Inmueble.getInmuebles():
+        for i in inmuebles:
             if isinstance(i, Bodega):
                 Bodegas.append(i)
                 
@@ -502,10 +517,14 @@ class VentanaUsuario:
                      #Verifica que todos sean números
                     if search(r"[^0-9]", self.frame.getValue(col)) != None:
                         raise NumericException("El campo "+col.upper() + " debe ser numero posotivo")
-                    
+                
                 #Verifica si el inmueble existe
                 if not Inmueble.existeInmueble(int(self.frame.getValue("ID Inmueble"))):
                     raise NonExistException("El inmueble ingresado no existe, por favor verifiquelo")
+                
+                #Verifica si el inmueble está en posesión del cliente
+                if not int(self.frame.getValue("ID Inmueble")) in Cliente.cliente.getInmuebles():
+                    raise FunctionalException("El inmueble no es de su propiedad")
                 
                 #Si es de arriendo verifica que no se pague el mismo mes más de una vez
                 if (Inmueble.buscarInmueble(int(self.frame.getValue("ID Inmueble")))).getTipoContrato() == "ARRIENDO":
@@ -608,19 +627,23 @@ class VentanaUsuario:
                     raise EmptyException("Debe llenar el campo \"ID Inmueble\"")
 
                 # verificar campos numericos
-                if search(r"[^0-9]", self.frame.getValue("idCita")) != None: 
+                if search(r"[^0-9]", self.frame.getValue("ID Inmueble")) != None: 
                     raise NumericException("El campo \"ID Inmueble\" debe ser número positivo")
                 
-                #Verifica qie el inmueble exista
+                #Verifica que el inmueble exista
                 if not Inmueble.existeInmueble(int(self.frame.getValue("ID Inmueble"))):
                     raise NonExistException("El inmueble ingresado no existe, por favor verifiquelo")
+                
+                #Verifica si el inmueble está en posesión del cliente
+                if not int(self.frame.getValue("ID Inmueble")) in Cliente.cliente.getInmuebles():
+                    raise FunctionalException("El inmueble no es de su propiedad")
                 
                 #Verifica que sea de tipo arriendo
                 if (Inmueble.buscarInmueble(int(self.frame.getValue("ID Inmueble")))).getTipoContrato() != "ARRIENDO":
                     raise FunctionalException("El inmueble que ingresó no es de tipo arriendo")
                 
                 idInmueble = self.frame.getValue("ID Inmueble")
-                Cliente.finalizarContrato(idInmueble)
+                Cliente.cliente.finalizarContrato(int(idInmueble))
             
             except ErrorAplicacion as error:
                 error.mostrarMensajeError()
