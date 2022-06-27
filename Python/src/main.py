@@ -21,4 +21,8 @@ Pago._pagos = Serializador.deserializar("Pago")
 from gestorAplicacion.otros.Agente import Agente
 Agente.setAgente(Serializador.deserializar("Agente"))
 
+#Cliente
+from gestorAplicacion.otros.Cliente import Cliente
+Cliente.setCliente(Serializador.deserializar("Cliente"))
+
 Inicio()

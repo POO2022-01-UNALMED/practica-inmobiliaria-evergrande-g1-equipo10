@@ -8,7 +8,7 @@ class Agente(Persona):
     self._vehiculo = vehiculo
     self._placaVehiculo = placaVehiculo
 
-    Agente._AGENTES.append(self)
+    Agente._agentes.append(self)
   
   def getVehiculo(self):
     return self._vehiculo

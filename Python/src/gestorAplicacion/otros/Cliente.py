@@ -1,15 +1,20 @@
-from Persona import Persona
+from .Persona import Persona
 from gestorAplicacion.herencia.Inmueble import Inmueble
-from TipoContrato import TipoContrato
-from Cita import Cita
-from Pago import Pago
+from .TipoContrato import TipoContrato
+from .Cita import Cita
+from .Pago import Pago
 
 class Cliente(Persona):
+  cliente = None
   def __init__(self, cedula, nombreCompleto, telefonoFijo, telefonoCelular):
     super().__init__(cedula, nombreCompleto, telefonoFijo, telefonoCelular)
     self.inmuebles = []
     self.citas = []
   
+  @classmethod
+  def setCliente(cls,cliente):
+    cls.cliente = cliente[0]
+    
   def getInmuebles(self):
     return self.inmuebles
   

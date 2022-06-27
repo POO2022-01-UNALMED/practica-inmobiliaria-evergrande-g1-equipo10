@@ -1,4 +1,5 @@
 
+from gestorAplicacion.otros.Cliente import Cliente
 from gestorAplicacion.otros.Pago import Pago
 from gestorAplicacion.otros.Cita import Cita
 from gestorAplicacion.herencia.Inmueble import Inmueble
@@ -42,3 +43,8 @@ if __name__ == "__main__":
     
     Serializador.serializar(inmuebles, "Inmueble")
     
+    clientes = [Cliente(1, "Pepe Pérez", 51368436,813686952)]
+               
+    clientes[0].setInmuebles([0,1,2])
+    
+    Serializador.serializar(clientes, "Cliente")
