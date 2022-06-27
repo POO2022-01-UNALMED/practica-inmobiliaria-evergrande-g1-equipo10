@@ -1,6 +1,6 @@
 
 import tkinter as tk
-from tkinter import CENTER, ttk, NO , messagebox
+from tkinter import BOTH, CENTER, ttk, NO , messagebox
 
 from more_itertools import strip
 from gestorAplicacion.herencia.ApartaEstudio import ApartaEstudio
@@ -140,8 +140,31 @@ class Prueba:
         
         self.nombre = tk.Label(self.VENTANA, text="", bd=10 )
         self.descripcion = tk.Label(self.VENTANA, text="", bd=10)
-        self.frame = tk.Frame()
+        self.frame = tk.Frame(self.VENTANA)
         self.texto = tk.Text()
+        
+        texto = "Bienvenido a EVERGRANDE, a continuación se le presentarán las instrucciones de uso para que tenga la mejor experiencia con\nnosotros.\n\n"
+        texto += "En la parte superior encontrará una barra de menú con 3 opciones (\"Archivo\", \"Procesos y Consultas\" y \"Ayuda\").\n"
+        
+        texto += "\nMenú Archivo:\n\n"
+        texto += "Aquí encontrará 2 opciones, la primera \"Aplicacion\", le mostrará una descripción de lo que se hace en EVERGRANDE, por otro\n"
+        texto += "lado, la opción \"Salir\", la podrá usar para volver a la ventana de inicio y guardar sus cambios."
+        
+        texto += "\n\nMenú Procesos y Consultas:\n\n"
+        texto+= "Aquí podrá realizar todos los procesos y las consultas que le sean necesarias, al interior de este menú encontrará otros 3\n"
+        texto += "submenus, Gestionar citas, Gestionar Inmuebles y Explorar Inmuebles. En cada uno de ellos hay opciones relacionadas con cada\n"
+        texto += "tema; en cada opción se le mostrará un formulario  o una tabla dependiendo si lo que desea hacer es un proceso o una consulta,\n"
+        texto += "respectivamente. \nEn los formularios, por favor rellene todos los espacios solicitados para que la transacción sea llevada con\n"
+        texto += "éxito, cuando termine de llenarlo oprima el botón aceptar y se le mostrará el resultado del proceso en pantalla.\n"
+        texto += "Si lo que desea es una consulta (Como por ejemplo, ver citas) se le mostrará una tabla con toda la información relacionada."
+        
+        texto += "\n\nMenú Acerca de:\n\n"
+        texto += "Aquí encontrará la opción \"Acerca de\", con ella obtendrá la información de los autores de esta aplicación."
+        
+        self.descripcion = tk.Label(self.frame, text=texto, bd = 10, anchor="w")
+        self.descripcion.pack(anchor="w")
+        self.frame.pack(fill = tk.BOTH, expand=True)
+        
         
         self.VENTANA.mainloop()
     
