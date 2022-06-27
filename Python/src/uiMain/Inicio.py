@@ -2,7 +2,7 @@ import os
 import tkinter as tk
 from tkinter import CENTER, messagebox
 
-from uiMain.ventaUsuarioPrueba import Prueba
+from uiMain.ventanaUsuario import VentanaUsuario
 
 class Inicio:
     H = 650 # height
@@ -15,19 +15,26 @@ class Inicio:
     perActual = 0
 
     HV = [
-        """
-        Mi nombre es Juan Nicolas
-        """,
+        """Mi nombre es Juan Nicolas""",
         """Mi nombre es Julián Orozco""", 
-        """hoja vida 3"""
+        """Mi nombre es David"""
     ]
     # ///////////////////////////////////////////////////////////////////////
 
     def __init__(self):
+        # creación de ventana de inicio
         self.VENTANA = tk.Tk()
+
+        # definición de dimensiones de ventana de inicio
         self.VENTANA.geometry(F"{Inicio.W}x{Inicio.H}")
+
+        # asignación título ventana de inicio
         self.VENTANA.title("Inicio")
+
+        # definición de ventana de inicio como no redimensionable
         self.VENTANA.resizable(0,0)
+
+        # 
         self.VENTANA.option_add("*tearOff", False)
         
         # estructura de frames ////////////////////////////////////////////// 
@@ -127,7 +134,7 @@ class Inicio:
         
     def ingresoSistema(self):
         self.VENTANA.destroy()
-        Prueba()
+        VentanaUsuario()
 
     def cambiarImgEVERGRANDE(self, event = None):
         path = os.path.abspath("img/inicio/EVERGRANDE")

@@ -11,6 +11,7 @@ from gestorAplicacion.herencia.Inmueble import Inmueble
 from gestorAplicacion.otros.Pago import Pago
 from gestorAplicacion.otros.Agente import Agente
 from gestorAplicacion.otros.Cita import Cita
+from gestorAplicacion.otros.Cliente import Cliente
 
 from uiMain.fieldFrame import fieldFrame
 
@@ -26,16 +27,16 @@ from uiMain.exepciones.EmptyException import EmptyException
 from uiMain.exepciones.wordException import wordException
 
 
-class Prueba:
+class VentanaUsuario:
     width = 700
     height = 400
     
     def __init__(self):
         
         self.VENTANA = tk.Tk()
-        self.VENTANA.geometry(F"{Prueba.width}x{Prueba.height}")
+        self.VENTANA.geometry(F"{VentanaUsuario.width}x{VentanaUsuario.height}")
         # self.VENTANA.resizable(0,0)
-        self.VENTANA.title("VENTANA DE USUARIO")
+        self.VENTANA.title("Evergrande")
         self.VENTANA.option_add("*tearOff", False)
 
         # menu //////////////////////////////////////////////
@@ -642,25 +643,73 @@ class Prueba:
         
     #-------------Procesos y consultas de Explorar Inmuebles--------------
     def verInmueblesDisponibles(self):
-        pass
-    
-    def comprarInmueble(self):
-        
-        #Es para "reiniciar" los widgets y no se superpongan
-        self.nombre.pack_forget()
-        self.descripcion.pack_forget()
-        self.frame.pack_forget()
+        self.resetVentana()
+        cols = ["Id", "Tipo", "Precio", "Tipo Contrato", "Area", "Amueblado", "Parqueadero Carros", "Parqueadero Motos", "Direccion"]
+        self.nombre = tk.Label(self.VENTANA, text="Ver Inmuebles Disponibles")
+        self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá ver los inmuebles disponibles para la venta o para arriendo", bd = 10)
+        self.frame = tk.Frame(self.VENTANA)
 
-        self.nombre = tk.Label(self.VENTANA, text="Comprar Inmueble", bd=10)
-        self.descripcion = tk.Label(self.VENTANA,text= "Para comprar su inmueble deseado por favor rellene los datos", bd = 10 )
-        
-        self.frame = fieldFrame(self.VENTANA, "Datos Inmueble deseado", ["ID", "DIRECCION", "Valor"], "Valor", [None, None, None])
-        
-        
-        self.frame.crearBotones()
-        
+        tabla = ttk.Treeview(self.frame, columns=cols)
+        tabla.place(relheight=1, relwidth=1)
+
+        tabla.column("#0", width=0, stretch=False)
+        tabla.heading("#0", text="", anchor=CENTER)
+
+        for c in cols:
+            tabla.column(c, anchor=CENTER, stretch=True, width=80)
+            tabla.heading(c, text=c, anchor=CENTER)
+
+        for inmueble in Inmueble.getInmuebles():
+            if (not inmueble.getVendido()) and (not inmueble.getArrendado()):
+                tabla.insert("", "end", text="", values=(inmueble.getIdInmueble(), type(inmueble).__name__, inmueble.getPrecio(), inmueble.getTipoContrato(), inmueble.getArea(), inmueble.getAmueblado(), inmueble.getParqueaderoCarros(), inmueble.getParqueaderoMotos(), inmueble.getDireccion()))
+            
+
         self.nombre.pack()
         self.descripcion.pack()
+        self.frame.pack(fill = tk.BOTH,)
+
+    def comprarInmueble(self):
+        self.resetVentana()
+        def funcionComprarInmueble():
+            pass
+        # Ver inmuebles, ventana emergente
+        ventana_dialogo = tk.Toplevel(self.VENTANA)
+        ventana_dialogo.geometry("800x500")
+        ventana_dialogo.title("Inmuebles disponibles")
+        cols = ["Id", "Tipo", "Precio", "Tipo Contrato", "Area", "Amueblado", "Parqueadero Carros", "Parqueadero Motos", "Direccion"]
+        self.nombre = tk.Label(ventana_dialogo, text="Ver Inmuebles Disponibles")
+        self.descripcion = tk.Label(ventana_dialogo,text= "Aqui podrá ver los inmuebles disponibles para la venta o para arriendo", bd = 10)
+        self.frame = tk.Frame(ventana_dialogo)
+
+        tabla = ttk.Treeview(ventana_dialogo, columns=cols)
+        tabla.place(relheight=1, relwidth=1)
+
+        tabla.column("#0", width=0, stretch=False)
+        tabla.heading("#0", text="", anchor=CENTER)
+
+        for c in cols:
+            tabla.column(c, anchor=CENTER, stretch=True, width=80)
+            tabla.heading(c, text=c, anchor=CENTER)
+
+        for inmueble in Inmueble.getInmuebles():
+            if (not inmueble.getVendido()) and (not inmueble.getArrendado()):
+                tabla.insert("", "end", text="", values=(inmueble.getIdInmueble(), type(inmueble).__name__, inmueble.getPrecio(), inmueble.getTipoContrato(), inmueble.getArea(), inmueble.getAmueblado(), inmueble.getParqueaderoCarros(), inmueble.getParqueaderoMotos(), inmueble.getDireccion()))
+            
+
+        self.nombre.pack()
+        self.descripcion.pack()
+        self.frame.pack(fill = tk.BOTH)
+
+        self.nombre2 = tk.Label(self.VENTANA, text="Comprar Inmueble", bd=10)
+        self.descripcion2 = tk.Label(self.VENTANA,text= "Para comprar su inmueble deseado por favor rellene los datos", bd = 10 )
+        
+        self.frame = fieldFrame(self.VENTANA, "Datos Inmueble deseado", ["ID"], "Valor", [None])
+        
+        
+        self.frame.crearBotones(funcionComprarInmueble)
+        
+        self.nombre2.pack()
+        self.descripcion2.pack()
         self.frame.pack(fill = tk.BOTH, expand=True)
         
         
@@ -681,9 +730,7 @@ class Prueba:
         ventana_dialogo.title("Acerca de")
         
         texto = "AUTORES:\n\nJulián Orozco Vanegas\nJuan Nicolas Piedrahita Salas\nDavid Escobar Ruiz"
-        
         tk.Label(ventana_dialogo, text= texto, font=('Times 15 italic bold')).pack(fill=tk.BOTH, expand=True)
-        
-    
+
 if __name__ == "__main__":
-    Prueba()
+    VentanaUsuario()

@@ -3,7 +3,7 @@ import tkinter as tk
 
 from baseDatos.serializador import Serializador
 from uiMain.Inicio import Inicio
-from uiMain.ventaUsuarioPrueba import Prueba
+from uiMain.ventanaUsuario import VentanaUsuario
 
 # Cita
 from gestorAplicacion.otros.Cita import Cita

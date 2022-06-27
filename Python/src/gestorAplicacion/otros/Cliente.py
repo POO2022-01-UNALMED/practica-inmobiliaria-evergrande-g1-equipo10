@@ -1,8 +1,8 @@
-from Persona import Persona
 from gestorAplicacion.herencia.Inmueble import Inmueble
-from TipoContrato import TipoContrato
-from Cita import Cita
-from Pago import Pago
+from gestorAplicacion.otros.Persona import Persona
+from gestorAplicacion.otros.TipoContrato import TipoContrato
+from gestorAplicacion.otros.Cita import Cita
+from gestorAplicacion.otros.Pago import Pago
 
 class Cliente(Persona):
   def __init__(self, cedula, nombreCompleto, telefonoFijo, telefonoCelular):
