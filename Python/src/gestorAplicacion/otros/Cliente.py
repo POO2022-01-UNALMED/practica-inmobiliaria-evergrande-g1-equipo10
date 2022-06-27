@@ -56,5 +56,3 @@ class Cliente(Persona):
 
   def listarInmuebles(self):
     return self.inmuebles
-
-# Cliente(1, "nombreCompleto", 1234567, 1234567890)
