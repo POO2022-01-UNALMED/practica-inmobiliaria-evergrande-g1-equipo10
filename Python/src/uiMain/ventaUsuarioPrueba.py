@@ -467,17 +467,57 @@ class Prueba:
         self.frame = fieldFrame(self.VENTANA, "Datos Inmueble que desea pagar", ["ID Inmueble", "Valor", "Año", "Mes"], "Valor", [None, None, None, None])
         
         def funcionRealizarPago(): #Funcion del botón aceptar que sirve para realizar un pago
-            p = Pago(int(self.frame.getValue("Valor")),int(self.frame.getValue("Año")), int(self.frame.getValue("Mes")), int(self.frame.getValue("ID Inmueble")))
-            self.frame.borrarEntradas()
+            from regex import search
+
+            try:
+                for col in ["ID Inmueble", "Valor", "Año", "Mes"]:
+                    #Verifica campos vacios
+                    if self.frame.getValue(col).strip() == "": 
+                        raise EmptyException("Debe llenar el campo " + col.upper())
+                    
+                     #Verifica que todos sean números
+                    if search(r"[^0-9]", self.frame.getValue(col)) != None:
+                        raise NumericException("El campo "+col.upper() + " debe ser numero posotivo")
+                    
+                #Verifica si el inmueble existe
+                if not Inmueble.existeInmueble(int(self.frame.getValue("ID Inmueble"))):
+                    raise NonExistException("El inmueble ingresado no existe, por favor verifiquelo")
+                
+                #Si es de arriendo verifica que no se pague el mismo mes más de una vez
+                if (Inmueble.buscarInmueble(int(self.frame.getValue("ID Inmueble")))).getTipoContrato() == "ARRIENDO":
+                    for pago in (Pago.verPagos(int(self.frame.getValue("ID Inmueble")))):
+                        if pago.getMes() == int(self.frame.getValue("Mes")) and pago.getAno() == int(self.frame.getValue("Año")):
+                            raise MesYaPagadoException("El inmueble que intenta pagar ya fue pagado este mes")
+                
+                #Si es de venta verifica que no se pueda pagar más de una vez
+                if (Inmueble.buscarInmueble(int(self.frame.getValue("ID Inmueble")))).getTipoContrato() == "VENTA":
+                    if len(Pago.verPagos(int(self.frame.getValue("ID Inmueble")))) != 0:
+                        raise YaPagadoException("El inmueble ya fue pagado")
+                
+                #Verifica que el valor ingresado sea igual al precio que tiene el inmueble
+                if (Inmueble.buscarInmueble(int(self.frame.getValue("ID Inmueble")))).getPrecio() != int(self.frame.getValue("Valor")):
+                    raise FunctionalException("El inmueble que intenta pagar tiene un costo diferente al valor ingresado")
+                
+                #Verifica que el Mes sea valido
+                if int(self.frame.getValue("Mes")) not in [1,2,3,4,5,6,7,8,9,10,11,12]:
+                    raise FieldException("El valor del campo \"Mes\" no es válido")
+                        
+                
+                p = Pago(int(self.frame.getValue("Valor")),int(self.frame.getValue("Año")), int(self.frame.getValue("Mes")), int(self.frame.getValue("ID Inmueble")))
+                self.frame.borrarEntradas()
+                
             
-            #ver el resultado
-            ventana_dialogo = tk.Toplevel(self.VENTANA)
-            ventana_dialogo.geometry("500x300")
-            ventana_dialogo.resizable(False,False)
-            ventana_dialogo.title("Resultado del pago")
-            
-            texto = "Se ha realizado un pago por: " + str(p.getValor()) + "\nEl mes número " + str(p.getMes()) + " del año "+ str(p.getAno()) + "\nAl inmueble con id " + str(p.getIdInmueble())
-            tk.Label(ventana_dialogo, text= texto).pack(fill=tk.BOTH, expand=True)
+            except ErrorAplicacion as error:
+                error.mostrarMensajeError()
+            else:
+                #ver el resultado
+                ventana_dialogo = tk.Toplevel(self.VENTANA)
+                ventana_dialogo.geometry("500x300")
+                ventana_dialogo.resizable(False,False)
+                ventana_dialogo.title("Resultado del pago")
+                
+                texto = "Se ha realizado un pago por: " + str(p.getValor()) + "\nEl mes número " + str(p.getMes()) + " del año "+ str(p.getAno()) + "\nAl inmueble con id " + str(p.getIdInmueble())
+                tk.Label(ventana_dialogo, text= texto).pack(fill=tk.BOTH, expand=True)
         
         self.frame.crearBotones(funcionRealizarPago)
         
@@ -537,17 +577,39 @@ class Prueba:
         self.frame = fieldFrame(self.VENTANA, "Datos", ["ID Inmueble"], "Valor", [None])
         
         def funcionFinalizarContrato(): #Funcion del botón aceptar que sirve para finalizar un contrato
-            idInmueble = self.frame.getValue("ID Inmueble")
-            Cliente.finalizarContrato(idInmueble)
+            from regex import search
+            try:
+                # verificar campo vacio
+                if self.frame.getValue("ID Inmueble").strip() == "": 
+                    raise EmptyException("Debe llenar el campo \"ID Inmueble\"")
+
+                # verificar campos numericos
+                if search(r"[^0-9]", self.frame.getValue("idCita")) != None: 
+                    raise NumericException("El campo \"ID Inmueble\" debe ser número positivo")
+                
+                #Verifica qie el inmueble exista
+                if not Inmueble.existeInmueble(int(self.frame.getValue("ID Inmueble"))):
+                    raise NonExistException("El inmueble ingresado no existe, por favor verifiquelo")
+                
+                #Verifica que sea de tipo arriendo
+                if (Inmueble.buscarInmueble(int(self.frame.getValue("ID Inmueble")))).getTipoContrato() != "ARRIENDO":
+                    raise FunctionalException("El inmueble que ingresó no es de tipo arriendo")
+                
+                idInmueble = self.frame.getValue("ID Inmueble")
+                Cliente.finalizarContrato(idInmueble)
             
-            #ver el resultado
-            ventana_dialogo = tk.Toplevel(self.VENTANA)
-            ventana_dialogo.geometry("500x300")
-            ventana_dialogo.resizable(False,False)
-            ventana_dialogo.title("Resultado del pago")
-            
-            texto = "Usted ha finalizado el contrato de arrendamiento para\nel inmueble con id: " + str(idInmueble)
-            tk.Label(ventana_dialogo, text= texto).pack(fill=tk.BOTH, expand=True)
+            except ErrorAplicacion as error:
+                error.mostrarMensajeError()
+            else:
+                
+                #ver el resultado
+                ventana_dialogo = tk.Toplevel(self.VENTANA)
+                ventana_dialogo.geometry("500x300")
+                ventana_dialogo.resizable(False,False)
+                ventana_dialogo.title("Resultado del pago")
+                
+                texto = "Usted ha finalizado el contrato de arrendamiento para\nel inmueble con id: " + str(idInmueble)
+                tk.Label(ventana_dialogo, text= texto).pack(fill=tk.BOTH, expand=True)
             
         self.frame.crearBotones(funcionFinalizarContrato)
         
