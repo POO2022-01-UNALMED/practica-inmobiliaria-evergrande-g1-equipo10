@@ -17,4 +17,8 @@ Inmueble.setInmuebles(Serializador.deserializar("Inmueble"))
 from gestorAplicacion.otros.Pago import Pago
 Pago._pagos = Serializador.deserializar("Pago")
 
+#Agente 
+from gestorAplicacion.otros.Agente import Agente
+Agente.setAgente(Serializador.deserializar("Agente"))
+
 Inicio()

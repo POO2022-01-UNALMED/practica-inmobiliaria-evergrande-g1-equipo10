@@ -111,7 +111,19 @@ class Inicio:
         self.VENTANA.destroy()
     
     def descripcion(self):
-        self.descripcion = messagebox.showinfo("Descripción del sistema","Se creó una solución aplicando la programación orientada a objetos para el problema que suponía la inmobiliaria Evergrande. El cliente necesita una aplicación para realizar diversas tareas relacionadas con los inmuebles propios y los ofrecidos por la inmobiliaria. En dicha solución el cliente puede gestionar sus citas (visualizarlas, agendarlas y cancelarlas), gestionar sus propios inmuebles (visualizar su información general, realizar y ver con claridad los pagos realizados y finalizar sus contratos de arrendamiento), además de explorar nuevos inmuebles que despierten su interés y así guiarlo a una compra exitosa de este, a iniciar un contrato de arrendamiento o a ver los presentados por las unidades residenciales asociadas a Evergrande.")
+        self.bienvenida.place_forget()
+        descripcion = "Bienvenido a EVERGRANDE\n"
+        descripcion += "\nDescripción del sistema: Se creó una solución aplicando la programación orientada\n"
+        descripcion += "a objetos para el problema que suponía la inmobiliaria Evergrande. El cliente necesita\n"
+        descripcion += "una aplicación para realizar diversas tareas relacionadas con los inmuebles propios y los\n"
+        descripcion += "ofrecidos por la inmobiliaria. En dicha solución el cliente puede gestionar sus citas \n"
+        descripcion += "(visualizarlas, agendarlas y cancelarlas), gestionar sus propios inmuebles (visualizar su \n"
+        descripcion += "información general, realizar y ver con claridad los pagos realizados y finalizar sus contratos\n"
+        descripcion += "de arrendamiento), además de explorar nuevos inmuebles que despierten su interés y así guiarlo\n"
+        descripcion += "a una compra exitosa de este, a iniciar un contrato de arrendamiento o a ver los presentados por\n"
+        descripcion += "las unidades residenciales asociadas a Evergrande."
+        self.bienvenida = tk.Label(self.P3, text=descripcion, font=("Arial", 11))
+        self.bienvenida.place(relheight=1, relwidth=1)
         
     def ingresoSistema(self):
         self.VENTANA.destroy()

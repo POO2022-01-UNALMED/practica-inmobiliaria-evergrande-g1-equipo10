@@ -7,6 +7,8 @@ from gestorAplicacion.herencia.Apartamento import Apartamento
 from gestorAplicacion.herencia.Bodega import Bodega
 from gestorAplicacion.herencia.Casa import Casa
 from gestorAplicacion.otros.TipoContrato import TipoContrato
+from gestorAplicacion.otros.Vehiculo import Vehiculo
+from gestorAplicacion.otros.Agente import Agente
 from baseDatos.serializador import Serializador
 
 if __name__ == "__main__":
@@ -16,9 +18,16 @@ if __name__ == "__main__":
 
     Serializador.serializar(pagos, "Pago")
 
+    agentes = [
+        Agente(123456, "sancho panza", 5555, 8888, Vehiculo.CARRO, "ABC123"),
+        Agente(654321, "trotski", 111, 2211, Vehiculo.MOTO, "GBD87T")
+    ]
+
+    Serializador.serializar(agentes, "Agente")
+
     citas = [
-        Cita(22, 6, 2022, 4, 1, 1),
-        Cita(1, 6, 2022, 4, 1, 1),
+        Cita(22, 6, 2022, 4, 123456, 1),
+        Cita(1, 6, 2022, 4, 654321, 1),
     ]
 
     Serializador.serializar(citas, "Cita")
