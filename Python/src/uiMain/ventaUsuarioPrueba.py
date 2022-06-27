@@ -643,7 +643,7 @@ class Prueba:
                     raise FunctionalException("El inmueble que ingresó no es de tipo arriendo")
                 
                 idInmueble = self.frame.getValue("ID Inmueble")
-                Cliente.finalizarContrato(int(idInmueble))
+                Cliente.cliente.finalizarContrato(int(idInmueble))
             
             except ErrorAplicacion as error:
                 error.mostrarMensajeError()
