@@ -1,3 +1,11 @@
+'''
+Autores: 
+Julián Orozco Vanegas
+Juan Nicolas Piedrahita Salas
+David Escobar Ruiz
+
+Esta clase simula el comportamiento de un inmueble y sus caracteristicas
+'''
 
 class Inmueble():
     _totalInmuebles = 0

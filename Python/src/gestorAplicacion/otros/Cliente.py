@@ -1,3 +1,12 @@
+'''
+Autores: 
+Julián Orozco Vanegas
+Juan Nicolas Piedrahita Salas
+David Escobar Ruiz
+
+Esta clase simula el comportamiento de una persona, especificamente de un cliente y sus caracteristicas
+'''
+
 from .Persona import Persona
 from gestorAplicacion.herencia.Inmueble import Inmueble
 from .TipoContrato import TipoContrato

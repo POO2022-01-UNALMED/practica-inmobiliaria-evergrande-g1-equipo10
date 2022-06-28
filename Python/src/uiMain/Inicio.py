@@ -1,3 +1,12 @@
+'''
+Autores: 
+Julián Orozco Vanegas
+Juan Nicolas Piedrahita Salas
+David Escobar Ruiz
+
+Esta clase crea la ventana principal de la aplicación, la ventana de bienvenida
+'''
+
 import os
 import tkinter as tk
 from tkinter import CENTER, messagebox
@@ -17,7 +26,7 @@ class Inicio:
 
     HV = [
         """Mi nombre es Juan Nicolas""",
-        """Mi nombre es Julián Orozco""", 
+        """Mi nombre es Julián Orozco\nTengo 19 años y estudio ing de sitemas e informática""", 
         """Mi nombre es David"""
     ]
     # ///////////////////////////////////////////////////////////////////////

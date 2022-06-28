@@ -1,3 +1,12 @@
+'''
+Autores: 
+Julián Orozco Vanegas
+Juan Nicolas Piedrahita Salas
+David Escobar Ruiz
+
+Esta clase simula el comportamiento de un inmueble tipo bodega y sus caracteristicas
+'''
+
 from .Inmueble import Inmueble
 
 class Bodega(Inmueble):

@@ -1,3 +1,12 @@
+'''
+Autores: 
+Julián Orozco Vanegas
+Juan Nicolas Piedrahita Salas
+David Escobar Ruiz
+
+Esta clase simula el comportamiento de una cita y sus caracteristicas
+'''
+
 class Cita:
     _citas = []
 

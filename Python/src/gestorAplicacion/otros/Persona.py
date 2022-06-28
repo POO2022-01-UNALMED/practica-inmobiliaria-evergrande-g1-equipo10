@@ -1,3 +1,12 @@
+'''
+Autores: 
+Julián Orozco Vanegas
+Juan Nicolas Piedrahita Salas
+David Escobar Ruiz
+
+Esta clase simula el comportamiento de una persona y sus caracteristicas generales
+'''
+
 class Persona:
   def __init__(self, cedula, nombreCompleto, telefonoFijo, telefonoCelular):
     self.cedula = cedula

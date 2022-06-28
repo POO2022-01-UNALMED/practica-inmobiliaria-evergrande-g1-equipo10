@@ -1,4 +1,12 @@
-#Es solo una prueba basada en la practica que mandaron como guia
+'''
+Autores: 
+Julián Orozco Vanegas
+Juan Nicolas Piedrahita Salas
+David Escobar Ruiz
+
+Esta clase es sirve como base del frame usado en los formularios en la ventana de usuario
+'''
+
 import tkinter as tk
 from tkinter import DISABLED, Frame
 

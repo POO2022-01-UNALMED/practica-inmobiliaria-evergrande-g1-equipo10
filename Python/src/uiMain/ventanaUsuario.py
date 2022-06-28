@@ -1,3 +1,11 @@
+'''
+Autores: 
+Julián Orozco Vanegas
+Juan Nicolas Piedrahita Salas
+David Escobar Ruiz
+
+Esta clase crea la ventana de usuario, es decir, donde se aplican todas las funcionalidades de la aplicacion
+'''
 
 import tkinter as tk
 from tkinter import BOTH, CENTER, ttk, NO , messagebox

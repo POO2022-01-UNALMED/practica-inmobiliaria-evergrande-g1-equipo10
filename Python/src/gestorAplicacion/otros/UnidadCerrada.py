@@ -1,3 +1,12 @@
+'''
+Autores: 
+Julián Orozco Vanegas
+Juan Nicolas Piedrahita Salas
+David Escobar Ruiz
+
+Esta clase simula el comportamiento de una unidad residencial de tipo cerrada y sus caracteristicas
+'''
+
 from UnidadResidencial import UnidadResidencial
 
 class UnidadCerrada(UnidadResidencial):

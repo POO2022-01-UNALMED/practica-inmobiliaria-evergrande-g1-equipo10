@@ -1,3 +1,12 @@
+'''
+Autores: 
+Julián Orozco Vanegas
+Juan Nicolas Piedrahita Salas
+David Escobar Ruiz
+
+Esta clase simula el comportamiento de un agente y sus caracteristicas
+'''
+
 from gestorAplicacion.otros.Persona import Persona
 
 class Agente(Persona):

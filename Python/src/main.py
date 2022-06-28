@@ -1,3 +1,11 @@
+'''
+Autores: 
+Julián Orozco Vanegas
+Juan Nicolas Piedrahita Salas
+David Escobar Ruiz
+
+Esta clase ejecuta la aplicacion
+'''
 
 import tkinter as tk
 

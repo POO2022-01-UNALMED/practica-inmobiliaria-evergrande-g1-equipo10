@@ -1,3 +1,12 @@
+'''
+Autores: 
+Julián Orozco Vanegas
+Juan Nicolas Piedrahita Salas
+David Escobar Ruiz
+
+Esta excepcion es la excepcion padre de todas las especificas usadas, general
+'''
+
 from tkinter.messagebox import showerror
 
 class ErrorAplicacion(Exception):
