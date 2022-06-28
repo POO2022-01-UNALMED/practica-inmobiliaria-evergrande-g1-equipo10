@@ -5,7 +5,7 @@ from .Cita import Cita
 from .Pago import Pago
 
 class Cliente(Persona):
-  cliente = None
+  _cliente = None
   def __init__(self, cedula, nombreCompleto, telefonoFijo, telefonoCelular):
     super().__init__(cedula, nombreCompleto, telefonoFijo, telefonoCelular)
     self.inmuebles = []
@@ -13,7 +13,7 @@ class Cliente(Persona):
   
   @classmethod
   def setCliente(cls,cliente):
-    cls.cliente = cliente[0]
+    cls._cliente = cliente
     
   def getInmuebles(self):
     return self.inmuebles
