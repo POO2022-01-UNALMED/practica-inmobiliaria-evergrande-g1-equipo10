@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import BOTH, CENTER, ttk, NO , messagebox
 
 from more_itertools import strip
+from numpy import int16
 from gestorAplicacion.herencia.ApartaEstudio import ApartaEstudio
 from gestorAplicacion.herencia.Apartamento import Apartamento
 from gestorAplicacion.herencia.Bodega import Bodega
@@ -693,9 +694,8 @@ class VentanaUsuario:
 
     def comprarInmueble(self):
         self.resetVentana()
-        def funcionComprarInmueble():
-            pass
-        # Ver inmuebles, ventana emergente
+
+        # Ver inmuebles, ventana emergente ---------
         ventana_dialogo = tk.Toplevel(self.VENTANA)
         ventana_dialogo.geometry("800x500")
         ventana_dialogo.title("Inmuebles disponibles")
@@ -715,29 +715,36 @@ class VentanaUsuario:
             tabla.heading(c, text=c, anchor=CENTER)
 
         for inmueble in Inmueble.getInmuebles():
-            if (not inmueble.getVendido()) and (not inmueble.getArrendado()):
+            if (not inmueble.getVendido()) and (inmueble.getTipoContrato() == "VENTA"):
                 tabla.insert("", "end", text="", values=(inmueble.getIdInmueble(), type(inmueble).__name__, inmueble.getPrecio(), inmueble.getTipoContrato(), inmueble.getArea(), inmueble.getAmueblado(), inmueble.getParqueaderoCarros(), inmueble.getParqueaderoMotos(), inmueble.getDireccion()))
             
-
         self.nombre.pack()
         self.descripcion.pack()
         self.frame.pack(fill = tk.BOTH)
+        # ---------------------------------------------
 
+        # Ventana de comprar inmueble ---------
         self.nombre2 = tk.Label(self.VENTANA, text="Comprar Inmueble", bd=10)
         self.descripcion2 = tk.Label(self.VENTANA,text= "Para comprar su inmueble deseado por favor rellene los datos", bd = 10 )
         
         self.frame = fieldFrame(self.VENTANA, "Datos Inmueble deseado", ["ID"], "Valor", [None])
+
+        def funcion_comprarInmueble():
+            #ventana_dialogo.destroy()
+            (Cliente._cliente)[0].comprarInmueble(int(self.frame.getValue("ID")))
+            ventana_dialogo2 = tk.Toplevel(self.VENTANA)
+            ventana_dialogo2.geometry("500x300")
+            ventana_dialogo2.resizable(False,False)
+            ventana_dialogo2.title("Compra realizada!")
+            texto = "Se ha comprado el inmueble con id: " + self.frame.getValue("ID")
+            self.frame.borrarEntradas()
+            tk.Label(ventana_dialogo2, text= texto).pack(fill=tk.BOTH, expand=True)
         
-        
-        self.frame.crearBotones(funcionComprarInmueble)
-        
+        self.frame.crearBotones(funcion_comprarInmueble)
         self.nombre2.pack()
         self.descripcion2.pack()
         self.frame.pack(fill = tk.BOTH, expand=True)
-        
-        
-            
-    
+
     def iniciarContrato(self):
         pass
     
