@@ -22,6 +22,10 @@ class Pago:
     def setPagos(cls, pagos):
         cls._pagos = pagos
 
+    @classmethod
+    def getPagos(cls):
+        return cls._pagos
+
     # getters y setters
 
     def getValor(self):
