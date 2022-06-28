@@ -41,10 +41,16 @@ if __name__ == "__main__":
         Bodega(15000,"cll 2 #49-15", 500, 1, False, False, False, TipoContrato.VENTA, 1, 200, 2, 1)
     ]
     
+    #Inmuebles del cliente
+    inmuebles[0].setArrendado(True)
+    inmuebles[1].setVendido(True)
+    inmuebles[2].setVendido(True)
+    
     Serializador.serializar(inmuebles, "Inmueble")
     
     clientes = [Cliente(1, "Pepe Pérez", 51368436,813686952)]
-               
+    
+    #Inmuebles del cliente 
     clientes[0].setInmuebles([0,1,2])
     
     Serializador.serializar(clientes, "Cliente")

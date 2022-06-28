@@ -167,7 +167,8 @@ class VentanaUsuario:
         self.descripcion.pack(anchor="w")
         self.frame.pack(fill = tk.BOTH, expand=True)
         
-        
+        #Inmuebles del cliente
+        self.idInmueblesCliente = Cliente._cliente[0].getInmuebles()
         self.VENTANA.mainloop()
     
     
@@ -327,8 +328,7 @@ class VentanaUsuario:
             tabla.column(c, anchor=CENTER, stretch=True, width=80)
             tabla.heading(c, text=c, anchor=CENTER)
             
-        idInmuebles = Cliente.cliente.getInmuebles()
-        inmuebles = Inmueble.buscarInmueblesLista(idInmuebles)
+        inmuebles = Inmueble.buscarInmueblesLista(self.idInmueblesCliente)
 
         for i in inmuebles:
             
@@ -368,8 +368,7 @@ class VentanaUsuario:
             tabla.heading(c, text=c, anchor=CENTER)
         
         #filtrar los inmuebles tipo apartaestudio
-        idInmuebles = Cliente.cliente.getInmuebles()
-        inmuebles = Inmueble.buscarInmueblesLista(idInmuebles)
+        inmuebles = Inmueble.buscarInmueblesLista(self.idInmueblesCliente)
         
         Apartaestudios = []
         for i in inmuebles:
@@ -405,8 +404,7 @@ class VentanaUsuario:
             tabla.heading(c, text=c, anchor=CENTER)
         
         #filtrar los inmuebles tipo apartamento
-        idInmuebles = Cliente.cliente.getInmuebles()
-        inmuebles = Inmueble.buscarInmueblesLista(idInmuebles)
+        inmuebles = Inmueble.buscarInmueblesLista(self.idInmueblesCliente)
         
         Apartamentos = []
         for i in inmuebles:
@@ -442,8 +440,7 @@ class VentanaUsuario:
             tabla.heading(c, text=c, anchor=CENTER)
         
         #filtrar los inmuebles tipo casa
-        idInmuebles = Cliente.cliente.getInmuebles()
-        inmuebles = Inmueble.buscarInmueblesLista(idInmuebles)
+        inmuebles = Inmueble.buscarInmueblesLista(self.idInmueblesCliente)
         
         Casas = []
         for i in inmuebles:
@@ -479,8 +476,7 @@ class VentanaUsuario:
             tabla.heading(c, text=c, anchor=CENTER)
         
         #filtrar los inmuebles tipo bodega
-        idInmuebles = Cliente.cliente.getInmuebles()
-        inmuebles = Inmueble.buscarInmueblesLista(idInmuebles)
+        inmuebles = Inmueble.buscarInmueblesLista(self.idInmueblesCliente)
         
         Bodegas = []
         for i in inmuebles:
@@ -524,7 +520,7 @@ class VentanaUsuario:
                     raise NonExistException("El inmueble ingresado no existe, por favor verifiquelo")
                 
                 #Verifica si el inmueble está en posesión del cliente
-                if not int(self.frame.getValue("ID Inmueble")) in Cliente.cliente.getInmuebles():
+                if not int(self.frame.getValue("ID Inmueble")) in self.idInmueblesCliente:
                     raise FunctionalException("El inmueble no es de su propiedad")
                 
                 #Si es de arriendo verifica que no se pague el mismo mes más de una vez
@@ -574,7 +570,7 @@ class VentanaUsuario:
     def verPagos(self):
         self.resetVentana()
 
-        cols = ["Id", "Valor", "Año", "Mes", "Tipo inmueble", "Direccion", "Tipo contrato"]
+        cols = ["Id","Id inmueble", "Valor", "Año", "Mes", "Tipo inmueble", "Direccion", "Tipo contrato"]
 
         self.nombre = tk.Label(self.VENTANA, text="Ver Mis Pagos", bd=10)
         self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá ver los pagos que ha realizado a sus inmuebles", bd = 10)
@@ -603,7 +599,7 @@ class VentanaUsuario:
             elif isinstance(i, Casa):
                 tipo = "Casa"
                 
-            tabla.insert("", "end", text="", values=(p.getId(), p.getValor(), p.getAno(), p.getMes(), tipo, i.getDireccion(), i.getTipoContrato()))
+            tabla.insert("", "end", text="", values=(p.getId(),i.getIdInmueble(), p.getValor(), p.getAno(), p.getMes(), tipo, i.getDireccion(), i.getTipoContrato()))
 
         self.nombre.pack()
         self.descripcion.pack()
@@ -636,7 +632,7 @@ class VentanaUsuario:
                     raise NonExistException("El inmueble ingresado no existe, por favor verifiquelo")
                 
                 #Verifica si el inmueble está en posesión del cliente
-                if not int(self.frame.getValue("ID Inmueble")) in Cliente.cliente.getInmuebles():
+                if not int(self.frame.getValue("ID Inmueble")) in (Cliente._cliente)[0].getInmuebles():
                     raise FunctionalException("El inmueble no es de su propiedad")
                 
                 #Verifica que sea de tipo arriendo
@@ -644,7 +640,7 @@ class VentanaUsuario:
                     raise FunctionalException("El inmueble que ingresó no es de tipo arriendo")
                 
                 idInmueble = self.frame.getValue("ID Inmueble")
-                Cliente.cliente.finalizarContrato(int(idInmueble))
+                self.idInmueblesCliente.remove(int(idInmueble))
             
             except ErrorAplicacion as error:
                 error.mostrarMensajeError()
@@ -695,7 +691,7 @@ class VentanaUsuario:
 
         self.nombre.pack()
         self.descripcion.pack()
-        self.frame.pack(fill = tk.BOTH, expand=True)
+        self.frame.pack(fill = tk.BOTH,expand=True)
 
     def comprarInmueble(self):
         #Es para "reiniciar" los widgets y no se superpongan

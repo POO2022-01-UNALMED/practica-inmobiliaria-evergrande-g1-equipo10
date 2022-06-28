@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import CENTER, messagebox
 
 from uiMain.ventanaUsuario import VentanaUsuario
+from baseDatos.serializador import Serializador
 
 class Inicio:
     H = 650 # height
@@ -68,7 +69,6 @@ class Inicio:
         self.hojaVida.config(cursor="hand2")
 
         # imagenes de los desarrolladores /////////////////////////////////////
-        color = ["red", "blue", "green", "purple"]
         self.labelImgs = [tk.Label(self.P6) for _ in range(4)]
 
         self.labelImgs[0].grid(row=0, column=0, sticky="nw")
@@ -115,6 +115,7 @@ class Inicio:
         Inicio.perActual = (Inicio.perActual + 1) % 3
 
     def salir(self):
+        Serializador.serializarTodo()
         self.VENTANA.destroy()
     
     def descripcion(self):

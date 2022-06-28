@@ -1,4 +1,4 @@
-from Ciudad import Ciudad
+from .Ciudad import Ciudad
 
 class UnidadResidencial(Ciudad):
   UNIDADES = []
