@@ -730,8 +730,8 @@ class VentanaUsuario:
         # ---------------------------------------------
 
         # Ventana de comprar inmueble ---------
-        self.nombre2 = tk.Label(self.VENTANA, text="Comprar Inmueble", bd=10)
-        self.descripcion2 = tk.Label(self.VENTANA,text= "Para comprar su inmueble deseado por favor rellene los datos", bd = 10 )
+        self.nombre = tk.Label(self.VENTANA, text="Comprar Inmueble", bd=10)
+        self.descripcion = tk.Label(self.VENTANA,text= "Para comprar su inmueble deseado por favor rellene los datos", bd = 10 )
         
         self.frame = fieldFrame(self.VENTANA, "Datos Inmueble Deseado", ["ID"], "Valor", [None])
 
@@ -747,8 +747,8 @@ class VentanaUsuario:
             tk.Label(ventana_dialogo2, text= texto).pack(fill=tk.BOTH, expand=True)
         
         self.frame.crearBotones(funcion_comprarInmueble)
-        self.nombre2.pack()
-        self.descripcion2.pack()
+        self.nombre.pack()
+        self.descripcion.pack()
         self.frame.pack(fill = tk.BOTH, expand=True)
 
     def iniciarContrato(self):
@@ -788,8 +788,8 @@ class VentanaUsuario:
         # ---------------------------------------------
 
         # Ventana de iniciar contrato -----------------
-        self.nombre2 = tk.Label(self.VENTANA, text="Iniciar Contrato", bd=10)
-        self.descripcion2 = tk.Label(self.VENTANA,text= "Para iniciar contrato con su inmueble deseado por favor rellene los datos", bd = 10 )
+        self.nombre = tk.Label(self.VENTANA, text="Iniciar Contrato", bd=10)
+        self.descripcion = tk.Label(self.VENTANA,text= "Para iniciar contrato con su inmueble deseado por favor rellene los datos", bd = 10 )
         
         self.frame = fieldFrame(self.VENTANA, "Datos Inmueble Deseado", ["ID"], "Valor", [None])
 
@@ -805,8 +805,8 @@ class VentanaUsuario:
             tk.Label(ventana_dialogo2, text= texto).pack(fill=tk.BOTH, expand=True)
         
         self.frame.crearBotones(funcion_iniciarContrato)
-        self.nombre2.pack()
-        self.descripcion2.pack()
+        self.nombre.pack()
+        self.descripcion.pack()
         self.frame.pack(fill = tk.BOTH, expand=True)
     
     def presentarInforme(self):
