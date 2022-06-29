@@ -41,7 +41,7 @@ class ApartaEstudio(Inmueble):
     def getNombreUnidad(self):
         return self._nombreUnidad
     
-    def setNombreUnidad(self,nombre)        :
+    def setNombreUnidad(self,nombre):
         self._nombreUnidad = nombre
         
     def getTorre(self):

@@ -25,7 +25,8 @@ class Inicio:
     perActual = 0
 
     HV = [
-        """Mi nombre es Juan Nicolas""",
+        """Mi nombre es Juan Nicolas, soy estudiante de ing. de sistemas,
+        soy tecnologo en sistemas, me interesa mucho la ciencia de datos y la IA""",
         """Mi nombre es Julián Orozco\nTengo 19 años y estudio ing de sitemas e informática""", 
         """Mi nombre es David"""
     ]
