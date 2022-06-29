@@ -17,5 +17,16 @@ class UnidadResidencial(Ciudad):
     self.barrio = barrio
     UnidadResidencial.UNIDADES.append(self)
   
-  def getUnidades():
+  @classmethod
+  def getUnidades(cls):
     return UnidadResidencial.UNIDADES
+  
+  def getIdUnidadResidencial(self):
+    return self.idUnidadResidencial
+  
+  def getNombre(self):
+    return self.nombre
+  
+  def getBarrio(self):
+    return self.barrio
+  

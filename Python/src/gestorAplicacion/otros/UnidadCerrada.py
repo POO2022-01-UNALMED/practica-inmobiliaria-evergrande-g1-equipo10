@@ -7,7 +7,7 @@ David Escobar Ruiz
 Esta clase simula el comportamiento de una unidad residencial de tipo cerrada y sus caracteristicas
 '''
 
-from UnidadResidencial import UnidadResidencial
+from gestorAplicacion.otros.UnidadResidencial import UnidadResidencial
 
 class UnidadCerrada(UnidadResidencial):
   def __init__(self, idUnidadResidencial, nombre, barrio, numero_torres):

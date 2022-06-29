@@ -13,6 +13,7 @@ from tkinter import BOTH, CENTER, ttk, NO , messagebox
 from more_itertools import strip
 from numpy import int16
 from gestorAplicacion.herencia.ApartaEstudio import ApartaEstudio
+from gestorAplicacion.otros.UnidadResidencial import UnidadResidencial
 from gestorAplicacion.herencia.Apartamento import Apartamento
 from gestorAplicacion.herencia.Bodega import Bodega
 from gestorAplicacion.herencia.Casa import Casa
@@ -818,8 +819,65 @@ class VentanaUsuario:
         self.frame.pack(fill = tk.BOTH, expand=True)
     
     def presentarInforme(self):
-        pass
-    
+        #Es para "reiniciar" los widgets y no se superpongan
+        self.nombre.pack_forget()
+        self.descripcion.pack_forget()
+        self.frame.pack_forget()
+        self.texto.pack_forget()
+        self.resetVentana()
+
+        # Ver inmuebles, ventana emergente ---------
+        ventana_dialogo = tk.Toplevel(self.VENTANA)
+        ventana_dialogo.geometry("800x500")
+        ventana_dialogo.title("Inmuebles disponibles")
+        cols = ["Id", "Tipo", "Nombre", "Barrio"]
+        self.nombre = tk.Label(ventana_dialogo, text="Ver Unidades Residenciales")
+        self.descripcion = tk.Label(ventana_dialogo,text= "Aqui podrá ver las unidades residenciales disponibles para poder visualizar el informe", bd = 10)
+        self.frame = tk.Frame(ventana_dialogo)
+
+        tabla = ttk.Treeview(ventana_dialogo, columns=cols)
+        tabla.place(relheight=1, relwidth=1)
+
+        tabla.column("#0", width=0, stretch=False)
+        tabla.heading("#0", text="", anchor=CENTER)
+
+        for c in cols:
+            tabla.column(c, anchor=CENTER, stretch=True, width=80)
+            tabla.heading(c, text=c, anchor=CENTER)
+
+        for unidadResidencial in UnidadResidencial.getUnidades():
+            tabla.insert("", "end", text="", values=(unidadResidencial.getIdUnidadResidencial(), unidadResidencial.getNombre(), unidadResidencial.getBarrio()))
+
+        self.nombre.pack()
+        self.descripcion.pack()
+        self.frame.pack(fill = tk.BOTH)
+        # ---------------------------------------------
+
+        self.nombre = tk.Label(self.VENTANA, text="Presentar Informe", bd=10)
+        self.descripcion = tk.Label(self.VENTANA,text= "Para presentar un informe de una unidad residencial, rellene los datos", bd = 10 )
+        
+        self.frame = fieldFrame(self.VENTANA, "Datos Unidad Residencial Deseada", ["ID"], "Valor", [None])
+
+        def funcion_presentarInforme():
+            #ventana_dialogo.destroy()
+            
+            ventana_dialogo2 = tk.Toplevel(self.VENTANA)
+            ventana_dialogo2.geometry("500x300")
+            ventana_dialogo2.resizable(False,False)
+            ventana_dialogo2.title("Informe")
+            texto = "Se presenta el id: " + self.frame.getValue("ID")
+            for unidadResidencial in UnidadResidencial.getUnidades():
+                if unidadResidencial.getIdUnidadResidencial() == self.frame.getValue("ID"):
+                    unidadResidencial.presentarInforme()
+                    break
+            self.frame.borrarEntradas()
+            tk.Label(ventana_dialogo2, text= texto).pack(fill=tk.BOTH, expand=True)
+        
+        self.frame.crearBotones(funcion_presentarInforme)
+        self.nombre.pack()
+        self.descripcion.pack()
+        self.frame.pack(fill = tk.BOTH, expand=True)
+
     
     
     def acercaDe(self):
