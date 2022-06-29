@@ -10,6 +10,8 @@ from gestorAplicacion.herencia.Casa import Casa
 from gestorAplicacion.otros.TipoContrato import TipoContrato
 from gestorAplicacion.otros.Vehiculo import Vehiculo
 from gestorAplicacion.otros.Agente import Agente
+from gestorAplicacion.otros.UnidadCerrada import UnidadCerrada
+from gestorAplicacion.herencia.EdificioApartamentos import EdificioApartamentos
 from baseDatos.serializador import Serializador
 
 if __name__ == "__main__":
@@ -54,3 +56,16 @@ if __name__ == "__main__":
     clientes[0].setInmuebles([0,1,2])
     
     Serializador.serializar(clientes, "Cliente")
+
+    # Unidades Residenciales
+    unidadesCerradas = [
+        UnidadCerrada(0, "Los Verdes", "Belén", 6),
+    ]
+
+    Serializador.serializar(unidadesCerradas, "UnidadCerrada")
+
+    edificiosApartamentos = [
+        EdificioApartamentos(1, "Puentes de Yarumal", "Robledo", 10)
+    ]
+
+    Serializador.serializar(edificiosApartamentos, "EdificioApartamentos")

@@ -871,8 +871,8 @@ class VentanaUsuario:
         ventana_dialogo.geometry("800x500")
         ventana_dialogo.title("Inmuebles disponibles")
         cols = ["Id", "Tipo", "Nombre", "Barrio"]
-        self.nombre = tk.Label(ventana_dialogo, text="Ver Unidades Residenciales")
-        self.descripcion = tk.Label(ventana_dialogo,text= "Aqui podrá ver las unidades residenciales disponibles para poder visualizar el informe", bd = 10)
+        self.nombre2 = tk.Label(ventana_dialogo, text="Ver Unidades Residenciales")
+        self.descripcion2 = tk.Label(ventana_dialogo,text= "Aqui podrá ver las unidades residenciales disponibles para poder visualizar el informe", bd = 10)
         self.frame = tk.Frame(ventana_dialogo)
 
         tabla = ttk.Treeview(ventana_dialogo, columns=cols)
@@ -886,11 +886,12 @@ class VentanaUsuario:
             tabla.heading(c, text=c, anchor=CENTER)
 
         for unidadResidencial in UnidadResidencial.getUnidades():
-            tabla.insert("", "end", text="", values=(unidadResidencial.getIdUnidadResidencial(), unidadResidencial.getNombre(), unidadResidencial.getBarrio()))
+            tabla.insert("", "end", text="", values=(unidadResidencial[0].getIdUnidadResidencial(), type(unidadResidencial[0]).__name__, unidadResidencial[0].getNombre(), unidadResidencial[0].getBarrio()))
 
-        self.nombre.pack()
-        self.descripcion.pack()
-        self.frame.pack(fill = tk.BOTH)
+        self.frame.pack(fill = tk.BOTH, expand=True)
+        self.nombre2.pack(fill = tk.BOTH, expand=True)
+        self.descripcion2.pack(fill = tk.BOTH, expand=True)
+        
         # ---------------------------------------------
 
         self.nombre = tk.Label(self.VENTANA, text="Presentar Informe", bd=10)
@@ -900,18 +901,42 @@ class VentanaUsuario:
 
         def funcion_presentarInforme():
             #ventana_dialogo.destroy()
-            
-            ventana_dialogo2 = tk.Toplevel(self.VENTANA)
-            ventana_dialogo2.geometry("500x300")
-            ventana_dialogo2.resizable(False,False)
-            ventana_dialogo2.title("Informe")
-            texto = "Se presenta el id: " + self.frame.getValue("ID")
-            for unidadResidencial in UnidadResidencial.getUnidades():
-                if unidadResidencial.getIdUnidadResidencial() == self.frame.getValue("ID"):
-                    unidadResidencial.presentarInforme()
-                    break
-            self.frame.borrarEntradas()
+            from regex import search
+            try:
+                # verificar campo vacio
+                if self.frame.getValue("ID").strip() == "": 
+                    raise EmptyException("Debe llenar el campo \"ID\"")
+
+                # verificar campos numericos
+                if search(r"[^0-9]", self.frame.getValue("ID")) != None: 
+                    raise NumericException("El campo \"ID\" debe ser número positivo")
+                
+                #Verifica que la unidad residencial exista
+                flag = False
+                for unidadResidencial in UnidadResidencial.getUnidades():
+                    if unidadResidencial[0].getIdUnidadResidencial() == int(self.frame.getValue("ID")):
+                        flag = True
+                        break           
+                if not flag:
+                    raise NonExistException("La unidad residencial ingresada no existe, por favor verifiquela")
+                
+            except ErrorAplicacion as error:
+                error.mostrarMensajeError()
+            else:
+                ventana_dialogo2 = tk.Toplevel(self.VENTANA)
+                ventana_dialogo2.geometry("700x300")
+                ventana_dialogo2.resizable(False,False)
+                ventana_dialogo2.title("Informe")
+                texto = "Se presenta el id: " + self.frame.getValue("ID")
+                informe = "No se encontró ningún informe!"
+                for unidadResidencial in UnidadResidencial.getUnidades():
+                    if unidadResidencial[0].getIdUnidadResidencial() == int(self.frame.getValue("ID")):
+                        informe = unidadResidencial[0].presentarInforme()
+                        break
+                self.frame.borrarEntradas()
+            tk.Label(ventana_dialogo2, text = "Informe").pack(fill = tk.BOTH, expand=True)
             tk.Label(ventana_dialogo2, text= texto).pack(fill=tk.BOTH, expand=True)
+            tk.Label(ventana_dialogo2, text=informe).pack(fill=tk.BOTH, expand=True)
         
         self.frame.crearBotones(funcion_presentarInforme)
         self.nombre.pack()

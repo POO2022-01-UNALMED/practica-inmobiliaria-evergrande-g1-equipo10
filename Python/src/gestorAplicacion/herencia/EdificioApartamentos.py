@@ -15,7 +15,7 @@ class EdificioApartamentos(UnidadResidencial):
     self.numero_pisos = numero_pisos
 
   def presentarInforme(self):
-    " Nombre del edificio: " + super().getNombre() + "\n" + " Identificado con el id: " + super().getIdUnidadResidencial() + "\n" + " Ubicado en el barrio: " + super().getBarrio() + " en la ciudad de Medellin, cuyo alcalde es "+ super().ALCALDE + " y actualmente presenta un IVA del "+ super().IVA + "\n" +	" Con " + self.getNumero_pisos() + " pisos de altura"
+    " Nombre del edificio: " + super().getNombre() + "\n" + " Identificado con el id: " + str(super().getIdUnidadResidencial()) + "\n" + " Ubicado en el barrio: " + super().getBarrio() + " en la ciudad de Medellin, cuyo alcalde es "+ super().ALCALDE + " y actualmente presenta un IVA del "+ str(super().IVA) + "\n" +	" Con " + str(self.getNumero_pisos()) + " pisos de altura"
   
   def getNumero_pisos(self):
     return self.numero_pisos

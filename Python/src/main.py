@@ -33,4 +33,9 @@ Agente.setAgente(Serializador.deserializar("Agente"))
 from gestorAplicacion.otros.Cliente import Cliente
 Cliente.setCliente(Serializador.deserializar("Cliente"))
 
+# Unidades Residenciales
+from gestorAplicacion.otros.UnidadResidencial import UnidadResidencial
+UnidadResidencial.UNIDADES.append(Serializador.deserializar("UnidadCerrada"))
+UnidadResidencial.UNIDADES.append(Serializador.deserializar("EdificioApartamentos"))
+
 Inicio()
