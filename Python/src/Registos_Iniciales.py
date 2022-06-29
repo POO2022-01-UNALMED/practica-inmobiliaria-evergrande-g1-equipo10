@@ -3,7 +3,7 @@ from gestorAplicacion.otros.Cliente import Cliente
 from gestorAplicacion.otros.Pago import Pago
 from gestorAplicacion.otros.Cita import Cita
 from gestorAplicacion.herencia.Inmueble import Inmueble
-from gestorAplicacion.herencia.ApartaEstudio import ApartaEstudio
+from gestorAplicacion.herencia.Apartaestudio import ApartaEstudio
 from gestorAplicacion.herencia.Apartamento import Apartamento
 from gestorAplicacion.herencia.Bodega import Bodega
 from gestorAplicacion.herencia.Casa import Casa

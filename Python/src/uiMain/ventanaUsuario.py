@@ -10,9 +10,7 @@ Esta clase crea la ventana de usuario, es decir, donde se aplican todas las func
 import tkinter as tk
 from tkinter import BOTH, CENTER, ttk, NO , messagebox
 
-from more_itertools import strip
-from numpy import int16
-from gestorAplicacion.herencia.ApartaEstudio import ApartaEstudio
+from gestorAplicacion.herencia.Apartaestudio import ApartaEstudio
 from gestorAplicacion.otros.UnidadResidencial import UnidadResidencial
 from gestorAplicacion.herencia.Apartamento import Apartamento
 from gestorAplicacion.herencia.Bodega import Bodega
