@@ -820,18 +820,38 @@ class VentanaUsuario:
         self.nombre = tk.Label(self.VENTANA, text="Iniciar Contrato", bd=10)
         self.descripcion = tk.Label(self.VENTANA,text= "Para iniciar contrato con su inmueble deseado por favor rellene los datos", bd = 10 )
         
-        self.frame = fieldFrame(self.VENTANA, "Datos Inmueble Deseado", ["ID"], "Valor", [None])
+        self.frame = fieldFrame(self.VENTANA, "Datos Inmueble Deseado", ["ID Inmueble"], "Valor", [None])
 
         def funcion_iniciarContrato():
-            #ventana_dialogo.destroy()
-            (Cliente._cliente)[0].iniciarContrato(int(self.frame.getValue("ID")))
-            ventana_dialogo2 = tk.Toplevel(self.VENTANA)
-            ventana_dialogo2.geometry("500x300")
-            ventana_dialogo2.resizable(False,False)
-            ventana_dialogo2.title("Contrato iniciado!")
-            texto = "Se ha iniciado un contrato con el inmueble con id: " + self.frame.getValue("ID")
-            self.frame.borrarEntradas()
-            tk.Label(ventana_dialogo2, text= texto).pack(fill=tk.BOTH, expand=True)
+            from regex import search
+            try:
+                # verificar campo vacio
+                if self.frame.getValue("ID Inmueble").strip() == "": 
+                    raise EmptyException("Debe llenar el campo \"ID Inmueble\"")
+
+                # verificar campos numericos
+                if search(r"[^0-9]", self.frame.getValue("ID Inmueble")) != None: 
+                    raise NumericException("El campo \"ID Inmueble\" debe ser número positivo")
+                
+                #Verifica que el inmueble exista
+                if not Inmueble.existeInmueble(int(self.frame.getValue("ID Inmueble"))):
+                    raise NonExistException("El inmueble ingresado no existe, por favor verifiquelo")
+                
+                # Verifica que el inmueble esté disponible para la venta
+                if Inmueble.buscarInmueble(int(self.frame.getValue("ID Inmueble"))).getArrendado():
+                    raise NonExistException("Este inmueble ya inició contrato. Por favor, elija otro inmueble")
+            except ErrorAplicacion as error:
+                error.mostrarMensajeError()
+            else:
+                #ventana_dialogo.destroy()
+                (Cliente._cliente)[0].iniciarContrato(int(self.frame.getValue("ID Inmueble")))
+                ventana_dialogo2 = tk.Toplevel(self.VENTANA)
+                ventana_dialogo2.geometry("500x300")
+                ventana_dialogo2.resizable(False,False)
+                ventana_dialogo2.title("Contrato iniciado!")
+                texto = "Se ha iniciado un contrato con el inmueble con id: " + self.frame.getValue("ID Inmueble")
+                self.frame.borrarEntradas()
+                tk.Label(ventana_dialogo2, text= texto).pack(fill=tk.BOTH, expand=True)
         
         self.frame.crearBotones(funcion_iniciarContrato)
         self.nombre.pack()
