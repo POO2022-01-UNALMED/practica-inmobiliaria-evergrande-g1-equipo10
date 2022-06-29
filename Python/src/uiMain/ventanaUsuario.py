@@ -621,7 +621,7 @@ class VentanaUsuario:
         
         self.descripcion = tk.Label(self.VENTANA,text= "Aqui podrá realizar los finalizar el contrato de sus inmuebles, por favor rellene los datos necesarios", bd = 10 )
         
-        self.frame = fieldFrame(self.VENTANA, "Datos", [""], "Valor", [None])
+        self.frame = fieldFrame(self.VENTANA, "Datos", ["ID Inmueble"], "Valor", [None])
         
         def funcionFinalizarContrato(): #Funcion del botón aceptar que sirve para finalizar un contrato
             from regex import search
