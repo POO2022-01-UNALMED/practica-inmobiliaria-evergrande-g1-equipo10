@@ -28,7 +28,7 @@ class Inicio:
         """Mi nombre es Juan Nicolas, soy estudiante de ing. de sistemas,
         soy tecnologo en sistemas, me interesa mucho la ciencia de datos y la IA""",
         """Mi nombre es Julián Orozco\nTengo 19 años y estudio ing de sitemas e informática""", 
-        """Mi nombre es David"""
+        """Mi nombre es David \n Soy estudiante de sistemas y me gustan las matemáticas y la IA"""
     ]
     # ///////////////////////////////////////////////////////////////////////
 
